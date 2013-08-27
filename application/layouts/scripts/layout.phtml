@@ -34,8 +34,8 @@ echo $this->doctype('HTML5');
             <?php $this->headScript()->prependFile(APPLICATION_URL . '/public/global/js/jquery-ui-sliderAccess.js'); ?>
             <?php $this->headScript()->prependFile(APPLICATION_URL . '/public/global/js/jquery-ui-1.10.0.custom.min.js'); ?>
             <?php echo $this->headScript()->prependFile(APPLICATION_URL . '/public/global/js/jquery-1.9.0.js'); ?>
-            
-          
+
+
             <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 
@@ -56,33 +56,107 @@ echo $this->doctype('HTML5');
     <body>
 
 
-        <div id="page-wrap">
-            <div class="PageWrapper">
+        <body>
+            <div class="container">
+                <div class="demo-headline">
+                    <?php echo $this->render('layout-v1/header.phtml'); ?>
+                    
+                </div> <!-- /demo-headline -->
+                
+                    <h3 class="demo-panel-title">Menu</h3>
+      <div class="row demo-row">
+        <div class="span9">
+          <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+                <div class="nav-collapse collapse" id="nav-collapse-01">
+                    <?php echo $this->navigation()->menu()->render(Zend_Registry::get('main'), array('ulClass' => 'nav')); ?>
+                  <ul class="nav">
+                    <li>
+                      <a href="#fakelink">
+                        Menu Item
+                        <span class="navbar-unread">1</span>
+                      </a>
+                    </li>
+                    <li class="active">
+                      <a href="#fakelink">
+                        Messages
+                        <span class="navbar-unread">1</span>
+                      </a>
+                      <ul>
+                        <li><a href="#fakelink">Element One</a></li>
+                        <li>
+                          <a href="#fakelink">Sub menu</a>
+                          <ul>
+                            <li><a href="#fakelink">Element One</a></li>
+                            <li><a href="#fakelink">Element Two</a></li>
+                            <li><a href="#fakelink">Element Three</a></li>
+                          </ul> <!-- /Sub menu -->
+                        </li>
+                        <li><a href="#fakelink">Element Three</a></li>
+                      </ul> <!-- /Sub menu -->
+                    </li>
+                    <li>
+                      <a href="#fakelink">
+                        About Us
+                      </a>
+                    </li>
+                  </ul>
+                </div><!--/.nav -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="span3">
+          <select name="herolist" value="X-Men" class="select-block span3">
+            <option value="0">Choose hero</option>
+            <option value="1">Spider Man</option>
+            <option value="2">Wolverine</option>
+            <option value="3">Captain America</option>
+            <option value="X-Men" selected="selected">X-Men</option>
+            <option value="Crocodile">Crocodile</option>
+          </select>
+        </div>
+      </div> <!-- /row -->
+                <menu>
+                    <div class="clearfix" id="menu">
 
-                <div class="HeaderContainer">
-                    <div class="HeaderContent">
-                        <?php echo $this->render('layout-v1/header.phtml'); ?>
+        
+    </div>
 
+                </menu>
+            </div> <!-- /container -->
+            <footer>
+                <?php echo $this->render('layout-v1/footer.phtml'); ?>
+            </footer>
+
+            <div id="page-wrap">
+                <div class="PageWrapper">
+
+                    <div class="HeaderContainer">
+                        <div class="HeaderContent">
+                            
+
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="BreadCrmp">
-                    You are in: <?php echo $this->navigation()->breadcrumbs()->setLinkLast(false)->setMinDepth(0)->render(); ?>
-                </div>
-                <div class="MiddleContainer">
-                    <div id="content" class="clearfix">
-                        <div id="content-area">
-                            <?php echo $this->layout()->content; ?>
+                    <div class="BreadCrmp">
+                        You are in: <?php echo $this->navigation()->breadcrumbs()->setLinkLast(false)->setMinDepth(0)->render(); ?>
+                    </div>
+                    <div class="MiddleContainer">
+                        <div id="content" class="clearfix">
+                            <div id="content-area">
+                                <?php echo $this->layout()->content; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="HomeFooterWrapper">
-                <div class="Footer">
-                    <?php echo $this->render('layout-v1/footer.phtml'); ?>
+                <div class="HomeFooterWrapper">
+                    <div class="Footer">
+                    </div>
                 </div>
             </div>
-        </div>
-    </body>
+        </body>
 </html>
