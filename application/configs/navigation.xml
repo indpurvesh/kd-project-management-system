@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <home>
+        <label>Home</label>
+        
+        <controller>index</controller>
+        <action>index</action>
+    </home>
+            
+    <project>
+        <label>Project</label>
+        <module>workflow</module>
+        <controller>project</controller>
+        <action>index</action>
+    </project>
+    
+    <tasks>
+        <label>Tasks</label>
+        <module>workflow</module>
+        <controller>task</controller>
+        <action>index</action>
+    </tasks>
+            
+    <timesheet>
+        <label>Timesheet</label>
+        <module>user</module>
+        <controller>timesheet</controller>
+        <action>index</action>
+    </timesheet>
+            
+    <admin>
+        <label>Admin</label>
+        <module>admin</module>
+        <controller>system</controller>
+        <action>index</action>
+    </admin>
+    
+    <logout>
+        <label>Logout</label>
+        <module>user</module>
+        <controller>index</controller>
+        <action>logout</action>
+    </logout>
+    
+</configdata>

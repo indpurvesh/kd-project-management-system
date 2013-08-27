@@ -1,0 +1,16 @@
+<div id="header">
+    <!-- Start Logo -->
+    <a href="<?php echo APPLICATION_URL ?>">					
+        <img id="logo" alt="KD Step Logo" width="60" src="<?php echo APPLICATION_URL ?>/public/global/images/your-logo.jpg"></a>
+
+    <p class="sitename">Project Management Software</p>
+
+    <div class="clear"></div>
+
+    
+    <div class="clearfix" id="menu">
+        
+            <?php  echo $this->navigation()->menu()->render(Zend_Registry::get('main'),array('ulClass'=>'clearfix navigation'));?>
+    </div>
+    
+</div>

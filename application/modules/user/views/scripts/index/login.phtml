@@ -1,0 +1,11 @@
+<?php
+echo $this->headLink()->prependStylesheet(APPLICATION_URL . '/public/application/user/login.css');
+//$this->headScript()->prependFile(APPLICATION_URL . '/public/application/user/login.js');
+?>
+
+<form action="<?php echo $this->form->getAction(); ?>" method="<?php echo $this->form->getMethod(); ?>" class="login-here">
+    <h1 class="login-here-title">Login Here</h1>
+<?php echo $this->form->getDisplayGroup('FormElemts');
+echo $this->form->getDisplayGroup('buttons');
+?>
+</form>

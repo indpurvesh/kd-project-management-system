@@ -1,0 +1,39 @@
+
+<div class="pagination" >
+        <!-- First page link -->
+        <?php if (isset($this->previous)): ?>
+              <a href="<?php echo get_class($this); ?>">Start</a> |
+        <?php else: ?>
+                <span class="disabled">Start</span> |
+        <?php endif; ?>
+    
+        <!-- Previous page link -->
+    
+        <?php if (isset($this->previous)): ?>
+              <a href="<?php echo $this->url()->makeUrl(array('page' => $this->previous)); ?>">&lt; Previous</a> |
+        <?php else: ?>
+            <span class="disabled">&lt; Previous</span> |
+        <?php endif; ?>
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <a href="<?php echo $this->url()->makeUrl(array('page' => $page)); ?>"><?php echo $page; ?></a>
+            <?php else: ?>
+                <span class="curent_page"><?php echo $page; ?></span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+              | <a href="<?php echo $this->url()->makeUrl(array('page' => $this->next)); ?>">Next &gt;</a> |
+        <?php else: ?>
+            | <span class="disabled">Next &gt;</span> |
+        <?php endif; ?>
+        <!-- Last page link -->
+        <?php if (isset($this->next)): ?>
+              <a href="<?php echo $this->url()->makeUrl(array('page' => $this->last)); ?>">End</a>
+        <?php else: ?>
+            <span class="disabled">End</span>
+        <?php endif; ?>
+        
+        <span class="pages">Page <?php echo $this->current; ?> of <?php echo $this->last; ?></span>
+ </div>

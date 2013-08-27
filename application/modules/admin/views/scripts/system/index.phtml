@@ -1,0 +1,29 @@
+<div class="entry clearfix">
+
+    <?php if (count($this->messages)) : ?>
+
+        <div class="et-box <?php echo $this->escape($this->messageClass); ?> ">
+            <div class="et-box-content">
+                <p><span style="font-size: 17px;"><?php echo $this->escape($this->messageType); ?></span>
+                    <br style="clear: both;">
+                <ul id="messages">
+
+                    <?php foreach ($this->messages as $message) : ?>
+
+                        <li><?php echo $this->escape($message); ?></li>
+
+                    <?php endforeach; ?>
+
+                </ul>
+
+                </p>
+
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <h1> System Settings</h1>
+    <div class="content">
+        <?php echo $this->form; ?>
+    </div>
+</div> 

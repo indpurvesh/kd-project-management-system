@@ -1,0 +1,123 @@
+<div class="prject_wrapper">
+    <h1 class="title">
+        <?php echo $this->escape($this->title); ?>
+    </h1>
+
+
+    <ul id="sortable1">
+        <li class="dragli">
+            <div> 
+                <div class="header">Project view</div>
+                <div class="content">
+                    <div class="pro_info">
+                        <div class="project_type">
+                            <span class="label">
+                                Type:
+                            </span>
+                            <span class="value">
+                                <?php  echo $this->projectData['project_type_data']['project_type_name'];  ?>
+                            </span>
+                        </div>
+                        <div class="project_name">
+                            <span class="label">
+                                Name:
+                            </span>
+                            <span class="value">
+                                <?php echo $this->projectData['project_name']; ?>
+                            </span>
+                        </div>
+                        <div class="project_desc">
+                            <span class="label">
+                                Description:
+                            </span>
+                            <span class="value">
+                                <?php echo $this->projectData['project_description']; ?>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <li class="dragli">
+            <div> my items 2</div>
+        </li>
+        <li class="dragli">
+            <div> my items 3</div>
+        </li>
+        <li class="dragli">
+            <div> my items 4</div>
+        </li>
+        <li class="dragli">
+            <div> my items 5</div>
+        </li>
+    </ul>
+    <ul id="sortable2">
+        <li class="dragli">
+            <div> 
+                <div class="header">MY view</div>
+                <div class="content">
+                    my items 1
+                </div>
+            </div>
+        </li>
+        <li class="dragli">
+            <div> my items 2</div>
+        </li>
+        <li class="dragli">
+            <div> my items 3</div>
+        </li>
+        <li class="dragli">
+            <div> my items 4</div>
+        </li>
+        <li class="dragli">
+            <div> my items 5</div>
+        </li>
+    </ul>
+    <script>
+        //jQuery('#sortable1').sortable();
+        jQuery('#sortable2').sortable({ 'connectWith': "#sortable1" ,'placeholder': 'ui-state-highlight',start: function(e, ui){
+                ui.placeholder.height(ui.item.height());
+            }});
+        jQuery( "#sortable1" ).sortable({ 'connectWith': "#sortable2",'placeholder': 'ui-state-highlight',start: function(e, ui){
+                ui.placeholder.height(ui.item.height());
+            } });
+    </script>
+    <style>
+        #sortable1 {
+            display: inline-block;
+            width: 420px;
+            margin: 10px;
+            vertical-align: top;
+        }
+        #sortable2 {
+            display: inline-block;
+            width: 420px;
+            margin: 10px;
+            vertical-align: top;
+        }
+        .dragli {
+            display: inline-block;
+            width: 420px;
+            margin: 10px 0px;
+            border: 1px solid #000;
+        }
+        .ui-sortable .ui-sortable-placeholder{
+            border: 1px dotted #000 !important;
+            display: block;
+            height: 100px;
+
+        }
+        .dragli .header {
+            background: #ccc;
+            padding: 10px;
+            display: block;
+        }
+        .dragli .content{
+            padding: 10px;
+            display: block;
+        }
+
+
+    </style>
+</div>

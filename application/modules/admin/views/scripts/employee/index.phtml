@@ -1,0 +1,77 @@
+<div class="grid_content">
+    
+    <div class="Header_titles">
+        <h1>Employee</h1>
+        <div class="add_link">
+            <a href="<?php
+                echo $this->url()
+                        ->makeUrl(array(
+                            'module' => 'admin',
+                            'controller' => 'employee',
+                            'action' => 'edit'
+                        ));
+                ?>">Add Employee</a>
+        </div>
+    </div>
+    <div class="table">
+        <div class="tr header_title">
+            <div class="td">
+                ID
+            </div>
+            <div class="td">
+                First Name
+            </div>
+            <div class="td">
+                Last Name
+            </div>
+            <div class="td">
+                Edit
+            </div>
+            <div class="td">
+                Delete
+            </div>
+        </div>
+
+        <?php
+        foreach ($this->paginator as $record) {
+            ?>
+
+            <div class="tr">
+                <div class="td">
+                    <?php
+                    echo $record->id;
+                    ?>
+                </div>
+                <div class="td">
+                    <?php
+                    echo $record->first_name;
+                    ?>
+                </div>
+                <div class="td">
+                    <?php
+                    echo $record->last_name;
+                    ?>
+                </div>
+                <div class="td">
+                    <a href="<?php
+                echo $this->url()->makeUrl(array(
+                                        'module' => 'admin',
+                                        'controller' => 'employee',
+                                        'action' => 'edit',
+                                        'id' => $record->id
+                                    ));
+                ?>" title="edit">edit</a>
+                </div>
+                <div class="td">
+                    delete
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+
+    </div>
+    <?php
+    echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml');
+    ?>
+</div>

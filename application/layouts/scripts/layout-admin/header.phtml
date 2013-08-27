@@ -1,0 +1,37 @@
+<div id="header">
+    <!-- Start Logo -->
+    <a href="<?php echo APPLICATION_URL ?>">					
+        <img id="logo" alt="KD Step Logo" width="60" src="<?php echo APPLICATION_URL ?>/public/global/images/your-logo.jpg"></a>
+
+    <p id="slogan">ADMIN Project Management</p>
+
+    <!-- End Logo -->
+
+    <!-- Start Searchbox -->
+    <div id="search-form">
+        <form action="" id="searchform1" method="get">
+            <input type="text" id="searchinput" name="s" value="search this site...">
+        </form>
+    </div>
+
+    <!-- End Searchbox -->
+
+    <div class="clear"></div>
+
+
+    <div class="clearfix" id="menu">
+      
+        <?php  echo $this->navigation()->menu()->render(Zend_Registry::get('admin'),array('ulClass'=>'clearfix navigation'));?>
+        <?php //echo $this->navigation()->menu()->renderMenu(null,array('ulClass'=>'clearfix navigation')); ?>
+        <!--ul class="clearfix navigation">
+            <li class="active">
+                <a href="/kdstep/">Home</a>
+            </li>
+            <li>
+                <a href="/kdstep/admin/system/index">System</a>
+            </li>
+            
+        </ul-->
+    </div>
+
+</div>
