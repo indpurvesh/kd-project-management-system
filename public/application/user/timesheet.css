@@ -1,0 +1,38 @@
+/* 
+    Document   : timesheet
+    Created on : 8/02/2013, 6:25:04 PM
+    Author     : kdecom
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.header_title .start_time  {
+    display: inline-block;
+    width: 100px;
+}
+.multirow_container .multi_row_data .header_title div.end_time {
+    display: inline-block;
+    padding: 5px;
+    width: 100px;
+}
+.header_title .desc_of_task {
+    display: inline-block;
+    width: 594px;
+}
+.forms_container .FormElemts .StartTime input[type=text],.forms_container .FormElemts .EndTime input[type=text] {
+    display: inline-block;
+    width: 100px;
+    padding: 5px 0px;
+}
+.forms_container .FormElemts .Description input[type=text] {
+    display: inline-block;
+    width: 645px;
+    padding: 5px 0px;
+}
+.multi_row_data .header_title .title {
+    padding: 5px 20px;
+}
+.forms_container .FormElemts {
+    padding: 5px 10px;
+    border-top: 1px ridge #CCCCCC;
+}
