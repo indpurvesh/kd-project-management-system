@@ -1,0 +1,14 @@
+<?php
+
+$form->prepare();
+echo $this->form()->openTag($form);?>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('id'));?>
+            <?php echo $this->formRow($form->get('application_name'));?>
+           
+        </div>
+        <div class="control-input submit">
+           
+            <?php echo $this->formRow($form->get('submit'));?>
+        </div>
+<?php echo $this->form()->closeTag();?>

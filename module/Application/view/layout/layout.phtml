@@ -1,0 +1,67 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Test Project Management System ' . $this->translate('Sticky Notes'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+
+
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+                ->prependStylesheet($this->basePath() . '/public/css/flat-ui.css')
+                ->prependStylesheet($this->basePath() . '/public/bootstrap/css/bootstrap.css')
+                ->prependStylesheet($this->basePath() . '/public/bootstrap/css/bootstrap.css')
+        ?>
+
+
+        <?php
+        echo $this->headScript()->prependFile($this->basePath() . '/public/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/public/js/application.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.stacktable.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.placeholder.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.tagsinput.js')
+                ->prependFile($this->basePath() . '/public/js/flatui-checkbox.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-switch.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap.min.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-responsive.js')
+                ->prependFile($this->basePath() . '/public/js/jquery-ui-1.10.3.custom.min.js')
+                ->prependFile($this->basePath() . '/public/js/jquery-1.8.3.min.js')
+        ?>
+
+    </head>
+    <body class="row-fluid">
+        <div class="span12 container-fluid row">
+            <div class="header">
+                <div class="demo-logo demo-row row">
+                    <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Test Project Name') ?></a>
+                </div>
+                <div class="demo-row row">
+                    <div class="navbar span12 navbar-inverse">
+                        <div class="navbar-inner">
+                            <div class="nav-collapse collapse">
+                                <ul class="nav">
+                                    <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                                    <li class=""><a href="<?php echo $this->url('system-settings') ?>"><?php echo $this->translate('System Settings') ?></a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content demo-row row">
+                <?php echo $this->content; ?>
+                <hr>
+                
+            </div> <!-- /container -->
+            <footer class="demo-row row">
+                    <p>&copy; 2005 - 2012 by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                    <p>Kdecom.</p>
+                </footer>
+            <?php echo $this->inlineScript() ?>
+        </div>
+    </body>
+</html>
