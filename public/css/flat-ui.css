@@ -3866,3 +3866,29 @@ body.vjs-full-window {
 .mal {
   margin-left: 20px;
 }
+input[type=submit] {
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+
+
+/*   ----- START  FORM COMMON FORM CSS  */
+
+.control-input { float: left; width: 100%;}
+.control-input label {
+    float: left;
+    width: 20%;
+    max-width: 200px;
+    text-align: right;
+    padding-right: 2%;
+    line-height: 60px;
+}
+.control-input input {
+    float: left;
+    width: 80%;
+    max-width: 250px;
+}
+.control-input .btn { float: left; width: 20%; max-width: 200px; }
+
+/*   ----- STOP   FORM COMMON FORM CSS  */

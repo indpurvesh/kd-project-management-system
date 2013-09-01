@@ -1,0 +1,17 @@
+<?php
+
+$form->prepare();
+echo $this->form()->openTag($form);?>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('user_name'));?>
+        </div>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('user_password'));?>
+        </div>
+        <div class="control-input">
+                <label>&nbsp;</label>
+            <div class="btn btn-large btn-block btn-success">
+                <?php echo $this->formRow($form->get('submit'));?>
+            </div>
+        </div>
+<?php echo $this->form()->closeTag();?>
