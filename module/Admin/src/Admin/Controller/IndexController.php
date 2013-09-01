@@ -9,17 +9,20 @@
 
 namespace Admin\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController {
+class IndexController extends FrontActionController {
 
     protected $_coreSystemSettingsTable;
 
     public function indexAction() {
+        if($this->isUserLoggedIn() === true) {
+            
         return new ViewModel(array(
                     'coresystemsettings' => $this->getCoreSystemSettingsTable()->fetchAll(),
                 ));
+        }
     }
 
     public function updateAction() {

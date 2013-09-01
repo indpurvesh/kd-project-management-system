@@ -1,0 +1,20 @@
+<?php
+
+$form->prepare();
+echo $this->form()->openTag($form);?>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('email'));?>
+        </div>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('password'));?>
+        </div>
+        <div class="control-input">
+            <?php echo $this->formRow($form->get('cpassword'));?>
+        </div>
+        <div class="control-input">
+                <label>&nbsp;</label>
+            <div class="btn btn-large btn-block btn-success">
+                <?php echo $this->formRow($form->get('submit'));?>
+            </div>
+        </div>
+<?php echo $this->form()->closeTag();?>

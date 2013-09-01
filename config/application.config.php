@@ -5,6 +5,7 @@ return array(
         'StickyNotes',
         'Admin',
         'Kdecom',
+        'Auth'
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

@@ -24,6 +24,15 @@ AutoloaderProviderInterface, ConfigProviderInterface, ServiceProviderInterface {
 
     public function getServiceConfig() {
         
+         return array(
+            'factories' => array(
+                'auth_service' => function ($sm) {
+                    $authService = new AuthenticationService(new SessionStorage('Zend_Auth'));
+                    return $authService;
+                }
+            )
+        );
+        
     }
 
     public function getConfig($env = null) {

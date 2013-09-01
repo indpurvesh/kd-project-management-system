@@ -52,18 +52,7 @@ return array(
                     ),
                 ),
             ),
-            'login' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/login',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller' => 'Index',
-                        'action' => 'login',
-                    ),
-                    
-                ),
-            ),
+           
         ),
     ),
     'service_manager' => array(

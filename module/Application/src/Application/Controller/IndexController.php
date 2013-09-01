@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -12,19 +13,13 @@ namespace Application\Controller;
 use Kdecom\Mvc\Controller\FrontActionController;
 //use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Form\LoginForm;
 
-class IndexController extends FrontActionController
-{
-    public function indexAction()
-    {
+class IndexController extends FrontActionController {
+
+    public function indexAction() {
         return new ViewModel();
     }
-    public function loginAction()
-    {
-        $form = new LoginForm();
-        return new ViewModel(array(
-                    'form' => $form
-                ));
-    }
+
+   
+
 }

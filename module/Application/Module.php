@@ -37,4 +37,25 @@ class Module
             ),
         );
     }
+    public function getServiceConfig() {
+        return array(
+            'factories' => array(
+                'auth_service' => function ($sm) {
+                    $authService = new AuthenticationService(new SessionStorage('Zend_Auth'));
+                    return $authService;
+                },
+                'Application\Model\UsersTable' => function($sm) {
+                    $tableGateway = $sm->get('UserEntity');
+                    $table = new UserTable($tableGateway);
+                    return $table;
+                },
+                'UserEntity' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new User());
+                    return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
+                },
+            )
+        );
+    }
 }
