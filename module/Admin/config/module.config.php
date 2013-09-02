@@ -5,6 +5,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Admin\Controller\User' => 'Admin\Controller\UserController',
         ),
     ),
     'router' => array(
@@ -20,7 +21,7 @@ return array(
                 ),
             ),
             'admin' => array(
-                'type' => 'Literal',
+                'type' => 'Segment',
                 'options' => array(
                     'route' => '/admin',
                     'defaults' => array(

@@ -6,7 +6,16 @@
     <div class="span3">
         <h3>User Management</h3>
         <ul>
-            <li>Roles Profiles</li>
+            <li>
+                <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'user', 'id' => $userSessionData['id'])); ?>" title="User Profile" >
+                    User Profiles
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role', 'id' => $userSessionData['id'])); ?>" title="Roles Profile" >
+                    Roles Profiles
+                </a>
+            </li>
         </ul>
     </div>
     <div class="span8">

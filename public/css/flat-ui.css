@@ -3873,6 +3873,16 @@ input[type=submit] {
 }
 
 
+
+/*   ----- START  SITE CSS  */
+
+body { max-width: 1080px;margin: 0 auto; padding:20px;}
+
+
+/*   ----- END  SITE CSS  */
+
+
+
 /*   ----- START  FORM COMMON FORM CSS  */
 
 .control-input { float: left; width: 100%;}

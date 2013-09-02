@@ -17,16 +17,24 @@ class IndexController extends FrontActionController {
     protected $_coreSystemSettingsTable;
 
     public function indexAction() {
-        if($this->isUserLoggedIn() === true) {
-            
-        return new ViewModel(array(
-                    'coresystemsettings' => $this->getCoreSystemSettingsTable()->fetchAll(),
-                ));
+        if ($this->isUserLoggedIn() === true) {
+
+            $authService = $this->serviceLocator->get('auth_service');
+
+            $userSesstionData = $authService->getIdentity();
+
+            return new ViewModel(array(
+                        'coresystemsettings' => $this->getCoreSystemSettingsTable()->fetchAll(),
+                        'userSessionData' => $userSesstionData
+                    ));
         }
     }
 
     public function updateAction() {
 
+        if ($this->isUserLoggedIn() === false) {
+            $this->redirect()->toRoute('login');
+        }
 
         $id = $this->params('id');
         $model = $this->getCoreSystemSettingsTable();
@@ -41,7 +49,7 @@ class IndexController extends FrontActionController {
 
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                
+
                 $obj->setApplicationName($request->getPost('application_name'));
                 $model->saveCoreSystemSettings($obj);
                 return $this->redirect()->toRoute('system-settings');

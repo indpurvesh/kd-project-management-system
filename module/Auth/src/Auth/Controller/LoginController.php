@@ -14,18 +14,18 @@ use Zend\Mvc\Controller\AbstractActionController,
     Zend\Authentication\Adapter\DbTable,
     Zend\Session\Container as SessionContainer,
     Zend\View\Model\ViewModel,
-    Auth\Model\User,
+    Auth\Model\Entity\User,
     Auth\Form\Login,
     Auth\Form\Register;
 
 class LoginController extends AbstractActionController {
 
+    
     public function loginAction() {
         
         
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
-            // if not log in, redirect to login page
             return $this->redirect()->toRoute('home');
         }
 
@@ -57,8 +57,10 @@ class LoginController extends AbstractActionController {
             if ($result->isValid()) {
                 // set id as identifier in session
                 $userId = $authAdapter->getResultRowObject('id')->id;
-                $authService->getStorage()
-                        ->write($userId);
+                $userName = $authAdapter->getResultRowObject('user_name')->user_name;
+                $authService->getStorage()->write(array('id' => $userId,'user_name' => $userName));
+                
+              
                 return $this->redirect()->toRoute('home');
             } else {
                 
@@ -110,8 +112,9 @@ class LoginController extends AbstractActionController {
             if ($result->isValid()) {
                 // set id as identifier in session
                 $userId = $authAdapter->getResultRowObject('id')->id;
-                $authService->getStorage()
-                        ->write($userId);
+                $userName = $authAdapter->getResultRowObject('user_name')->user_name;
+                $authService->getStorage()->write($userId);
+                $authService->getStorage()->write($userName);
                 return $this->redirect()->toRoute('home');
             } else {
                 
@@ -130,17 +133,13 @@ class LoginController extends AbstractActionController {
         $authService = $this->serviceLocator->get('auth_service');
         if (!$authService->hasIdentity()) {
             // if not log in, redirect to login page
-            return $this->redirect()->toUrl('/login');
+            return $this->redirect()->toRoute('home');
         }
 
         $authService->clearIdentity();
-        $form = new Login();
-        $viewModel = new ViewModel(array('loginMsg' => array('You have been logged out'),
-                    'form' => $form,
-                    'title' => 'Log out'
-                ));
-        $viewModel->setTemplate('auth/login/login.phtml');
-        return $viewModel;
+        $this->redirect()->toRoute('login');
+        //$viewModel->setTemplate('auth/login/login.phtml');
+        //return $viewModel;
     }
 
     public function twitterAction() {

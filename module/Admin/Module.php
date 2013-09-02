@@ -9,6 +9,7 @@
 
 namespace Admin;
 
+use Auth\Model\UserTable;
 class Module {
 
     public function getAutoloaderConfig() {
@@ -35,6 +36,12 @@ class Module {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     //$table = new Model\StickyNotesTable($dbAdapter);
                     $table = new Model\CoreSystemSettings($dbAdapter);
+                    return $table;
+                },
+                'Admin\Model\UserTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    //$table = new Model\StickyNotesTable($dbAdapter);
+                    $table = new UserTable($dbAdapter);
                     return $table;
                 },
             ),
