@@ -24,8 +24,6 @@ class UserController extends FrontActionController {
         }
 
         $id = $this->params('id');
-
-
         $model = $this->getUserTable();
         $form = new UserForm();
         

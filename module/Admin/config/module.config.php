@@ -54,5 +54,8 @@ return array(
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',
         ),
+            'template_map' => array(
+            'left_menu' => __DIR__ . '/../view/partial/left-menu.phtml',
+        ),
     ),
 );

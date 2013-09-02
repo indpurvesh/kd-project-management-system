@@ -1,0 +1,14 @@
+<h3><?php echo $this->kdecom; ?> User Management</h3>
+<ul>
+    <li>
+        <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'user', 'id' => $this->userSessionData['id'])); ?>" title="User Profile" >
+            User Profiles
+        </a>
+    </li>
+    <li>
+        <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role', 'id' => $this->userSessionData['id'])); ?>" title="Roles Profile" >
+            Roles Profiles
+        </a>
+    </li>
+</ul>
+
