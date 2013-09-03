@@ -1,0 +1,95 @@
+/* Prototurk.com adina anibor tarafindan kodlanmistir.*/ 
+@import "reset.css";
+body{font-family:Verdana;max-width: 100%;}
+a{text-decoration:none;}
+:focus{outline:none;}
+
+#left{float:left; width: 15%}
+#right{float:left; width: 85%;}
+#logo{background:url("../images/theme_logo.png") no-repeat 55px;background-color:#f7f7f7;min-height:145px;border-bottom:1px solid #ebebeb;border-right:1px solid #ebebeb;}
+
+
+#tools a{font-size:15px;color:#666666;text-decoration:none;text-shadow:1px 1px #ffffff;}
+#tools li{padding:12px 15px 12px 15px;border-top:1px solid #fff;border-bottom:1px solid #ebebeb;border-right:1px solid #ebebeb;background-color:#f7f7f7;}
+#tools li:hover{background-color:#fbfbfb;}
+#tools .select{padding-left:10px;border-left:5px solid #ea533f;background-color:#fff;border-right:none;background-image:none;color:#333333;}
+#tools .select:hover {background-color:#fff;}
+#yazilar{background:url("../images/yazilar.png") no-repeat 165px;}
+#medya{background:url("../images/medya.png") no-repeat 165px;}
+#sayfalar{background:url("../images/sayfalar.png") no-repeat 165px;}
+#baglantilar{background:url("../images/baglantilar.png") no-repeat 165px;}
+#yorumlar{background:url("../images/yorumlar.png") no-repeat 165px;}
+#bilesenler{background:url("../images/widgets.png") no-repeat 165px;}
+#eklentiler{background:url("../images/eklentiler.png") no-repeat 165px;}
+#kullanicilar{background:url("../images/kullanicilar.png") no-repeat 165px;}
+#araclar{background:url("../images/araclar.png") no-repeat 165px;}
+#ayarlar{background:url("../images/ayarlar.png") no-repeat 165px;}
+#keep{background-color:#f7f7f7;border-right:1px solid #ebebeb;border-top:1px solid #fff;position:fixed;top:0;bottom:0;width:15%;margin-top:610px;height:100%;}
+.number{background:url("../images/button_bg.png") repeat-x;padding:0px 4px 0px 4px;font-size:13px;color:#fff;text-shadow:1px 1px #d23e2a;border-radius:2px;border:1px solid #db301a;margin-left:5px;}
+
+#header{height:49px;border-bottom:1px solid #ebebeb;}
+#other{float:right;margin-right:204px;width:200px;}
+
+#arti,#bulut,#yorum,#zil,#wordpress{position:relative;float:left;height:49px;width:49px;}
+#bulut,#yorum,#zil,#wordpress{border-left:1px solid #ebebeb;}
+#bulut{background:url("../images/bulut.png") 16px no-repeat;}
+#yorum{background:url("../images/yorumlar.png") 16px no-repeat;}
+#yorum_sayi{text-align:right;position:absolute;margin:5px 0px 0px 80px;background:url("../images/sayi_bg.png") repeat-x;background-color:#ea5440;padding:0px 3px 0px 3px;font-size:10px;text-shadow:1px 1px #d23e2a;color:#fff;border:1px solid #db301a;border-radius:2px;}
+#zil{background:url("../images/zil.png") 16px no-repeat;}
+#wordpress{background:url("../images/wordpress.png") 16px no-repeat;}
+#arti{background:url("../images/arti.png") 16px no-repeat;border-right:1px solid #ebebeb; }
+
+#body{padding:25px 30px 25px 30px;}
+.p_title{margin-bottom:20px;font-size:18px;font-weight:bold;padding:5px 5px 5px 40px;color:#ea533f;}
+.home_icon{background:url("../images/home-icon.png") 5px no-repeat;}
+#b_left,#b_right{border:1px solid #ebebeb;border-radius:5px;padding:20px 15px 20px 15px;width:315px;float:left;margin-right:30px;}
+.bl_title{font-size:17px;color:#000;margin-bottom:15px;}
+.bll_title{color:#666666;font-size:15px;}
+.dots{background:url("../images/dots.png") no-repeat;width:121;height:1px;margin:11px 0px 11px 0px;}
+#bl_1,#bl_2{float:left;width:150px;}
+#bl_1{color:#666666;}
+#bl_1 li,#bl_2 li{margin-bottom:18px;}
+#bll_1,#bll_2,#blc_1,#blc_2{float:left;font-size:14px;}
+#bll_1,#blc_1{width:35px;color:#1b6aad;text-align:right;margin-right:15px;}
+.blue{color:#1b6aad;}
+.green{color:#69ae30;}
+.orange{color:#f6810f;}
+.red{color:#f32f2f;}
+#theme_notice{font-size:13px;color:#666666;float:left;margin-top:20px;}
+
+#i_save{height:16px;margin-bottom:7px;}
+#i_save ul{float:right;}
+#i_save li{display:inline;}
+#b_right input{background-color:#f6f6f6;border:none;padding:10px;font-size:14px;margin-bottom:7px;width:295px;color:#666666;}
+#i_publish{margin-top:20px;}
+#i_publish li{display:inline;}
+#save,#del,.publish{border:none;border-radius:3px;cursor:pointer;}
+#save,#del{padding:5px 15px 5px 15px;border:1px solid #d7d7d7;}
+#save{background:url("../images/kayit.png"),url("../images/button2_bg.png");background-repeat:no-repeat,repeat-x;background-position:7px,0px 0px;}
+#save:active{background:url("../images/kayit.png"),url("../images/button2_bg.png");background-repeat:no-repeat,repeat-x;background-position:7px,0px -29px;}
+#del{background:url("../images/sil.png"),url("../images/button2_bg.png");background-repeat:no-repeat,repeat-x;background-position:7px,0px 0px;}
+#del:active{background:url("../images/sil.png"),url("../images/button2_bg.png");background-repeat:no-repeat,repeat-x;background-position:7px,0px -29px;}
+
+.publish{background:url("../images/button_bg.png") repeat-x;padding:5px 13px 5px 13px;border:1px solid #db311a;font-size:14px;color:#fff;text-shadow:1px 1px #ad3727;}
+.publish:active{background:url("../images/button_bg.png") repeat-x 0px -29px;}
+#i_publish .publish{float:right;}
+
+#footer{border-top:1px solid #ebebeb;position:fixed;bottom:0;height:50px;width:100%;}
+#f_left{float:left;font-size:15px;color:#0d8cc8;padding:13px 15px 15px 20px;}
+#f_right{float:right;margin-right:204px;}
+#f_right li{display:inline;}
+#user,#setting,#exit{position:relative;height:49px;float:left;border-left:1px solid #ebebeb; }
+#setting,#exit{width:50px;}
+#setting{background:url("../images/settings.png") 16px no-repeat;}
+#exit{background:url("../images/exit.png") 16px no-repeat;}
+#user{background:url("../images/anibor.png") no-repeat 10px;width:50px;padding-right:70px;padding-top:2px;}
+#user font{position:absolute;margin:14px 0px 0px 50px;font-size:15px;color:#666666;padding-left:5px;}
+
+
+
+
+
+
+
+
+

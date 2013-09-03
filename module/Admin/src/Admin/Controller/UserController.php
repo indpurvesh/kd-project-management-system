@@ -23,13 +23,17 @@ class UserController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
 
+
+        $authService = $this->serviceLocator->get('auth_service');
+        $userSessionData = $authService->getIdentity();
+
         $id = $this->params('id');
         $model = $this->getUserTable();
         $form = new UserForm();
-        
+
         $obj = $model->getUser($id);
         $userData = $obj->toArray();
-       
+
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -48,7 +52,9 @@ class UserController extends FrontActionController {
         $form->populateValues($userData);
         return new ViewModel(array(
                     'form' => $form,
-                    'id' => $id
+                    'id' => $id,
+                    'user' => true,
+                    'userSessionData' => $userSessionData
                 ));
     }
 

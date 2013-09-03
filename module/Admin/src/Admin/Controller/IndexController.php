@@ -20,12 +20,12 @@ class IndexController extends FrontActionController {
         if ($this->isUserLoggedIn() === true) {
 
             $authService = $this->serviceLocator->get('auth_service');
-
             $userSesstionData = $authService->getIdentity();
 
             return new ViewModel(array(
                         'coresystemsettings' => $this->getCoreSystemSettingsTable()->fetchAll(),
-                        'userSessionData' => $userSesstionData
+                        'userSessionData' => $userSesstionData,
+                        'dashboard' => true
                     ));
         }
     }

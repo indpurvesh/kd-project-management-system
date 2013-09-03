@@ -1,0 +1,249 @@
+/*=========================================================================== */
+/* CSS Document Stylesheet 
+============================================================================= */
+
+/* ========================================================================== */
+/* ---------->>>                        RESET CSS
+/* ============================w============================================= */
+
+/*reset.css*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:11px;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym {border:0;}
+
+/*fonts.css*/
+body{font-size:11px; font-family:Tahoma,Arial;color:#333333;}
+select, input, textarea {font-size:11px; font-family:Tahoma,Arial;}
+body * {line-height:16px;}
+
+/* ========================================================================== */
+/* ---------->>>                        BOX CONTROL
+/* ========================================================================== */
+
+.aCenter        { text-align:center; }
+.aRight         { text-align:right; }
+.aLeft          { text-align:left;}
+.vCenter        { vertical-align:middle; }
+.vTop           { vertical-align:top; }
+.vBottom        { vertical-align:bottom; }
+.vTopLeft       { vertical-align:top; text-align:left; }
+
+.clear  { clear:both; }
+.fLeft  { float:left; }
+.fRight { float:right; }
+.fix    { display:block; }
+.posab  { position:absolute; } 
+.b              { font-weight:bold; }
+.pointer { cursor:pointer; }
+.noBorder { border-color:transparent; }
+.noBG { background:transparent; }
+
+/* ========================================================================== */
+/* ---------->>>                        FORM OBJECT STARTING
+/* ========================================================================== */
+
+input {border:1px solid #d6d6d6; font-family:"lucida grande",tahoma,verdana,arial,sans-serif; font-size:11px; padding:4px; }
+.button {background:#000 none repeat scroll 0%;border:1px solid #494949;color:#fff;font-family:Tahoma, Arial;
+font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;line-height:normal; padding:2px 4px 2px 4px; cursor:pointer}
+.button:hover { background:#494949; }
+
+
+/* ========================================================================== */
+/* ---------->>>                        W�DTH STARTING
+/* ========================================================================== */
+
+.w5  { width:5px; }
+.w10 { width:10px; }
+.w15 { width:15px; }
+.w20 { width:20px; }
+.w25 { width:25px; }
+.w30 { width:30px; }
+.w35 { width:35px; }
+.w40 { width:40px; }
+.w45 { width:45px; }
+.w50 { width:50px; }
+.w60 { width:60px; }
+.w70 { width:70px; }
+.w80 { width:80px; }
+.w90 { width:90px; }
+.w100 { width:100px; }
+.w125 { width:125px; }
+.w150 { width:150px; }
+.w175 { width:175px; }
+.w190 { width:190px; }
+.w200 { width:200px; }
+.w210 { width:210px; }
+.w215 { width:215px; }
+.w225 { width:225px; }
+.w250 { width:250px; }
+.w275 { width:275px; }
+.w300 { width:300px; }
+.w350 { width:350px; }
+.w400 { width:400px; }
+.w450 { width:450px; }
+.w500 { width:500px; }
+.w550 { width:550px; }
+.w600 { width:600px; }
+.w700 { width:700px; }
+.w750 { width:750px; }
+.w760 { width:760px; }
+.w900 { width:900px; }
+.wauto { width:auto; }
+/*              Width end       */
+
+/* ========================================================================== */
+/* ---------->>>                        HEIGHT STARTING
+/* ========================================================================== */
+
+.h5  { height:5px; }
+.h10 { height:10px; }
+.h15 { height:15px; }
+.h20 { height:20px; }
+.h25 { height:25px; }
+.h30 { height:30px; }
+.h35 { height:35px; }
+.h40 { height:40px; }
+.h45 { height:45px; }
+.h50 { height:50px; }
+.h75 { height:75px; }
+.h85 { height:85px; }
+.h100 { height:100px; }
+.h125 { height:125px; }
+.h150 { height:150px; }
+.h175 { height:175px; }
+.h200 { height:200px; }
+/*              height end       */
+
+/* ========================================================================== */
+/* ---------->>>                        PADDING STARTING
+/* ========================================================================== */
+
+/* padding style start */
+.nopad {padding:0px; }
+.pad1 {padding:1px; }
+.pad2 {padding:2px; }
+.pad3 {padding:3px; }
+.pad4 {padding:4px; }
+.pad5 {padding:5px; }
+.pad10 {padding:10px; }
+.pad15 {padding:15px; }
+/* padding style end */
+
+/* padding-left style start */
+.padL1 {padding-left:1px; }
+.padL2 {padding-left:2px; }
+.padL3 {padding-left:3px; }
+.padL4 {padding-left:4px; }
+.padL5 {padding-left:5px; }
+.padL10 {padding-left:10px; }
+.padL15 {padding-left:15px; }
+.padL20 {padding-left:20px; }
+/* padding-left style end */
+
+/* padding-right style start */
+.padR1 {padding-right:1px; }
+.padR2 {padding-right:2px; }
+.padR3 {padding-right:3px; }
+.padR4 {padding-right:4px; }
+.padR5 {padding-right:5px; }
+.padR10 {padding-right:10px; }
+.padR15 {padding-right:15px; }
+.padR20 {padding-right:20px; }
+/* padding-right style end */
+
+/* padding-top style start */
+.padT1 {padding-top:1px; }
+.padT2 {padding-top:2px; }
+.padT3 {padding-top:3px; }
+.padT4 {padding-top:4px; }
+.padT5 {padding-top:5px; }
+.padT7 {padding-top:7px; }
+.padT10 {padding-top:10px; }
+.padT15 {padding-top:15px; }
+.padT20 {padding-top:20px; }
+/* padding-top style end */
+
+/* padding-bottom style start */
+.padB1 {padding-bottom:1px; }
+.padB2 {padding-bottom:2px; }
+.padB3 {padding-bottom:3px; }
+.padB4 {padding-bottom:4px; }
+.padB5 {padding-bottom:5px; }
+.padB10 {padding-bottom:10px; }
+.padB15 {padding-bottom:15px; }
+/* padding-bottom style start */
+
+/* PADDING END */
+
+/* ========================================================================== */
+/* ---------->>>                        MARGIN STARTING
+/* ========================================================================== */
+
+/* margin style start */
+.marLRauto { margin-left:auto; margin-right:auto; }
+.nomar {margin:0px; }
+.mar1 {margin:1px; }
+.mar2 {margin:2px; }
+.mar3 {margin:3px; }
+.mar4 {margin:4px; }
+.mar5 {margin:5px; }
+.mar6 {margin:6px; }
+.mar10 {margin:10px; }
+.mar15 {margin:15px; }
+.mar30 {margin:30px; }
+/* margin style end */
+
+/* margin-left style start */
+.marL1 {margin-left:1px; }
+.marL2 {margin-left:2px; }
+.marL3 {margin-left:3px; }
+.marL4 {margin-left:4px; }
+.marL5 {margin-left:5px; }
+.marL10 {margin-left:10px; }
+.marL15 {margin-left:15px; }
+.marL20 {margin-left:20px; }
+.marL30 {margin-left:30px; }
+.marL40 {margin-left:40px; }
+.marL100 {margin-left:100px; }
+/* margin-left style end */
+
+/* margin-right style start */
+.marR1 {margin-right:1px; }
+.marR2 {margin-right:2px; }
+.marR3 {margin-right:3px; }
+.marR4 {margin-right:4px; }
+.marR5 {margin-right:5px; }
+.marR7 {margin-right:7px; }
+.marR10 {margin-right:10px; }
+.marR15 {margin-right:15px; }
+.marR20 {margin-right:20px; }
+/* margin-right style end */
+
+/* margin-top style start */
+.marT1 {margin-top:1px; }
+.marT2 {margin-top:2px; }
+.marT3 {margin-top:3px; }
+.marT4 {margin-top:4px; }
+.marT5 {margin-top:5px; }
+.marT10 {margin-top:10px; }
+.marT15 {margin-top:15px; }
+.marT20 {margin-top:20px; }
+/* margin-top style end */
+
+/* margin-bottom style start */
+.marB1 {margin-bottom:1px; }
+.marB2 {margin-bottom:2px; }
+.marB3 {margin-bottom:3px; }
+.marB4 {margin-bottom:4px; }
+.marB5 {margin-bottom:5px; }
+.marB10 {margin-bottom:10px; }
+.marB15 {margin-bottom:15px; }
+/* margin-bottom style start */
+
+/* margin END */

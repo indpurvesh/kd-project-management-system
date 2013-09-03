@@ -1,0 +1,33 @@
+/* 
+    Document   : common
+    Created on : 3/09/2013, 11:51:40 AM
+    Author     : Admin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+/*   ----- START  FORM COMMON FORM CSS  */
+
+.control-input { 
+    float: left; 
+    width: 100%;
+    margin: 10px 0px;
+}
+.control-input label {
+    float: left;
+    width: 20%;
+    max-width: 200px;
+    text-align: right;
+    padding-right: 2%;
+    line-height: 60px;
+}
+.control-input input {
+    float: left;
+    width: 80%;
+    max-width: 250px;
+}
+.control-input .btn { float: left; width: 20%; max-width: 200px; }
+
+/*   ----- STOP   FORM COMMON FORM CSS  */
