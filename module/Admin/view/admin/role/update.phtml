@@ -1,0 +1,23 @@
+<h2 class="user_icon p_title">User Profile Update</h2>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<?php echo $this->formRow($form->get('id')); ?>
+<div class="control-input">
+    <?php echo $this->formRow($form->get('email')); ?>
+</div>
+<div class="control-input">
+    <?php echo $this->formRow($form->get('first_name')); ?>
+</div>
+<div class="control-input">
+    <?php echo $this->formRow($form->get('last_name')); ?>
+</div>
+<div class="control-input ">
+    <label>&nbsp;</label>
+    <div class="btn btn-large btn-block btn-success">
+        <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+</div>
+<?php echo $this->form()->closeTag(); ?>

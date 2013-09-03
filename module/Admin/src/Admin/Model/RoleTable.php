@@ -1,14 +1,21 @@
 <?php
 
-namespace Auth\Model;
+/**
+ * Description of Model Description
+ *
+ * @author Purvesh <ind.purvesh@gmail.com>, <@kdecom>
+ */
+// module/Admin/src/Admin/Model/StickyNotesTable.php
+
+namespace Admin\Model;
 
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\AbstractTableGateway;
 use Zend\Db\Sql\Select;
 
-class UserTable extends AbstractTableGateway {
+class RoleTable extends AbstractTableGateway {
 
-    protected $table = 'users';
+    protected $table = 'role';
 
     public function __construct(Adapter $adapter) {
         $this->adapter = $adapter;
@@ -23,43 +30,42 @@ class UserTable extends AbstractTableGateway {
         return $resultSet;
     }
 
-    public function getUser($userId) {
-        $row = $this->select(array('id' => (int) $userId))->current();
+    public function getRole($id) {
+        $row = $this->select(array('id' => (int) $id))->current();
         if (!$row)
             return false;
 
-        $user = new Entity\User();
-        $user->setId($row->id);
-        $user->setUserName($row->user_name);
-        $user->setFirstName($row->first_name);
-        $user->setLastName($row->last_name);
-        $user->setEmail($row->email);
-
-        return $user;
+        $role = new Entity\Role();
+        $role->setId($row->id);
+        $role->setRoleName($row->role_name);
+        
+        return $role;
     }
 
-    public function saveUser(Entity\User $user) {
+    public function saveRole(Entity\Role $role) {
         $data = array(
-            'email' => $user->getEmail(),
-            'first_name' => $user->getFirstName(),
-            'last_name' => $user->getLastName()
+            'role_name' => $role->getRoeName()
         );
 
-        $id = (int) $user->getId();
+        $id = (int) $role->getId();
 
         if ($id == 0) {
             if (!$this->insert($data))
                 return false;
             return $this->getLastInsertValue();
         }
-        elseif ($this->getUser($id)) {
-
+        elseif ($this->getRole($id)) {
+            
             if (!$this->update($data, array('id' => $id)))
                 return false;
             return $id;
         }
         else
             return false;
+    }
+
+    public function removeRole($id) {
+        return $this->delete(array('id' => (int) $id));
     }
 
 }

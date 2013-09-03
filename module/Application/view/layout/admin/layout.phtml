@@ -15,6 +15,7 @@
                 ->prependStylesheet($this->basePath() . '/public/admin/css/style.css')
                 ->prependStylesheet($this->basePath() . '/public/admin/css/reset.css')
                 ->prependStylesheet($this->basePath() . '/public/css/flat-ui.css')
+                ->prependStylesheet($this->basePath() . '/public/bootstrap/css/bootstrap-responsive.css')
         ?>
 
 
@@ -54,7 +55,7 @@
                             </li>
                         </a>
                         
-                        <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role', 'id' => $child->userSessionData['id'])); ?>">
+                        <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'role', 'id' => $child->userSessionData['id'])); ?>">
                             <li id="user-roles" class="<?php  echo ($child->user_roles === true) ?  $class  : ""; ?>">
                                 User Roles
                             </li>

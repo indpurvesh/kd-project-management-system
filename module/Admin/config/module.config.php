@@ -6,6 +6,7 @@ return array(
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\User' => 'Admin\Controller\UserController',
+            'Admin\Controller\Role' => 'Admin\Controller\RoleController',
         ),
     ),
     'router' => array(
@@ -36,13 +37,28 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action][/:id]]',
+                            'route' => '/[:controller[/:action][/:page]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'page' => 1,
+                            ),
+                        ),
+                    ),
+                    'user' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/user[/:action[/:id]]',
+                            'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '[0-9]*',
                             ),
                             'defaults' => array(
+                                'controller' => 'user',
+                                'page' => 1,
                             ),
                         ),
                     ),
@@ -58,6 +74,9 @@ return array(
         'exception_template' => 'error/index',
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'template_map' => array( 
+            'pagination' => __DIR__ . '/../view/partial/slidePaginator.phtml',
         ),
     ),
 );

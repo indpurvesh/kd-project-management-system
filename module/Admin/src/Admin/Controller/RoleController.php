@@ -14,19 +14,18 @@ use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
     Admin\Form\UserForm,
-        
     Zend\Db\Sql\Select;
 
-class UserController extends FrontActionController {
+class RoleController extends FrontActionController {
 
-    protected $_usersTable;
+    protected $_roleTable;
 
     public function indexAction() {
-        
+
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
-        
+
         $select = new Select();
 
         $order_by = $this->params()->fromRoute('order_by') ?
@@ -35,12 +34,12 @@ class UserController extends FrontActionController {
                 $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
 
-       
-        $users = $this->getUserTable()->fetchAll($select->order($order_by . ' ' . $order));
+
+        $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
         $itemsPerPage = 5;
 
-        $users->current();
-        $paginator = new Paginator(new paginatorIterator($users));
+        $role->current();
+        $paginator = new Paginator(new paginatorIterator($role));
         $paginator->setCurrentPageNumber($page)
                 ->setItemCountPerPage($itemsPerPage)
                 ->setPageRange(7);
@@ -51,7 +50,6 @@ class UserController extends FrontActionController {
                     'page' => $page,
                     'paginator' => $paginator,
                 ));
-        
     }
 
     public function updateAction() {
@@ -65,10 +63,10 @@ class UserController extends FrontActionController {
         $userSessionData = $authService->getIdentity();
 
         $id = $this->params('id');
-        $model = $this->getUserTable();
+        $model = $this->getRoleTable();
         $form = new UserForm();
 
-        $obj = $model->getUser($id);
+        $obj = $model->getRole($id);
         $userData = $obj->toArray();
 
         $request = $this->getRequest();
@@ -81,7 +79,7 @@ class UserController extends FrontActionController {
                 $obj->setEmail($request->getPost('email'));
                 $obj->setFirstName($request->getPost('first_name'));
                 $obj->setLastName($request->getPost('last_name'));
-                $model->saveUser($obj);
+                $model->saveRole($obj);
                 return $this->redirect()->toRoute('admin/user');
             }
         }
@@ -95,12 +93,12 @@ class UserController extends FrontActionController {
                 ));
     }
 
-    public function getUserTable() {
-        if (!$this->_usersTable) {
+    public function getRoleTable() {
+        if (!$this->_roleTable) {
             $sm = $this->getServiceLocator();
-            $this->_usersTable = $sm->get('Admin\Model\UserTable');
+            $this->_roleTable = $sm->get('Admin\Model\RoleTable');
         }
-        return $this->_usersTable
+        return $this->_roleTable
         ;
     }
 

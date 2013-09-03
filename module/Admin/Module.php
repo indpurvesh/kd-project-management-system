@@ -10,6 +10,7 @@
 namespace Admin;
 
 use Auth\Model\UserTable;
+use Admin\Model\RoleTable;
 class Module {
 
      
@@ -41,8 +42,12 @@ class Module {
                 },
                 'Admin\Model\UserTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    //$table = new Model\StickyNotesTable($dbAdapter);
                     $table = new UserTable($dbAdapter);
+                    return $table;
+                },
+                'Admin\Model\RoleTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new RoleTable($dbAdapter);
                     return $table;
                 },
             ),

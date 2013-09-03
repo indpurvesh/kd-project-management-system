@@ -1,0 +1,31 @@
+<?php if (count($this->paginator)): ?>
+    <div class="demo-row row-fluid">
+        <div class="span1"> ID</div>
+        <div class="span2">First Name</div>
+        <div class="span2">Last Name</div>
+        <div class="span2">Email</div>
+        <div class="span1">Edit</div>
+        <div class="span1">Delete</div>
+    </div>
+        <?php foreach ($this->paginator as $idx => $item): ?>
+            <div class="demo-row row-fluid">
+                <div class="span1"><?php echo $item['id'] ?></div>
+                <div class="span2"><?php echo $item['first_name']; ?></div>
+                <div class="span2"><?php echo $item['last_name']; ?></div>
+                <div class="span2"><?php echo $item['email']; ?></div>
+                <div class="span1">
+                    <a href="<?php echo $this->url('admin/user', array('module' => 'admin' , 'controller' => 'user','action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                        Edit
+                    </a>
+                </div>
+                <div class="span1">
+                    <a href="<?php echo $this->url('admin/user', array('module' => 'admin' , 'controller' => 'user','action' => 'delete', 'id' => $item['id'])); ?>" title="" >
+                        Delete
+                    </a>
+                </div>
+            </div>
+        <?php endforeach ?>
+<?php endif; ?>
+
+<!-- call pagination control view script  -->
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order)); ?>
