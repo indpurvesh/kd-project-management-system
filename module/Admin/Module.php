@@ -12,6 +12,7 @@ namespace Admin;
 use Auth\Model\UserTable;
 class Module {
 
+     
     public function getAutoloaderConfig() {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(

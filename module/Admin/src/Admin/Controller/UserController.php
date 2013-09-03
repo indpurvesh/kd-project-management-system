@@ -17,6 +17,13 @@ class UserController extends FrontActionController {
 
     protected $_usersTable;
 
+    public function indexAction() {
+        
+        if ($this->isUserLoggedIn() === false) {
+            $this->redirect()->toRoute('login');
+        }
+    }
+
     public function updateAction() {
 
         if ($this->isUserLoggedIn() === false) {
