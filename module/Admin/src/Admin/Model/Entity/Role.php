@@ -62,7 +62,7 @@ class Role {
     }
 
     public function getRoleName() {
-        return $this->_application_name;
+        return $this->_role_name;
     }
 
     public function setRoleName($applicationName) {

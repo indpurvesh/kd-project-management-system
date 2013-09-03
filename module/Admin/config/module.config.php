@@ -62,6 +62,20 @@ return array(
                             ),
                         ),
                     ),
+                    'role' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/role[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'role',
+                                'page' => 1,
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

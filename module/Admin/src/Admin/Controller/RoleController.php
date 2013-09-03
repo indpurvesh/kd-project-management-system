@@ -13,7 +13,8 @@ use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
-    Admin\Form\UserForm,
+    Admin\Form\RoleForm,
+    Admin\Model\Entity\Role,
     Zend\Db\Sql\Select;
 
 class RoleController extends FrontActionController {
@@ -48,6 +49,7 @@ class RoleController extends FrontActionController {
                     'order_by' => $order_by,
                     'order' => $order,
                     'page' => $page,
+                    'add_title' => 'Role',
                     'paginator' => $paginator,
                 ));
     }
@@ -62,12 +64,16 @@ class RoleController extends FrontActionController {
         $authService = $this->serviceLocator->get('auth_service');
         $userSessionData = $authService->getIdentity();
 
-        $id = $this->params('id');
+        $id = $this->params('id', null);
         $model = $this->getRoleTable();
-        $form = new UserForm();
+        $form = new RoleForm();
 
-        $obj = $model->getRole($id);
-        $userData = $obj->toArray();
+        if($id === null ) {
+            $obj = new Role();
+        } else {
+            $obj = $model->getRole($id);
+            $userData = $obj->toArray();
+        }
 
         $request = $this->getRequest();
 
@@ -76,15 +82,17 @@ class RoleController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj->setEmail($request->getPost('email'));
-                $obj->setFirstName($request->getPost('first_name'));
-                $obj->setLastName($request->getPost('last_name'));
+                $obj->setRoleName($request->getPost('role_name'));
                 $model->saveRole($obj);
-                return $this->redirect()->toRoute('admin/user');
+                return $this->redirect()->toRoute('admin/role');
             }
         }
+        if ($id !== null) {
+            
+            $form->populateValues($userData);
+            $form->get('submit')->setValue('Update Role');
+        }
 
-        $form->populateValues($userData);
         return new ViewModel(array(
                     'form' => $form,
                     'id' => $id,

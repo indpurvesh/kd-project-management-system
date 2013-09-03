@@ -44,7 +44,7 @@ class RoleTable extends AbstractTableGateway {
 
     public function saveRole(Entity\Role $role) {
         $data = array(
-            'role_name' => $role->getRoeName()
+            'role_name' => $role->getRoleName()
         );
 
         $id = (int) $role->getId();

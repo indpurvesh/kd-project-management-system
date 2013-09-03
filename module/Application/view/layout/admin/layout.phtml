@@ -82,12 +82,17 @@
 
                 <div id="header">
 
-                    <div id="plus">
+                    <div class="plus">
 
-                        <a href="#">
-                            <span id="arti"></span>
+                        <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role')); ?>">
+                            <span class="add"></span>
                         </a>
 
+                        <span class="text">
+                            <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role')); ?>">
+                                Add <?php echo $child->add_title; ?>
+                            </a>
+                        </span>
                     </div>
 
                     <div id="other">
@@ -120,12 +125,12 @@
                     <div id="footer">
 
                         <div id="f_left">
-                            Developed by <a href="" >Kdecom</a>
+                            Developed by <a href="http://www.kdecom.com" title="Kdecom" blank="_blank" >Kdecom</a>
                         </div>
 
                         <div id="f_right">
                             <ul>
-                                <li><a href="http://anibor.digeryuzu.com"><span id="user"><font>anibor</font></span></a></li>
+                                <li><a href="http://kdecom.com"><span id="user"><font>Purvesh</font></span></a></li>
                                 <li><a href="#"><span id="setting"></span></a></li>
                                 <li><a href="<?php echo $this->url('logout'); ?>"><span id="exit"></span></a></li>
                             </ul>

@@ -31,13 +31,20 @@ a{text-decoration:none;}
 #other{float:right;margin-right:204px;width:200px;}
 
 #arti,#bulut,#yorum,#zil,#wordpress{position:relative;float:left;height:49px;width:49px;}
+.add{position:relative;float:left;height:49px;width:49px;}
 #bulut,#yorum,#zil,#wordpress{border-left:1px solid #ebebeb;}
 #bulut{background:url("../images/bulut.png") 16px no-repeat;}
 #yorum{background:url("../images/yorumlar.png") 16px no-repeat;}
 #yorum_sayi{text-align:right;position:absolute;margin:5px 0px 0px 80px;background:url("../images/sayi_bg.png") repeat-x;background-color:#ea5440;padding:0px 3px 0px 3px;font-size:10px;text-shadow:1px 1px #d23e2a;color:#fff;border:1px solid #db301a;border-radius:2px;}
 #zil{background:url("../images/zil.png") 16px no-repeat;}
 #wordpress{background:url("../images/wordpress.png") 16px no-repeat;}
-#arti{background:url("../images/arti.png") 16px no-repeat;border-right:1px solid #ebebeb; }
+.add{background:url("../images/add.png") 16px no-repeat;border-right:1px solid #ebebeb; }
+.plus .text { 
+    float: left;
+    line-height: 50px;
+    padding-left: 15px;
+    font-weight: bold;
+}
 
 #body{padding:25px 30px 25px 30px;}
 .p_title{margin-bottom:20px;font-size:18px;font-weight:bold;padding:5px 5px 5px 40px;color:#ea533f;}

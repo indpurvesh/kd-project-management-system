@@ -10,12 +10,12 @@
                 <div class="span1"><?php echo $item['id'] ?></div>
                 <div class="span2"><?php echo $item['role_name']; ?></div>
                 <div class="span1">
-                    <a href="<?php echo $this->url('admin/user', array('module' => 'admin' , 'controller' => 'user','action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                    <a href="<?php echo $this->url('admin/role', array('module' => 'admin' , 'controller' => 'role','action' => 'update', 'id' => $item['id'])); ?>" title="" >
                         Edit
                     </a>
                 </div>
                 <div class="span1">
-                    <a href="<?php echo $this->url('admin/user', array('module' => 'admin' , 'controller' => 'user','action' => 'delete', 'id' => $item['id'])); ?>" title="" >
+                    <a href="<?php echo $this->url('admin/role', array('module' => 'admin' , 'controller' => 'role','action' => 'delete', 'id' => $item['id'])); ?>" title="" >
                         Delete
                     </a>
                 </div>
