@@ -19,6 +19,17 @@ class UserForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'user_name',
+            'attributes' => array(
+                'type'  => 'text',
+                'required' => 'required',
+                'id' =>'user_name'
+            ),
+            'options' => array(
+                'label' => 'User Name',
+            ),
+        ));
+        $this->add(array(
             'name' => 'email',
             'attributes' => array(
                 'type'  => 'text',
@@ -27,6 +38,17 @@ class UserForm extends Form
             ),
             'options' => array(
                 'label' => 'User Email',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'user_password',
+            'attributes' => array(
+                'type'  => 'password',
+                'required' => 'required',
+                'id' =>'password'
+            ),
+            'options' => array(
+                'label' => 'Password',
             ),
         ));
         $this->add(array(
@@ -46,7 +68,7 @@ class UserForm extends Form
                 'id' =>'first_name'
             ),
             'options' => array(
-                'label' => 'First Name',
+                'label' => 'Last Name',
             ),
         ));
 
@@ -57,7 +79,7 @@ class UserForm extends Form
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
-                'value' => 'Update',
+                'value' => 'Update Login',
                 'id' => 'submitbutton',
             ),
         ));

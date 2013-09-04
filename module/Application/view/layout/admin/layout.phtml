@@ -57,6 +57,7 @@
 
                 <div id="header">
 
+                    <?php if(!empty($child->controller_name) && !empty($child->add_title)) :  ?>
                     <div class="plus">
 
                         <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role')); ?>">
@@ -69,6 +70,7 @@
                             </a>
                         </span>
                     </div>
+                    <?php endif; ?>
 
                     <div id="other">
 

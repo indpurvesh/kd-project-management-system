@@ -70,12 +70,13 @@ class UserController extends FrontActionController {
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
-        $id = $this->params('id');
+        $id = $this->params('id',null);
         $model = $this->getUserTable();
         $form = new UserForm();
 
         if ($id === null) {
             $obj = new User();
+            $form->get('submit')->setValue('Add Login');
         } else {
             $obj = $model->getUser($id);
             $userData = $obj->toArray();
@@ -99,7 +100,7 @@ class UserController extends FrontActionController {
 
         if ($id !== null) {
             $form->populateValues($userData);
-        }
+        } 
 
         return new ViewModel(array(
                     'form' => $form,

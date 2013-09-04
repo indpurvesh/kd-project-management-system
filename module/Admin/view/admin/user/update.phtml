@@ -6,6 +6,14 @@ echo $this->form()->openTag($form);
 ?>
 <?php echo $this->formRow($form->get('id')); ?>
 <div class="control-input">
+    <?php echo $this->formRow($form->get('user_name')); ?>
+</div>
+<?php if($id === null) : ?>
+<div class="control-input">
+    <?php echo $this->formRow($form->get('user_password')); ?>
+</div>
+<?php endif; ?>
+<div class="control-input">
     <?php echo $this->formRow($form->get('email')); ?>
 </div>
 <div class="control-input">
