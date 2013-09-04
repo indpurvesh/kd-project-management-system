@@ -49,6 +49,7 @@ class UserController extends FrontActionController {
                     'order_by' => $order_by,
                     'order' => $order,
                     'page' => $page,
+                    'user' => true,
                     'paginator' => $paginator,
                 ));
         

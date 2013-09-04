@@ -40,36 +40,11 @@
                     $children = $this->viewModel()->getCurrent()->getChildren();
                     $child = $children[0];
                     //$authService = $this->serviceLocator->get('auth_service');
-                    $class = "select";
+                    
+                    echo $this->partial('admin-menu', array('child' => $child));
                     ?>
 
-                    <ul>
-                        <a href="#">
-                            <li id="dashboard" class="<?php  echo ($child->dashboard === true) ?  $class  : ""; ?>">
-                                Dashboard
-                            </li>
-                        </a>
-                        <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'user')); ?>">
-                            <li id="users" class="<?php  echo ($child->user === true) ?  $class  : ""; ?>">
-                                Users
-                            </li>
-                        </a>
-                        
-                        <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'role', 'id' => $child->userSessionData['id'])); ?>">
-                            <li id="user-roles" class="<?php  echo ($child->user_roles === true) ?  $class  : ""; ?>">
-                                User Roles
-                            </li>
-                        </a>
-                        <!--					<a href="#"><li id="sayfalar">Sayfalar</li></a>
-                                                                <a href="#"><li id="baglantilar">Bağlantılar</li></a>
-                                                                <a href="#"><li id="yorumlar">Yorumlar <span class="number">7</span></li></a>
-                                                                <a href="#"><li id="bilesenler">Bileşenler</li></a>
-                                                                <a href="#"><li id="eklentiler">Eklentiler <span class="number">2</span></li></a>
-                                                                <a href="#"><li id="kullanicilar">Kullanıcılar</li></a>
-                                                                <a href="#"><li id="araclar">Araçlar</li></a>
-                                                                <a href="#"><li id="ayarlar">Ayarlar</li></a>-->
-                    </ul>
-
+                    
                 </div>
 
                 <div id="keep">

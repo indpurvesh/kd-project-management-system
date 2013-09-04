@@ -27,6 +27,10 @@ class RoleController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
 
+        $authService = $this->serviceLocator->get('auth_service');
+        $userSessionData = $authService->getIdentity();
+        
+        
         $select = new Select();
 
         $order_by = $this->params()->fromRoute('order_by') ?
@@ -51,6 +55,8 @@ class RoleController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'Role',
                     'paginator' => $paginator,
+                    'user_roles' => true,
+                    'userSessionData' => $userSessionData
                 ));
     }
 
@@ -68,7 +74,7 @@ class RoleController extends FrontActionController {
         $model = $this->getRoleTable();
         $form = new RoleForm();
 
-        if($id === null ) {
+        if ($id === null) {
             $obj = new Role();
         } else {
             $obj = $model->getRole($id);
@@ -88,7 +94,7 @@ class RoleController extends FrontActionController {
             }
         }
         if ($id !== null) {
-            
+
             $form->populateValues($userData);
             $form->get('submit')->setValue('Update Role');
         }
@@ -96,7 +102,7 @@ class RoleController extends FrontActionController {
         return new ViewModel(array(
                     'form' => $form,
                     'id' => $id,
-                    'user' => true,
+                    'user_roles' => true,
                     'userSessionData' => $userSessionData
                 ));
     }

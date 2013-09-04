@@ -1,0 +1,26 @@
+<ul>
+    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'index')); ?>">
+        <li id="dashboard" class="<?php echo ($this->child->dashboard === true) ? "select" : ""; ?>">
+            Dashboard
+        </li>
+    </a>
+    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'user')); ?>">
+        <li id="users" class="<?php echo ($this->child->user === true) ? "select" : ""; ?>">
+            Users
+        </li>
+    </a>
+
+    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'role')); ?>">
+        <li id="user-roles" class="<?php echo ($this->child->user_roles === true) ? "select" : ""; ?>">
+            User Roles
+        </li>
+    </a>
+<!--    <a href="#"><li id="sayfalar">Sayfalar</li></a>
+    <a href="#"><li id="baglantilar">Bağlantılar</li></a>
+    <a href="#"><li id="yorumlar">Yorumlar <span class="number">7</span></li></a>
+    <a href="#"><li id="bilesenler">Bileşenler</li></a>
+    <a href="#"><li id="eklentiler">Eklentiler <span class="number">2</span></li></a>
+    <a href="#"><li id="kullanicilar">Kullanıcılar</li></a>
+    <a href="#"><li id="araclar">Araçlar</li></a>
+    <a href="#"><li id="ayarlar">Ayarlar</li></a>-->
+</ul>

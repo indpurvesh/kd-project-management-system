@@ -12,25 +12,50 @@
  * file.
  */
 // config/autoload/global.php
-return array(
-    'db' => array(
-        'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=kdstep;host=localhost',
-        'username' => 'root',
-        'password' => '',
-        'driver_options' => array(
-            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+if ($_SERVER['HTTP_HOST'] == "www.localhost.com") {
+    return array(
+        'db' => array(
+            'driver' => 'Pdo',
+            'dsn' => 'mysql:dbname=kdstep;host=localhost',
+            'username' => 'root',
+            'password' => '',
+            'driver_options' => array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+            ),
         ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
-            'Zend\Db\Adapter\Adapter'
-            => 'Zend\Db\Adapter\AdapterServiceFactory',
+        'service_manager' => array(
+            'factories' => array(
+                'Zend\Db\Adapter\Adapter'
+                => 'Zend\Db\Adapter\AdapterServiceFactory',
+            ),
         ),
-    ),
-     'module_layouts' => array(
-        'Application' => 'layout/front/layout.phtml',
-        'Admin' => 'layout/admin/layout.phtml',
-        'Auth' => 'layout/front/layout.phtml',
-    ),
-);
+        'module_layouts' => array(
+            'Application' => 'layout/front/layout.phtml',
+            'Admin' => 'layout/admin/layout.phtml',
+            'Auth' => 'layout/front/layout.phtml',
+        ),
+    );
+} else {
+    return array(
+        'db' => array(
+            'driver' => 'Pdo',
+            'dsn' => 'mysql:dbname=cucch_13700871_kdpos;host=sql305.byetcluster.com',
+            'username' => 'cucch_13700871',
+            'password' => 'auckland',
+            'driver_options' => array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+            ),
+        ),
+        'service_manager' => array(
+            'factories' => array(
+                'Zend\Db\Adapter\Adapter'
+                => 'Zend\Db\Adapter\AdapterServiceFactory',
+            ),
+        ),
+        'module_layouts' => array(
+            'Application' => 'layout/front/layout.phtml',
+            'Admin' => 'layout/admin/layout.phtml',
+            'Auth' => 'layout/front/layout.phtml',
+        ),
+    );
+}
