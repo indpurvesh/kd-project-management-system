@@ -5,22 +5,22 @@
         <div class="span1">Edit</div>
         <div class="span1">Delete</div>
     </div>
-        <?php foreach ($this->paginator as $idx => $item): ?>
-            <div class="demo-row row-fluid">
-                <div class="span1"><?php echo $item['id'] ?></div>
-                <div class="span2"><?php echo $item['role_name']; ?></div>
-                <div class="span1">
-                    <a href="<?php echo $this->url('admin/role', array('module' => 'admin' , 'controller' => 'role','action' => 'update', 'id' => $item['id'])); ?>" title="" >
-                        Edit
-                    </a>
-                </div>
-                <div class="span1">
-                    <a href="<?php echo $this->url('admin/role', array('module' => 'admin' , 'controller' => 'role','action' => 'delete', 'id' => $item['id'])); ?>" title="" >
-                        Delete
-                    </a>
-                </div>
+    <?php foreach ($this->paginator as $idx => $item): ?>
+        <div class="demo-row row-fluid">
+            <div class="span1"><?php echo $item['id'] ?></div>
+            <div class="span2"><?php echo $item['role_name']; ?></div>
+            <div class="span1">
+                <a href="<?php echo $this->url('admin/role', array('module' => 'admin', 'controller' => 'role', 'action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                    Edit
+                </a>
             </div>
-        <?php endforeach ?>
+            <div class="span1">
+                <a class="delete" href="<?php echo $this->url('admin/role', array('module' => 'admin', 'controller' => 'role', 'action' => 'delete', 'id' => $item['id'])); ?>" title="" >
+                    Delete
+                </a>
+            </div>
+        </div>
+    <?php endforeach ?>
 <?php endif; ?>
 
 <!-- call pagination control view script  -->

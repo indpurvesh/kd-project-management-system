@@ -20,6 +20,7 @@ use Zend\View\Model\ViewModel,
 class RoleController extends FrontActionController {
 
     protected $_roleTable;
+    protected $_userSessionData;
 
     public function indexAction() {
 
@@ -28,9 +29,9 @@ class RoleController extends FrontActionController {
         }
 
         $authService = $this->serviceLocator->get('auth_service');
-        $userSessionData = $authService->getIdentity();
-        
-        
+        $this->_userSessionData = $authService->getIdentity();
+
+
         $select = new Select();
 
         $order_by = $this->params()->fromRoute('order_by') ?
@@ -54,9 +55,10 @@ class RoleController extends FrontActionController {
                     'order' => $order,
                     'page' => $page,
                     'add_title' => 'Role',
+                    'controller_name' => 'role',
                     'paginator' => $paginator,
                     'user_roles' => true,
-                    'userSessionData' => $userSessionData
+                    'userSessionData' => $this->_userSessionData
                 ));
     }
 
@@ -68,7 +70,7 @@ class RoleController extends FrontActionController {
 
 
         $authService = $this->serviceLocator->get('auth_service');
-        $userSessionData = $authService->getIdentity();
+        $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
         $model = $this->getRoleTable();
@@ -105,6 +107,17 @@ class RoleController extends FrontActionController {
                     'user_roles' => true,
                     'userSessionData' => $userSessionData
                 ));
+    }
+
+    public function deleteAction() {
+        $id = $this->params('id', null);
+        if ($id === null) {
+            throw new Exception('ID is missing');
+        }
+
+        $model = $this->getRoleTable();
+        $model->removeRole($id);
+        $this->redirect()->toRoute('admin/role');
     }
 
     public function getRoleTable() {

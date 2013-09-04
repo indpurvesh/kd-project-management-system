@@ -19,7 +19,8 @@ class Login extends Form
             'attributes' => array(
                 'type'  => 'text',
                 'required' => 'required',
-                'id' =>'user_name'
+                'id' =>'user_name',
+                'value' => 'admin'
             ),
             'options' => array(
                 'label' => 'User Name',
@@ -30,7 +31,8 @@ class Login extends Form
             'attributes' => array(
                 'type'  => 'password',
                 'required' => 'required',
-                'id' =>'user_password'
+                'id' =>'user_password',
+                'value' =>'admin123'
             ),
             'options' => array(
                 'label' => 'Password',

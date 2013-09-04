@@ -64,7 +64,7 @@
                         </a>
 
                         <span class="text">
-                            <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role')); ?>">
+                            <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => $child->controller_name)); ?>">
                                 Add <?php echo $child->add_title; ?>
                             </a>
                         </span>

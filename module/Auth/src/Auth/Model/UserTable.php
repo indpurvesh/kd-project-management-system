@@ -62,4 +62,8 @@ class UserTable extends AbstractTableGateway {
             return false;
     }
 
+    public function removeUser($id) {
+        return $this->delete(array('id' => (int) $id));
+    }
+
 }
