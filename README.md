@@ -1,12 +1,9 @@
 Kd Ecom Project Management System
 ============================
 
+KD Project management System
 
-UPGRADING TO ZEND FRAMEWORK 2
-
-KDecom Small Business PRoject management System
-
-What i am doing now?? 
+What we are doing now?? 
 
 I am mainly developing a framework and trying to make it easy for future features development.
 
@@ -19,7 +16,5 @@ If you keen to help building this giant project in that case here is a lot way y
 Have a look at the demo over here
 
 http://www.indpurvesh.cuccfree.com/
-
-
 
 Thanks
