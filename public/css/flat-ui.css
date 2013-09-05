@@ -1344,7 +1344,6 @@ input[type="color"]:focus,
 .row-fluid input[type="tel"],
 .row-fluid input[type="color"],
 .row-fluid .uneditable-input {
-    height: 41px;
     width: 100%;
 }
 textarea.flat,
@@ -3878,7 +3877,7 @@ input[type=submit] {
 
 /*   ----- START  SITE CSS  */
 
-body { max-width: 1080px;margin: 0 auto; padding:20px;}
+body { max-width: 1080px;margin: 0 auto; padding:10px 0px;}
 
 
 /*   ----- END  SITE CSS  */

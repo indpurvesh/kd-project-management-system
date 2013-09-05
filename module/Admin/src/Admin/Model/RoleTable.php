@@ -67,5 +67,15 @@ class RoleTable extends AbstractTableGateway {
     public function removeRole($id) {
         return $this->delete(array('id' => (int) $id));
     }
+    
+    public function getRoleOptions() {
+        
+        $roleOptions = array('' => 'Please Select Any');
+        $roles = $this->fetchAll(); 
+        foreach ($roles as $role) {
+            $roleOptions [$role->id] = $role->role_name;
+        }
+        return $roleOptions;
+    }
 
 }

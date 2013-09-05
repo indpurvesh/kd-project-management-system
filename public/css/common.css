@@ -21,12 +21,18 @@
     max-width: 200px;
     text-align: right;
     padding-right: 2%;
-    line-height: 60px;
+    line-height: 40px;
 }
 .control-input input {
     float: left;
     width: 80%;
     max-width: 250px;
+}
+.control-input select {
+    float: left;
+    width: 80%;
+    max-width: 250px;
+    padding: 10px 5px;
 }
 .control-input .btn { float: left; width: 20%; max-width: 200px; }
 

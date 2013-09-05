@@ -37,13 +37,16 @@ a {
     text-decoration:none;
     text-shadow:1px 1px #fff;
 }
-
+#tools ul {
+    padding-left: 0px;
+}
 #tools li {
     border-top:1px solid #fff;
     border-bottom:1px solid #ebebeb;
     border-right:1px solid #ebebeb;
     background-color:#f7f7f7;
     padding:12px 15px;
+    list-style: none;
 }
 
 #tools li:hover {
@@ -413,4 +416,13 @@ a {
 
 #i_save li,#i_publish li,#f_right li {
     display:inline;
+}
+
+.access_box .access_title {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.access_box input[type=checkbox] {
+    width: auto;
 }

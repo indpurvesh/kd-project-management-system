@@ -13,11 +13,11 @@ use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
-    Admin\Form\RoleForm,
+    Admin\Form\RoleAccessForm,
     Admin\Model\Entity\Role,
     Zend\Db\Sql\Select;
 
-class RoleController extends FrontActionController {
+class UserAccessController extends FrontActionController {
 
     protected $_roleTable;
     protected $_userSessionData;
@@ -54,10 +54,10 @@ class RoleController extends FrontActionController {
                     'order_by' => $order_by,
                     'order' => $order,
                     'page' => $page,
-                    'add_title' => 'Role',
-                    'controller_name' => 'role',
+                    'add_title' => 'User Access',
+                    'controller_name' => 'user-access',
                     'paginator' => $paginator,
-                    'user_roles' => true,
+                    'user_access' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -68,13 +68,16 @@ class RoleController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
 
-
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
         $model = $this->getRoleTable();
-        $form = new RoleForm();
+        $form = new RoleAccessForm();
+
+        $roleOptions = $model->getRoleOptions();
+        $form->get('role_name')->setAttribute('options', $roleOptions);
+
 
         if ($id === null) {
             $obj = new Role();
@@ -104,25 +107,20 @@ class RoleController extends FrontActionController {
         return new ViewModel(array(
                     'form' => $form,
                     'id' => $id,
-                    'user_roles' => true,
+                    'user_access' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
 
     public function deleteAction() {
-        
-        
         $id = $this->params('id', null);
         if ($id === null) {
-            throw new \Exception('ID is missing');
-        }
-        if ($id == 1) {
-            throw new \Exception('Do not Allowed to delete');
+            throw new Exception('ID is missing');
         }
 
-        $model = $this->getRoleTable();
-        $model->removeRole($id);
-        $this->redirect()->toRoute('admin/role');
+        $model = $this->getUserTable();
+        $model->removeUser($id);
+        $this->redirect()->toRoute('admin/user');
     }
 
     public function getRoleTable() {
@@ -132,6 +130,21 @@ class RoleController extends FrontActionController {
         }
         return $this->_roleTable
         ;
+    }
+
+    public function getRoleAccessHtmlAction() {
+        $viewModel = $this->nolayout();
+        
+        
+        
+        return $viewModel;
+    }
+
+    public function nolayout() {
+        // Turn off the layout, i.e. only render the view script.
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        return $viewModel;
     }
 
 }

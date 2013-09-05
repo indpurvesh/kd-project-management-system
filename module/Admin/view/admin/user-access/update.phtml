@@ -1,0 +1,22 @@
+<h2 class="user_icon p_title">User Access Action by Role</h2>
+
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<?php echo $this->formRow($form->get('id')); ?>
+<div class="control-input role_access">
+    <?php echo $this->FormRow($form->get('role_name')->setOptions(array('1' => 'test'))); ?>
+</div>
+
+<div class="roleaccess_html">
+    
+</div>
+
+<div class="control-input ">
+    <label>&nbsp;</label>
+    <div class="btn btn-large btn-block btn-success">
+        <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+</div>
+<?php echo $this->form()->closeTag(); ?>

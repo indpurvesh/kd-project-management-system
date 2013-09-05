@@ -7,6 +7,7 @@ return array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\User' => 'Admin\Controller\UserController',
             'Admin\Controller\Role' => 'Admin\Controller\RoleController',
+            'Admin\Controller\UserAccess' => 'Admin\Controller\UserAccessController',
         ),
     ),
     'router' => array(
@@ -72,6 +73,20 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'role',
+                                'page' => 1,
+                            ),
+                        ),
+                    ),
+                    'useraccess' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/user-access[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'userAccess',
                                 'page' => 1,
                             ),
                         ),
