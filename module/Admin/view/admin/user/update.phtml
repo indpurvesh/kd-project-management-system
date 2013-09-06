@@ -17,6 +17,9 @@ echo $this->form()->openTag($form);
     <?php echo $this->formRow($form->get('email')); ?>
 </div>
 <div class="control-input">
+    <?php echo $this->formRow($form->get('role_id')); ?>
+</div>
+<div class="control-input">
     <?php echo $this->formRow($form->get('first_name')); ?>
 </div>
 <div class="control-input">
@@ -26,6 +29,9 @@ echo $this->form()->openTag($form);
     <label>&nbsp;</label>
     <div class="btn btn-large btn-block btn-success">
         <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+    <div class="btn btn-small btn-block cancel">
+        <?php echo $this->formRow($form->get('cancel')); ?>
     </div>
 </div>
 <?php echo $this->form()->closeTag(); ?>

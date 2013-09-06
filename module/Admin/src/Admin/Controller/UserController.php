@@ -20,6 +20,7 @@ use Zend\View\Model\ViewModel,
 class UserController extends FrontActionController {
 
     protected $_usersTable;
+    protected $_roleTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -66,7 +67,6 @@ class UserController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
 
-
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
@@ -74,6 +74,10 @@ class UserController extends FrontActionController {
         $model = $this->getUserTable();
         $form = new UserForm();
 
+        $roleOptions = $this->getRoleTable()->getRoleOptions();
+        $form->get('role_id')->setAttribute('options', $roleOptions);
+        $form->get('cancel')->setAttribute('onclick', 'location="'. $this->url()->fromRoute('admin/user'). '"');
+        
         if ($id === null) {
             $obj = new User();
             $form->get('submit')->setValue('Add Login');
@@ -93,6 +97,7 @@ class UserController extends FrontActionController {
                 $obj->setEmail($request->getPost('email'));
                 $obj->setFirstName($request->getPost('first_name'));
                 $obj->setLastName($request->getPost('last_name'));
+                $obj->setRoleId($request->getPost('role_id'));
                 $model->saveUser($obj);
                 return $this->redirect()->toRoute('admin/user');
             }
@@ -127,6 +132,14 @@ class UserController extends FrontActionController {
             $this->_usersTable = $sm->get('Admin\Model\UserTable');
         }
         return $this->_usersTable
+        ;
+    }
+    public function getRoleTable() {
+        if (!$this->_roleTable) {
+            $sm = $this->getServiceLocator();
+            $this->_roleTable = $sm->get('Admin\Model\RoleTable');
+        }
+        return $this->_roleTable
         ;
     }
 

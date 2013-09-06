@@ -26,14 +26,36 @@
 .control-input input {
     float: left;
     width: 80%;
-    max-width: 250px;
+    max-width: 300px;
 }
 .control-input select {
     float: left;
     width: 80%;
-    max-width: 250px;
+    max-width: 315px;
     padding: 10px 5px;
 }
-.control-input .btn { float: left; width: 20%; max-width: 200px; }
-
+.control-input .btn { 
+    float: left; 
+    width: 20%; 
+}
+.control-input .btn input[type=button] {
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+.control-input .cancel { 
+    margin-left: 10px; 
+    color: #fff;
+}
+.control-input .btn-success input[type=button] , .control-input .btn-success input[type=submit] {
+    width: auto;
+}
+.control-input .btn-success {
+    width: auto;
+}
+.btn.btn-small { 
+    padding: 12px 18px 13px; 
+    line-height: 20px; 
+    width: auto;
+}
 /*   ----- STOP   FORM COMMON FORM CSS  */

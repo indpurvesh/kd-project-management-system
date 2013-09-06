@@ -8,6 +8,7 @@ class User {
     protected $_user_name;
     protected $_first_name;
     protected $_last_name;
+    protected $_role_id;
     protected $_email;
 
     public function __construct(array $options = null) {
@@ -80,6 +81,14 @@ class User {
         return $this->_email;
     }
 
+    public function setRoleId($roleId) {
+        $this->_role_id = $roleId;
+        return $this;
+    }
+    public function getRoleId() {
+        return $this->_role_id;
+    }
+
     public function setEmail($email) {
         $this->_email = $email;
         return $this;
@@ -91,6 +100,7 @@ class User {
             'user_name' => $this->getUserName(),
             'first_name' => $this->getFirstName(),
             'last_name' => $this->getLastName(),
+            'role_id' => $this->getRoleId(),
             'email' => $this->getEmail()
         );
         return $data;

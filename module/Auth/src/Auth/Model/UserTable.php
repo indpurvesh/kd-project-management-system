@@ -31,6 +31,7 @@ class UserTable extends AbstractTableGateway {
         $user = new Entity\User();
         $user->setId($row->id);
         $user->setUserName($row->user_name);
+        $user->setRoleId($row->role_id);
         $user->setFirstName($row->first_name);
         $user->setLastName($row->last_name);
         $user->setEmail($row->email);
@@ -42,6 +43,7 @@ class UserTable extends AbstractTableGateway {
         $data = array(
             'email' => $user->getEmail(),
             'first_name' => $user->getFirstName(),
+            'role_id' => $user->getRoleId(),
             'last_name' => $user->getLastName()
         );
 
