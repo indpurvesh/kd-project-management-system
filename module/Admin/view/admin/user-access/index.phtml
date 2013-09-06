@@ -2,18 +2,19 @@
     <div class="demo-row row-fluid">
         <div class="span1"> 
             <?php 
-            if ($order == "ASC") {
-                $newOrder = "DESC";
-            } elseif ($order == "DESC") {
-                $newOrder = "ASC";
-            } 
-           
+            
+            $pageFilter = $pagination_filter->read();
+            
             ?>
-         <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin' , 'controller' => 'user-access','action' => 'index',  'page' => $page, 'order_by' => 'id', 'order' => $newOrder)); ?>" title="ID">
+         <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin' , 'controller' => 'user-access','action' => 'index',  'page' => $page, 'order_by' => 'id', 'order' => (($pageFilter['user_access']['id-order'] == "ASC") ? "DESC" : "ASC"))); ?>" title="ID">
                 ID
             </a>
         </div>
-        <div class="span2">Role Name</div>
+        <div class="span2">
+        <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin' , 'controller' => 'user-access','action' => 'index',  'page' => $page, 'order_by' => 'role_name', 'order' => ($pageFilter['user_access']['role-name-order'] == "ASC") ? "DESC" : "ASC")); ?>" title="ID">    
+            Role Name
+        </a>
+        </div>
         <div class="span1">Edit</div>
         <div class="span1">Delete</div>
     </div>

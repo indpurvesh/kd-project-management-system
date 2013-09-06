@@ -12,9 +12,9 @@ namespace Admin\Controller;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
+use Zend\Authentication\Storage\Session;
 use Zend\View\Model\ViewModel,
     Admin\Form\RoleAccessForm,
-    Admin\Model\Entity\Role,
     Admin\Model\Entity\AssignRoleAction,
     Zend\Db\Sql\Select;
 
@@ -23,13 +23,17 @@ class UserAccessController extends FrontActionController {
     protected $_roleTable;
     protected $_assignRoleActionTable;
     protected $_userSessionData;
+    protected $_paginationFilter;
 
     public function indexAction() {
 
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
+        
+        $this->_paginationFilter = new Session('pagination_storage');
 
+        $this->_paginationFilter->write(array('user_access' => array('id-order' => 'DESC','role-name-order' => 'ASC')));
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
@@ -44,7 +48,7 @@ class UserAccessController extends FrontActionController {
 
 
         $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
-        $itemsPerPage = 1;
+        $itemsPerPage = 2;
 
         $role->current();
         $paginator = new Paginator(new paginatorIterator($role));
@@ -58,6 +62,7 @@ class UserAccessController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'User Access',
                     'controller_name' => 'user-access',
+                    'pagination_filter' => $this->_paginationFilter,
                     'paginator' => $paginator,
                     'user_access' => true,
                     'userSessionData' => $this->_userSessionData
