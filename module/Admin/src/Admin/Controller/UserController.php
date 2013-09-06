@@ -41,7 +41,7 @@ class UserController extends FrontActionController {
 
 
         $users = $this->getUserTable()->fetchAll($select->order($order_by . ' ' . $order));
-        $itemsPerPage = 5;
+        $itemsPerPage = 3;
 
         $users->current();
         $paginator = new Paginator(new paginatorIterator($users));

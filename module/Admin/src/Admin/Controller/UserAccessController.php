@@ -44,7 +44,7 @@ class UserAccessController extends FrontActionController {
 
 
         $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
-        $itemsPerPage = 5;
+        $itemsPerPage = 1;
 
         $role->current();
         $paginator = new Paginator(new paginatorIterator($role));

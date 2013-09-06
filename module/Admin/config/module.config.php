@@ -38,11 +38,13 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action][/:page]]',
+                            'route' => '/[:controller[/:action][/page/:page][/order/:order][/order_by/:order_by]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'page' => '[0-9]*',
+                                'order' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
                                 'page' => 1,
@@ -80,10 +82,12 @@ return array(
                     'useraccess' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/user-access[/:action[/:id]]',
+                            'route' => '/user-access[/:action[/page/:page][/order/:order][/order_by/:order_by]]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '[0-9]*',
+                                'page' => '[0-9]*',
+                                'order' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
                                 'controller' => 'userAccess',

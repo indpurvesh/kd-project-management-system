@@ -1,6 +1,18 @@
 <?php if (count($this->paginator)): ?>
     <div class="demo-row row-fluid">
-        <div class="span1"> ID</div>
+        <div class="span1"> 
+            <?php 
+            if ($order == "ASC") {
+                $newOrder = "DESC";
+            } elseif ($order == "DESC") {
+                $newOrder = "ASC";
+            } 
+           
+            ?>
+         <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin' , 'controller' => 'user-access','action' => 'index',  'page' => $page, 'order_by' => 'id', 'order' => $newOrder)); ?>" title="ID">
+                ID
+            </a>
+        </div>
         <div class="span2">Role Name</div>
         <div class="span1">Edit</div>
         <div class="span1">Delete</div>
@@ -24,4 +36,4 @@
 <?php endif; ?>
 
 <!-- call pagination control view script  -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order)); ?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order,'route' => 'admin/useraccess','controller' => 'user-access')); ?>
