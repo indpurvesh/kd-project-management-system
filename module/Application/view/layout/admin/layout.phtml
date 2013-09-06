@@ -22,6 +22,13 @@
         <?php
         echo $this->headScript()->prependFile($this->basePath() . '/public/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
                 ->prependFile($this->basePath() . '/public/admin/js/application.js')
+                ->prependFile($this->basePath() . '/public/js/application.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.placeholder.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.tagsinput.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-switch.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-select.js')
+                ->prependFile($this->basePath() . '/public/js/flatui-checkbox.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap.min.js')
                 ->prependFile($this->basePath() . '/public/js/jquery-ui-1.10.3.custom.min.js')
                 ->prependFile($this->basePath() . '/public/js/jquery-1.8.3.min.js');
         ?>

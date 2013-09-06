@@ -11,6 +11,7 @@ namespace Admin;
 
 use Auth\Model\UserTable;
 use Admin\Model\RoleTable;
+use Admin\Model\AssignRoleActionTable;
 class Module {
 
      
@@ -48,6 +49,11 @@ class Module {
                 'Admin\Model\RoleTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new RoleTable($dbAdapter);
+                    return $table;
+                },
+                'Admin\Model\AssignRoleActionTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new AssignRoleActionTable($dbAdapter);
                     return $table;
                 },
             ),

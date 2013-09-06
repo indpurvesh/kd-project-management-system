@@ -15,11 +15,13 @@ use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
     Admin\Form\RoleAccessForm,
     Admin\Model\Entity\Role,
+    Admin\Model\Entity\AssignRoleAction,
     Zend\Db\Sql\Select;
 
 class UserAccessController extends FrontActionController {
 
     protected $_roleTable;
+    protected $_assignRoleActionTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -67,24 +69,32 @@ class UserAccessController extends FrontActionController {
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
+        
+        $roleAccessObj = null;
 
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
-        $model = $this->getRoleTable();
+        $roleModel = $this->getRoleTable();
+        $model = $this->getAssignRoleActionTable();
         $form = new RoleAccessForm();
 
-        $roleOptions = $model->getRoleOptions();
-        $form->get('role_name')->setAttribute('options', $roleOptions);
+        $roleOptions = $roleModel->getRoleOptions();
+        $form->get('role_id')->setAttribute('options', $roleOptions);
 
+        $obj = new AssignRoleAction();
 
-        if ($id === null) {
-            $obj = new Role();
-        } else {
-            $obj = $model->getRole($id);
-            $userData = $obj->toArray();
+        if ($id !== null) {
+       
+           
+            $roleAccessObj = $this->getAssignRoleActionTable()->getRoleAllowedActionByRoleId($id);
+           
+         
+            $access = json_decode($roleAccessObj->getRoleAllowedAction());
+            $formData = $roleAccessObj->toArray();
         }
+        
 
         $request = $this->getRequest();
 
@@ -93,14 +103,17 @@ class UserAccessController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj->setRoleName($request->getPost('role_name'));
+                $obj->setRoleId($request->getPost('role_id'));
+                $obj->setId($request->getPost('id'));
+                $obj->setRoleAllowedAction(json_encode($request->getPost('access')));
                 $model->saveRole($obj);
-                return $this->redirect()->toRoute('admin/role');
+                return $this->redirect()->toRoute('admin/useraccess');
             }
         }
         if ($id !== null) {
 
-            $form->populateValues($userData);
+            $form->get('role_id')->setValue($id);
+            $form->populateValues($formData);
             $form->get('submit')->setValue('Update Role');
         }
 
@@ -108,6 +121,7 @@ class UserAccessController extends FrontActionController {
                     'form' => $form,
                     'id' => $id,
                     'user_access' => true,
+                    'access_json' => $access,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -129,6 +143,14 @@ class UserAccessController extends FrontActionController {
             $this->_roleTable = $sm->get('Admin\Model\RoleTable');
         }
         return $this->_roleTable
+        ;
+    }
+    public function getAssignRoleActionTable() {
+        if (!$this->_assignRoleActionTable) {
+            $sm = $this->getServiceLocator();
+            $this->_assignRoleActionTable = $sm->get('Admin\Model\AssignRoleActionTable');
+        }
+        return $this->_assignRoleActionTable
         ;
     }
 

@@ -23,7 +23,7 @@ class RoleAccessForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'role_name',
+            'name' => 'role_id',
             'type'  => 'select',
             'attributes' => array(
                 'required' => 'required',

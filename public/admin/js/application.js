@@ -14,8 +14,9 @@ var Application = {
         jQuery.ajax({
             url: application_url + "admin/user-access/get-role-access-html",
             success: function(response) {
-                console.info(response);
+                
                 jQuery('.roleaccess_html').append(response);
+                jQuery("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
             }
                
         });
