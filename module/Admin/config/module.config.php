@@ -82,11 +82,12 @@ return array(
                     'useraccess' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/user-access[/:action[/page/:page][/order/:order][/order_by/:order_by]]',
+                            'route' => '/user-access[/:action[/id/:id][/page/:page][/order/:order][/order_by/:order_by]]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'page' => '[0-9]*',
                                 'order' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
                                 'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(

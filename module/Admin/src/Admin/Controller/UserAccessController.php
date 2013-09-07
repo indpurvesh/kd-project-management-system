@@ -77,6 +77,7 @@ class UserAccessController extends FrontActionController {
         
         $roleAccessObj = null;
 
+        $access = json_encode(array());
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 

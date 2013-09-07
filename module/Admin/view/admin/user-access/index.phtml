@@ -6,7 +6,9 @@
             $pageFilter = $pagination_filter->read();
             
             ?>
-         <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin' , 'controller' => 'user-access','action' => 'index',  'page' => $page, 'order_by' => 'id', 'order' => (($pageFilter['user_access']['id-order'] == "ASC") ? "DESC" : "ASC"))); ?>" title="ID">
+         <a href="<?php echo $this->url('admin/useraccess',
+                 array('module' => 'admin' , 'controller' => 'user-access','action' => 'index', 
+                     'page' => $page, 'order_by' => 'id', 'order' => (($pageFilter['user_access']['id-order'] == "ASC") ? "DESC" : "ASC"))); ?>" title="ID">
                 ID
             </a>
         </div>
@@ -23,7 +25,9 @@
             <div class="span1"><?php echo $item['id'] ?></div>
             <div class="span2"><?php echo $item['role_name']; ?></div>
             <div class="span1">
-                <a href="<?php echo $this->url('admin/useraccess', array('module' => 'admin', 'controller' => 'user-access', 'action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                <a href="<?php echo $this->url('admin/useraccess', 
+                        array('module' => 'admin', 'controller' => 'user-access', 'action' => 'update',
+                            'id' => $item['id'])); ?>" title="" >
                     Edit
                 </a>
             </div>
