@@ -13,6 +13,7 @@ use Auth\Model\UserTable;
 use Admin\Model\RoleTable;
 use Admin\Model\AssignRoleActionTable;
 use Admin\Model\ContactTypeTable;
+use Admin\Model\ContactTable;
 class Module {
 
      
@@ -60,6 +61,11 @@ class Module {
                 'Admin\Model\ContactTypeTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new ContactTypeTable($dbAdapter);
+                    return $table;
+                },
+                'Admin\Model\ContactTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new ContactTable($dbAdapter);
                     return $table;
                 },
             ),

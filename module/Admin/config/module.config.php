@@ -4,11 +4,12 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\Index' => 'Admin\Controller\IndexController',
-            'Admin\Controller\User' => 'Admin\Controller\UserController',
-            'Admin\Controller\Role' => 'Admin\Controller\RoleController',
-            'Admin\Controller\UserAccess' => 'Admin\Controller\UserAccessController',
-            'Admin\Controller\ContactType' => 'Admin\Controller\ContactTypeController',
+            'Admin\Controller\Index'        => 'Admin\Controller\IndexController',
+            'Admin\Controller\User'         => 'Admin\Controller\UserController',
+            'Admin\Controller\Role'         => 'Admin\Controller\RoleController',
+            'Admin\Controller\UserAccess'   => 'Admin\Controller\UserAccessController',
+            'Admin\Controller\ContactType'  => 'Admin\Controller\ContactTypeController',
+            'Admin\Controller\Contact'      => 'Admin\Controller\ContactController',
         ),
     ),
     'router' => array(
@@ -109,6 +110,23 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'contactType',
+                                'page' => 1,
+                            ),
+                        ),
+                    ),
+                    'contact' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/contact[/:action[/id/:id][/page/:page][/order/:order][/order_by/:order_by]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                                'page' => '[0-9]*',
+                                'order' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'contact',
                                 'page' => 1,
                             ),
                         ),
