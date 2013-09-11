@@ -53,6 +53,9 @@
 .control-input .btn-success {
     width: auto;
 }
+.submit-input input.btn-small[type="submit"] {
+    width: auto;
+}
 .btn.btn-small { 
     padding: 12px 18px 13px; 
     line-height: 20px; 
