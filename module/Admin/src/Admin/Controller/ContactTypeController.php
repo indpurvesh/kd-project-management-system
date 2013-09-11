@@ -13,14 +13,12 @@ use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
-    Admin\Form\RoleAccessForm,
-    Admin\Model\Entity\AssignRoleAction,
+    Admin\Form\ContactTypeForm,
     Zend\Db\Sql\Select;
 
-class UserAccessController extends FrontActionController {
+class ContactTypeController extends FrontActionController {
 
-    protected $_roleTable;
-    protected $_assignRoleActionTable;
+    protected $_contactTypeTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -32,9 +30,9 @@ class UserAccessController extends FrontActionController {
         if($this->params('order_by',null) !== null) {
             $gridKeys = array($this->params('order_by',null));
         } else {
-            $gridKeys = array('id','role_name');
+            $gridKeys = array('id','contact_type_name');
         }
-        $this->setUpPaginationFilter($paginationKey = 'user_access', $gridKeys);
+        $this->setUpPaginationFilter($paginationKey = 'contact_type', $gridKeys);
        
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
@@ -45,7 +43,7 @@ class UserAccessController extends FrontActionController {
         $order = $this->params()->fromRoute('order') ? $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
 
-        $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
+        $role = $this->getContactTypeTable()->fetchAll($select->order($order_by . ' ' . $order));
         $itemsPerPage = 2;
 
         $role->current();
@@ -58,11 +56,11 @@ class UserAccessController extends FrontActionController {
                     'order_by' => $order_by,
                     'order' => $order,
                     'page' => $page,
-                    'add_title' => 'User Access',
-                    'controller_name' => 'user-access',
+                    'add_title' => 'Contact Type',
+                    'controller_name' => 'contact-type',
                     'pagination_filter' => $this->_paginationFilter,
                     'paginator' => $paginator,
-                    'user_access' => true,
+                    'contact_type' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -73,30 +71,21 @@ class UserAccessController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
         
+        $title = "Contact Type Add";
         $roleAccessObj = null;
 
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
-        $roleModel = $this->getRoleTable();
-        $model = $this->getAssignRoleActionTable();
-        $form = new RoleAccessForm();
+        $model = $this->getContactTypeTable();
+        $form = new ContactTypeForm();
 
-        $roleOptions = $roleModel->getRoleOptions();
-        $form->get('role_id')->setAttribute('options', $roleOptions);
-
-        $obj = new AssignRoleAction();
-
-        if ($id !== null) {
-           
-            $roleAccessObj = $this->getAssignRoleActionTable()->getRoleAllowedActionByRoleId($id);
-         
-            $access = json_decode($roleAccessObj->getRoleAllowedAction());
-            $formData = $roleAccessObj->toArray();
+        if($id !== null) {
+            $obj = $model->getContactType($id);
+            $formData = $obj->toArray();
         }
-        
-
+       
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -104,25 +93,26 @@ class UserAccessController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj->setRoleId($request->getPost('role_id'));
+                $obj = new \Admin\Model\Entity\ContactType;
+                $obj->setContactTypeName($request->getPost('contact_type_name'));
                 $obj->setId($request->getPost('id'));
-                $obj->setRoleAllowedAction(json_encode($request->getPost('access')));
-                $model->saveRole($obj);
-                return $this->redirect()->toRoute('admin/useraccess');
+                $model->save($obj);
+                return $this->redirect()->toRoute('admin/contacttype');
             }
         }
         if ($id !== null) {
 
-            $form->get('role_id')->setValue($id);
+           
+            $title = "Contact Type Update";
             $form->populateValues($formData);
             $form->get('submit')->setValue('Update Role');
         }
 
         return new ViewModel(array(
                     'form' => $form,
+                    'title' => $title,
                     'id' => $id,
-                    'user_access' => true,
-                    'access_json' => $access,
+                    'contact_type' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -133,41 +123,20 @@ class UserAccessController extends FrontActionController {
             throw new Exception('ID is missing');
         }
 
-        $model = $this->getUserTable();
-        $model->removeUser($id);
-        $this->redirect()->toRoute('admin/user');
+        $model = $this->getContactTypeTable();
+        $model->remove($id);
+        $this->redirect()->toRoute('admin/contacttype');
     }
 
-    public function getRoleTable() {
-        if (!$this->_roleTable) {
+    public function getContactTypeTable() {
+        if (!$this->_contactTypeTable) {
             $sm = $this->getServiceLocator();
-            $this->_roleTable = $sm->get('Admin\Model\RoleTable');
+            $this->_contactTypeTable = $sm->get('Admin\Model\ContactTypeTable');
         }
-        return $this->_roleTable
+        return $this->_contactTypeTable
         ;
     }
-    public function getAssignRoleActionTable() {
-        if (!$this->_assignRoleActionTable) {
-            $sm = $this->getServiceLocator();
-            $this->_assignRoleActionTable = $sm->get('Admin\Model\AssignRoleActionTable');
-        }
-        return $this->_assignRoleActionTable
-        ;
-    }
-
-    public function getRoleAccessHtmlAction() {
-        $viewModel = $this->nolayout();
-        
-        
-        
-        return $viewModel;
-    }
-
-    public function nolayout() {
-        // Turn off the layout, i.e. only render the view script.
-        $viewModel = new ViewModel();
-        $viewModel->setTerminal(true);
-        return $viewModel;
-    }
+  
+  
 
 }
