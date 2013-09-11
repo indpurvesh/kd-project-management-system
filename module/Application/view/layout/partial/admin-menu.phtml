@@ -16,8 +16,18 @@
         </li>
     </a>
     <a href="<?php echo $this->url('admin/useraccess', array('action' => 'index', 'controller' => 'userAccess')); ?>">
-        <li id="user-roles" class="<?php echo ($this->child->user_access === true) ? "select" : ""; ?>">
+        <li id="user-access" class="<?php echo ($this->child->user_access === true) ? "select" : ""; ?>">
             User Access by Role
+        </li>
+    </a>
+    <a href="<?php echo $this->url('admin/contacttype', array('action' => 'index', 'controller' => 'contact-type')); ?>">
+        <li id="contact-type" class="<?php echo ($this->child->contact_type === true) ? "select" : ""; ?>">
+            Contact Type
+        </li>
+    </a>
+    <a href="<?php echo $this->url('admin/contact', array('action' => 'index', 'controller' => 'contact')); ?>">
+        <li id="contact" class="<?php echo ($this->child->contact === true) ? "select" : ""; ?>">
+            Contact Type
         </li>
     </a>
 <!--    <a href="#"><li id="sayfalar">Sayfalar</li></a>
