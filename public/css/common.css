@@ -23,11 +23,12 @@
     padding-right: 2%;
     line-height: 40px;
 }
-.control-input input {
+.control-input input , .control-input textarea {
     float: left;
     width: 80%;
     max-width: 300px;
 }
+
 .control-input select {
     float: left;
     width: 80%;

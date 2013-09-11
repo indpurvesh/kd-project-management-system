@@ -188,7 +188,7 @@ you can use the generic selector below, but it's slower:
     font-size: 30px;
     font-weight: 900;
     letter-spacing: -2px;
-    line-height: 100px;
+    line-height: 50px;
 }
 .demo-logo .logo {
     background: url(../images/demo/logo-mask.png) center 0 no-repeat;
