@@ -8,19 +8,20 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
+namespace Contact\Controller;
 
 use Kdecom\Mvc\Controller\FrontActionController;
 //use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends FrontActionController {
+class ContactController extends FrontActionController {
 
     public function indexAction() {
 
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
+
         return new ViewModel();
     }
 

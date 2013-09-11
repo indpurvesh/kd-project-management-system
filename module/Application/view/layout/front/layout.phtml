@@ -26,8 +26,9 @@
                 ->prependFile($this->basePath() . '/public/js/jquery.tagsinput.js')
                 ->prependFile($this->basePath() . '/public/js/flatui-checkbox.js')
                 ->prependFile($this->basePath() . '/public/js/bootstrap-switch.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-select.js')
                 ->prependFile($this->basePath() . '/public/js/bootstrap.min.js')
-                ->prependFile($this->basePath() . '/public/js/bootstrap-responsive.js')
+//                ->prependFile($this->basePath() . '/public/js/bootstrap-responsive.js')
                 ->prependFile($this->basePath() . '/public/js/jquery-ui-1.10.3.custom.min.js')
                 ->prependFile($this->basePath() . '/public/js/jquery-1.8.3.min.js')
         ?>
@@ -46,6 +47,11 @@
                                 <ul class="nav">
                                     <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                                     <li class=""><a href="<?php echo $this->url('system-settings') ?>"><?php echo $this->translate('System Settings') ?></a></li>
+                                    <li class="">
+                                        <a href="<?php echo $this->url('application/default',array('action' => 'index', 'controller' => 'timesheet','module' => 'application')); ?>">
+                                            Timesheet
+                                        </a>
+                                    </li>
                                     
                                 </ul>
                             </div>

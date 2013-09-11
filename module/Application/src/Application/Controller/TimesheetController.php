@@ -11,10 +11,9 @@
 namespace Application\Controller;
 
 use Kdecom\Mvc\Controller\FrontActionController;
-//use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends FrontActionController {
+class TimesheetController extends FrontActionController {
 
     public function indexAction() {
 
