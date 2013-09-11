@@ -1,9 +1,10 @@
 <?php
 return array(
     'modules' => array(
+        'Kdecom',
         'Application',
         'Admin',
-        'Kdecom',
+        'Contact',
         'Auth'
     ),
     'module_listener_options' => array(
