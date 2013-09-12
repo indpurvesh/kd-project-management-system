@@ -1,6 +1,35 @@
+<?php  $this->headLink()->prependStylesheet($this->basePath() . '/public/module/application/timesheet.css'); ?>
+<?php  $this->headScript()->prependFile($this->basePath() . '/public/module/application/timesheet.js'); ?>
 <h1 class="demo-logo">Timesheet</h1>
 
-<div class="row">
 
-
+<?php
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<div class="row timesheet_label">
+    <span class="start_time_label">Start Time</span>
+    <span class="end_time_label">End Time</span>
+    <span class="notes_label">Notes</span>
 </div>
+<?php 
+$form->prepare();
+
+
+?>
+
+<div class="timesheet_row control-input">
+    <input name="[timesheet][userid][randomtext]start_time" type="datetime-local" required="required" class="start_time" value="">    
+    <input name="[timesheet][userid][randomtext]end_time" type="datetime-local" required="required" class="end_time" value="">    
+    <input name="[timesheet][userid][randomtext]notes" type="text" required="required" class="notes" value="">
+</div>
+<div class="addlink control-input">
+    <a href="" title="add new" >Add New </a>
+</div>
+<div class="control-input ">
+    <label>&nbsp;</label>
+    <div class="btn btn-large btn-block btn-success">
+        <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+</div>
+<?php echo $this->form()->closeTag(); ?>

@@ -20,7 +20,35 @@ class TimesheetController extends FrontActionController {
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
-        return new ViewModel();
+        
+        $form = new \Application\Form\TimesheetForm;
+        
+        return new ViewModel(array(
+                'form' => $form,
+                'title' => 'Timesheet'
+            ));
+    }
+    public function getTimesheetRowAction() {
+
+        if ($this->isUserLoggedIn() === false) {
+            $this->redirect()->toRoute('login');
+        }
+        
+        $viewModel  = $this->nolayout();
+        
+        $form = new \Application\Form\TimesheetForm;
+        
+        $viewModel->setVariables(array(
+                'form' => $form,
+                'title' => 'Timesheet'
+            ));
+        return $viewModel;
+    }
+    public function nolayout() {
+        // Turn off the layout, i.e. only render the view script.
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        return $viewModel;
     }
 
 }

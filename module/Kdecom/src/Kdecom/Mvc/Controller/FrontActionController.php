@@ -20,6 +20,13 @@ class FrontActionController extends AbstractActionController {
         $this->redirect()->toRoute('login');
     }
 
+    public function nolayout() {
+        // Turn off the layout, i.e. only render the view script.
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        return $viewModel;
+    }
+
     /*
      * 
      * @todo $gridKey and make it work automatically.
@@ -48,7 +55,7 @@ class FrontActionController extends AbstractActionController {
                 $filterData[$paginationKey][$gridKey . "-order"] = "ASC";
             }
         }
-        
+
         $this->_paginationFilter->write($filterData);
     }
 

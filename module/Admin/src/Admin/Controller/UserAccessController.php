@@ -163,11 +163,6 @@ class UserAccessController extends FrontActionController {
         return $viewModel;
     }
 
-    public function nolayout() {
-        // Turn off the layout, i.e. only render the view script.
-        $viewModel = new ViewModel();
-        $viewModel->setTerminal(true);
-        return $viewModel;
-    }
+   
 
 }

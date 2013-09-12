@@ -66,3 +66,15 @@ String.prototype.repeat = function(num) {
   });
   
 })(jQuery);
+
+var Application = {
+    init:function() {
+        var self = Application;
+        self.initApp();
+        
+    },
+    initApp: function() {
+        application_url = "http://www.localhost.com/kdstep/"
+    }
+}
+jQuery(document).ready(Application.init);
