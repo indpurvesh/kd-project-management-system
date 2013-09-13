@@ -1,5 +1,6 @@
+<?php $random = str_shuffle('abcdefghijklmnopqrstuvwxyz');  ?>
 <div class="timesheet_row control-input">
-    <?php echo $this->formRow($form->get('start_time')); ?>
-    <?php echo $this->formRow($form->get('end_time')); ?>
-    <?php echo $this->formRow($form->get('notes')); ?>
+    <input name="timesheet[userid][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
+    <input name="timesheet[userid][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
+    <input name="timesheet[userid][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
 </div>

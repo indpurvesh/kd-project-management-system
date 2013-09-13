@@ -7,21 +7,22 @@
 $form->prepare();
 echo $this->form()->openTag($form);
 ?>
+<?php $form->prepare(); ?>
+
+<div class="timesheet_date">
+    <a href="" ><?php echo $date; ?></a>
+</div>
 <div class="row timesheet_label">
     <span class="start_time_label">Start Time</span>
     <span class="end_time_label">End Time</span>
     <span class="notes_label">Notes</span>
 </div>
-<?php 
-$form->prepare();
-
-
-?>
-
+<div class="timesheet_rows_wrap">
 <div class="timesheet_row control-input">
-    <input name="[timesheet][userid][randomtext]start_time" type="datetime-local" required="required" class="start_time" value="">    
-    <input name="[timesheet][userid][randomtext]end_time" type="datetime-local" required="required" class="end_time" value="">    
-    <input name="[timesheet][userid][randomtext]notes" type="text" required="required" class="notes" value="">
+    <input name="timesheet[userid][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
+    <input name="timesheet[userid][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
+    <input name="timesheet[userid][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
+</div>
 </div>
 <div class="addlink control-input">
     <a href="" title="add new" >Add New </a>

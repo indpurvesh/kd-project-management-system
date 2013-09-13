@@ -28,3 +28,6 @@
     font-weight: bold;
     display: inline-block;
 }
+.timesheet_date {
+    margin-bottom: 10px;
+}
