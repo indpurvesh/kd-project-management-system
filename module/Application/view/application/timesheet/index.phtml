@@ -1,5 +1,5 @@
-<?php  $this->headLink()->prependStylesheet($this->basePath() . '/public/module/application/timesheet.css'); ?>
-<?php  $this->headScript()->prependFile($this->basePath() . '/public/module/application/timesheet.js'); ?>
+<?php $this->headLink()->prependStylesheet($this->basePath() . '/public/module/application/timesheet.css'); ?>
+<?php $this->headScript()->prependFile($this->basePath() . '/public/module/application/timesheet.js'); ?>
 <h1 class="demo-logo">Timesheet</h1>
 
 
@@ -11,6 +11,7 @@ echo $this->form()->openTag($form);
 
 <div class="timesheet_date">
     <a href="" ><?php echo $date; ?></a>
+    <input name="task_date" type="hidden"  class="start_time" value="<?php echo $date; ?>">    
 </div>
 <div class="row timesheet_label">
     <span class="start_time_label">Start Time</span>
@@ -18,19 +19,50 @@ echo $this->form()->openTag($form);
     <span class="notes_label">Notes</span>
 </div>
 <div class="timesheet_rows_wrap">
-<div class="timesheet_row control-input">
-    <input name="timesheet[userid][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
-    <input name="timesheet[userid][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
-    <input name="timesheet[userid][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
-</div>
+
+    <?php
+    if (count($timesheetRows) > 0) {
+        
+        foreach ($timesheetRows as $timesheetRow) {
+            
+            ?> 
+
+            <div class="timesheet_row control-input">
+
+                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][id]" type="hidden"  class="start_time" value="<?php echo $userSessionData['id']; ?>">    
+                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][start_time]" type="time" required="required" class="start_time" 
+                       value="<?php echo substr($timesheetRow->start_time, 11);  ?>">    
+                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][end_time]" type="time" required="required" class="end_time" 
+                       value="<?php echo substr($timesheetRow->end_time, 11);  ?>">    
+                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][notes]" type="text" required="required" class="notes" 
+                       value="<?php echo $timesheetRow->notes;  ?>">
+            </div>
+
+            <?php
+        }
+    } else {
+        ?>
+
+        <div class="timesheet_row control-input">
+
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][id]" type="hidden"  class="start_time" value="<?php echo $userSessionData['id']; ?>">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
+        </div>
+    <?php } ?>
+
 </div>
 <div class="addlink control-input">
     <a href="" title="add new" >Add New </a>
 </div>
-<div class="control-input ">
+<div class="control-input btn-block ">
     <label>&nbsp;</label>
-    <div class="btn btn-large btn-block btn-success">
+    <div class="btn btn-large  btn-success span2">
         <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+    <div class="btn btn-large  btn-success span2">
+        <?php echo $this->formRow($form->get('save_close')); ?>
     </div>
 </div>
 <?php echo $this->form()->closeTag(); ?>

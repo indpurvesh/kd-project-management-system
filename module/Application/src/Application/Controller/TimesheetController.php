@@ -10,33 +10,75 @@
 
 namespace Application\Controller;
 
-use Kdecom\Mvc\Controller\FrontActionController;
+use Kdecom\Mvc\Controller\FrontActionController,
+    Application\Model\Entity\Timesheet;
 use Zend\View\Model\ViewModel;
 
 class TimesheetController extends FrontActionController {
 
+    public $timesheetTable;
+    public $_userSessionData;
     public function indexAction() {
 
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
 
+        $authService = $this->serviceLocator->get('auth_service');
+        $this->_userSessionData = $authService->getIdentity();
+        
         $form = new \Application\Form\TimesheetForm;
-        //$model = new 
+        $model = $this->getTimesheetTable();
         
         if ($this->getRequest()->isPost() === true) {
-            var_dump($this->params()->fromPost());
-            die;
+            $postData = $this->params()->fromPost();
+            foreach ($postData['timesheet'] as $userId => $timesheetRows) {
+                foreach ($timesheetRows as $id => $timesheetRow) {
+                    $entity = new Timesheet();
+                    if(is_int($id) === true) {
+                        $entity->setId($id);
+                    } 
+                    $taskDate = date('Y-m-d', strtotime($postData['task_date']));
+                    $entity->setUserId($userId);
+                    $entity->setNotes($timesheetRow['notes']);
+                    $entity->setTaskDate($taskDate);
+                    $entity->setStartTime($taskDate ." " . $timesheetRow['start_time'] . ":00");
+                    $entity->setEndTime($taskDate ." " . $timesheetRow['end_time'] . ":00");
+
+                    $model->save($entity);
+                }
+            }
+            if(isset($postData['save_close']) === true) {
+                $this->redirect()->toRoute('home');
+            } else {
+                $this->redirect()->refresh();
+            }
         }
 
         $date = date('d-m-Y');
+        
+        $timesheetRows = $model->getTimesheetByDateAndByUserId(date('Y-m-d',strtotime($date)) , $userId);
+        
         $random = str_shuffle('abcdefghijklmnopqrstuvwxyz');
+        
+        
         return new ViewModel(array(
                     'form' => $form,
                     'title' => 'Timesheet',
                     'random' => $random,
-                    'date' => $date
+                    'timesheetRows' => $timesheetRows,
+                    'date' => $date,
+                    'userSessionData' => $this->_userSessionData
                 ));
+    }
+    
+    public function getTimesheetTable() {
+        if (!$this->timesheetTable) {
+            $sm = $this->getServiceLocator();
+            $this->timesheetTable = $sm->get('Application\Model\TimesheetTable');
+        }
+
+        return $this->timesheetTable;
     }
 
     public function getTimesheetRowAction() {

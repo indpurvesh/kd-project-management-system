@@ -13,6 +13,9 @@ class FrontActionController extends AbstractActionController {
     public $_paginationFilter;
 
     public function isUserLoggedIn() {
+        
+        date_default_timezone_set('Pacific/Auckland');
+        
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
             return true;

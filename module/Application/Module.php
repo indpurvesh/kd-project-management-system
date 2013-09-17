@@ -11,7 +11,8 @@
 namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
+use Zend\Mvc\MvcEvent,
+    Application\Model\TimesheetTable;
 
 class Module {
 
@@ -57,9 +58,10 @@ class Module {
                     $authService = new AuthenticationService(new SessionStorage('Zend_Auth'));
                     return $authService;
                 },
-                'Application\Model\UsersTable' => function($sm) {
-                    $tableGateway = $sm->get('UserEntity');
-                    $table = new UserTable($tableGateway);
+                'Application\Model\TimesheetTable' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    //$table = new Model\StickyNotesTable($dbAdapter);
+                    $table = new TimesheetTable($dbAdapter);
                     return $table;
                 },
                 'UserEntity' => function ($sm) {

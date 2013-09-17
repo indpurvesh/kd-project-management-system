@@ -72,6 +72,14 @@ class TimesheetForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
+        $this->add(array(
+            'name' => 'save_close',
+            'attributes' => array(
+                'type'  => 'submit',
+                'value' => 'Save & Close',
+                'id' => 'submitbutton',
+            ),
+        ));
 
     }
 }
