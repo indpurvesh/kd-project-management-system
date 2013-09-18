@@ -68,6 +68,11 @@ class Module {
                     $table = new ContactTable($dbAdapter);
                     return $table;
                 },
+                'Admin\Model\ProjectTypeTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new ContactTable($dbAdapter);
+                    return $table;
+                },
             ),
         );
     }

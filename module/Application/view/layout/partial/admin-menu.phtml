@@ -30,4 +30,9 @@
             Contact 
         </li>
     </a>
+    <a href="<?php echo $this->url('admin/projecttype', array('action' => 'index', 'controller' => 'project-type')); ?>">
+        <li id="project-type" class="<?php echo ($this->child->projecttype === true) ? "select" : ""; ?>">
+            Project Type 
+        </li>
+    </a>
 </ul>
