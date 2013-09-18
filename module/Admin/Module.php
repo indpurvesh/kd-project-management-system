@@ -14,6 +14,7 @@ use Admin\Model\RoleTable;
 use Admin\Model\AssignRoleActionTable;
 use Admin\Model\ContactTypeTable;
 use Admin\Model\ContactTable;
+use Admin\Model\ProjectTypeTable;
 class Module {
 
      
@@ -70,7 +71,7 @@ class Module {
                 },
                 'Admin\Model\ProjectTypeTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table = new ContactTable($dbAdapter);
+                    $table = new ProjectTypeTable($dbAdapter);
                     return $table;
                 },
             ),

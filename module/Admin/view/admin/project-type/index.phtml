@@ -27,10 +27,10 @@
                                 'action' => 'index',  
                                 'page' => $page, 
                                 'order_by' => 'first_name', 
-                                'order' => $pageFilter['contact']['first_name-order']
+                                'order' => $pageFilter['project_type']['name-order']
                                 )
                             ); ?>" title="ID">    
-            First Name
+            Name
         </a>
         </div>
         <div class="span2">
@@ -41,10 +41,10 @@
                                 'action' => 'index',  
                                 'page' => $page, 
                                 'order_by' => 'last_name', 
-                                'order' => $pageFilter['contact']['last_name-order']
+                                'order' => $pageFilter['project_type']['description-order']
                                 )
                             ); ?>" title="ID">    
-            Last Name
+            Description
         </a>
         </div>
         <div class="span1">Edit</div>
@@ -53,15 +53,15 @@
     <?php foreach ($this->paginator as $idx => $item): ?>
         <div class="demo-row row-fluid">
             <div class="span1"><?php echo $item['id'] ?></div>
-            <div class="span2"><?php echo $item['first_name']; ?></div>
-            <div class="span2"><?php echo $item['last_name']; ?></div>
+            <div class="span2"><?php echo $item['name']; ?></div>
+            <div class="span2"><?php echo $item['description']; ?></div>
             <div class="span1">
-                <a href="<?php echo $this->url('admin/projecttype', array('module' => 'admin', 'controller' => 'contact', 'action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                <a href="<?php echo $this->url('admin/projecttype', array('module' => 'admin', 'controller' => 'project-type', 'action' => 'update', 'id' => $item['id'])); ?>" title="" >
                     Edit
                 </a>
             </div>
             <div class="span1">
-                <a class="delete" href="<?php echo $this->url('admin/projecttype', array('module' => 'admin', 'controller' => 'contact', 'action' => 'delete', 'id' => $item['id'])); ?>" title="" >
+                <a class="delete" href="<?php echo $this->url('admin/projecttype', array('module' => 'admin', 'controller' => 'project-type', 'action' => 'delete', 'id' => $item['id'])); ?>" title="" >
                     Delete
                 </a>
             </div>

@@ -14,12 +14,12 @@ use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
-     Admin\Form\ContactForm,
+     Admin\Form\ProjectTypeForm,
     Zend\Db\Sql\Select;
 
 class ProjectTypeController extends FrontActionController {
 
-    protected $_projectTable;
+    protected $_projectTypeTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -31,9 +31,9 @@ class ProjectTypeController extends FrontActionController {
         if($this->params('order_by',null) !== null) {
             $gridKeys = array($this->params('order_by',null));
         } else {
-            $gridKeys = array('id','first_name','last_name');
+            $gridKeys = array('id','name','description');
         }
-        $this->setUpPaginationFilter($paginationKey = 'contact', $gridKeys);
+        $this->setUpPaginationFilter($paginationKey = 'project_type', $gridKeys);
        
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
@@ -44,7 +44,7 @@ class ProjectTypeController extends FrontActionController {
         $order = $this->params()->fromRoute('order') ? $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
 
-        $role = $this->getContactTable()->fetchAll($select->order($order_by . ' ' . $order));
+        $role = $this->getProjectTypeTable()->fetchAll($select->order($order_by . ' ' . $order));
         $itemsPerPage = 2;
 
         $role->current();
@@ -85,11 +85,11 @@ class ProjectTypeController extends FrontActionController {
         $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
-        $model = $this->getContactTable();
-        $form = new ContactForm();
+        $model = $this->getProjectTypeTable();
+        $form = new ProjectTypeForm();
 
         if($id !== null) {
-            $obj = $model->getContact($id);
+            $obj = $model->getProjectType($id);
             $formData = $obj->toArray();
         }
        
@@ -100,28 +100,29 @@ class ProjectTypeController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj = new \Admin\Model\Entity\Contact;
-                $obj->setFirstName($request->getPost('first_name'));
-                $obj->setLastName($request->getPost('last_name'));
-                $obj->setAddress($request->getPost('address'));
-                $obj->setId($request->getPost('id'));
+                $obj = new \Admin\Model\Entity\ProjectType();
+                if($request->getPost('id', null) !== null ) {
+                    $obj->setId($request->getPost('id'));
+                }
+                $obj->setName($request->getPost('name'));
+                $obj->setDescription($request->getPost('description'));
                 $model->save($obj);
-                return $this->redirect()->toRoute('admin/contact');
+                return $this->redirect()->toRoute('admin/projecttype');
             }
         }
         if ($id !== null) {
 
            
-            $title = "Contact Type Update";
+            $title = "Project Type Update";
             $form->populateValues($formData);
-            $form->get('submit')->setValue('Update Contact');
+            $form->get('submit')->setValue('Update Project Type');
         }
 
         return new ViewModel(array(
                     'form' => $form,
                     'title' => $title,
                     'id' => $id,
-                    'contact' => true,
+                    'projecttype' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -137,12 +138,12 @@ class ProjectTypeController extends FrontActionController {
         $this->redirect()->toRoute('admin/contacttype');
     }
 
-    public function getContactTable() {
-        if (!$this->_projectTable) {
+    public function getProjectTypeTable() {
+        if (!$this->_projectTypeTable) {
             $sm = $this->getServiceLocator();
-            $this->_projectTable = $sm->get('Admin\Model\ProjectTypeTable');
+            $this->_projectTypeTable = $sm->get('Admin\Model\ProjectTypeTable');
         }
-        return $this->_projectTable
+        return $this->_projectTypeTable
         ;
     }
   
