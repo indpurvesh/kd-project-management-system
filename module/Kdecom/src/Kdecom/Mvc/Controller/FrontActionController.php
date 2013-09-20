@@ -11,11 +11,13 @@ use Zend\Authentication\Storage\Session;
 class FrontActionController extends AbstractActionController {
 
     public $_paginationFilter;
+    public $itemsPerPage;
 
     public function isUserLoggedIn() {
         
-        date_default_timezone_set('Pacific/Auckland');
         
+        date_default_timezone_set('Pacific/Auckland');
+        $this->itemsPerPage = 2;
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
             return true;

@@ -1,0 +1,13 @@
+/* 
+    Document   : step
+    Created on : 18/09/2013, 2:41:44 PM
+    Author     : Admin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.steps .level1 .step_name{
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #006dcc;
+}

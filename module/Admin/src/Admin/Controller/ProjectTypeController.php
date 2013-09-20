@@ -15,11 +15,14 @@ use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
      Admin\Form\ProjectTypeForm,
+     Admin\Form\StepForm,
+     Admin\Model\Entity\ProjectType,
     Zend\Db\Sql\Select;
 
 class ProjectTypeController extends FrontActionController {
 
     protected $_projectTypeTable;
+    protected $_stepTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -45,12 +48,11 @@ class ProjectTypeController extends FrontActionController {
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
 
         $role = $this->getProjectTypeTable()->fetchAll($select->order($order_by . ' ' . $order));
-        $itemsPerPage = 2;
 
         $role->current();
         $paginator = new Paginator(new paginatorIterator($role));
         $paginator->setCurrentPageNumber($page)
-                ->setItemCountPerPage($itemsPerPage)
+                ->setItemCountPerPage($this->itemsPerPage)
                 ->setPageRange(7);
 
         return new ViewModel(array(
@@ -78,7 +80,11 @@ class ProjectTypeController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
         
-        $title = "Contact Add";
+        $stepModel = $this->getStepTable();
+        $step = array();
+        
+        
+        $title = "Project Type Add";
         $roleAccessObj = null;
 
         $authService = $this->serviceLocator->get('auth_service');
@@ -87,10 +93,24 @@ class ProjectTypeController extends FrontActionController {
         $id = $this->params('id', null);
         $model = $this->getProjectTypeTable();
         $form = new ProjectTypeForm();
+        
+        
+        $stepForm = new StepForm();
+        
+        
+        $options = $stepModel->getStepOptionByProjectTypeId($id);
+        $stepForm->get('parent_step_id')->setAttribute('options', $options);
 
+        
+        $step = $stepModel->getStepsTreeByProjectTypeId($id);
+        
+       
+      
+        
         if($id !== null) {
             $obj = $model->getProjectType($id);
             $formData = $obj->toArray();
+            
         }
        
         $request = $this->getRequest();
@@ -100,7 +120,7 @@ class ProjectTypeController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj = new \Admin\Model\Entity\ProjectType();
+                $obj = new ProjectType();
                 if($request->getPost('id', null) !== null ) {
                     $obj->setId($request->getPost('id'));
                 }
@@ -111,8 +131,6 @@ class ProjectTypeController extends FrontActionController {
             }
         }
         if ($id !== null) {
-
-           
             $title = "Project Type Update";
             $form->populateValues($formData);
             $form->get('submit')->setValue('Update Project Type');
@@ -123,6 +141,8 @@ class ProjectTypeController extends FrontActionController {
                     'title' => $title,
                     'id' => $id,
                     'projecttype' => true,
+                    'step' => $step,
+                    'stepForm' => $stepForm,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
@@ -144,6 +164,14 @@ class ProjectTypeController extends FrontActionController {
             $this->_projectTypeTable = $sm->get('Admin\Model\ProjectTypeTable');
         }
         return $this->_projectTypeTable
+        ;
+    }
+    public function getStepTable() {
+        if (!$this->_stepTable) {
+            $sm = $this->getServiceLocator();
+            $this->_stepTable = $sm->get('Admin\Model\StepTable');
+        }
+        return $this->_stepTable
         ;
     }
   

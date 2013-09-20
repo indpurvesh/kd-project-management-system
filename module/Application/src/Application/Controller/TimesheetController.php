@@ -27,6 +27,7 @@ class TimesheetController extends FrontActionController {
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
         
+        $userId = $this->_userSessionData['id'];
         $form = new \Application\Form\TimesheetForm;
         $model = $this->getTimesheetTable();
         

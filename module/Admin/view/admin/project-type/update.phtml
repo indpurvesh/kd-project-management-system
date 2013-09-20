@@ -1,3 +1,6 @@
+<?php $this->headLink()->prependStylesheet($this->basePath() . '/public/module/admin/step.css'); ?>
+<?php $this->headScript()->prependFile($this->basePath() . '/public/module/admin/step.js'); ?>
+<?php //$this->headScript()->prependFile($this->basePath() . '/public/js/jquery.jOrgChart.js'); ?>
 <h2 class="user_icon p_title"><?php echo $title; ?></h2>
 
 <?php
@@ -19,3 +22,44 @@ echo $this->form()->openTag($form);
     </div>
 </div>
 <?php echo $this->form()->closeTag(); ?>
+
+<div class="step_wrap">
+    <h1>Steps Creation Here</h1>
+    <div class="row-fluid steps">
+        <div class="level1 step span2">
+            <?php foreach($step as $sId => $stepArray): ?>
+                <div  class="step_name">
+                    <?php echo $stepArray['name']; ?>
+                    <?php if(count($stepArray['children']) == 0): ?>
+                    <p>
+                        <a data-step-id="<?php echo $sId; ?>" href="" title="" >add child</a>
+                    </p>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<div class="step_form" style="display: none;">
+
+<?php
+$stepForm->prepare();
+echo $this->form()->openTag($stepForm);
+?>
+<?php echo $this->formRow($stepForm->get('id')); ?>
+<div class="control-input">
+    <?php echo $this->formRow($stepForm->get('name')); ?>
+</div>
+<div class="control-input">
+    <?php echo $this->formRow($stepForm->get('parent_step_id')); ?>
+</div>
+
+<div class="control-input ">
+    <label>&nbsp;</label>
+    <div class="btn btn-large btn-block btn-success">
+        <?php echo $this->formRow($stepForm->get('submit')); ?>
+    </div>
+</div>
+<?php echo $this->form()->closeTag(); ?>    
+</div>
+

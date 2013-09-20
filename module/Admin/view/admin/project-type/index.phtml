@@ -13,7 +13,7 @@
                      'action' => 'index',  
                      'page' => $page, 
                      'order_by' => 'id', 
-                     'order' => $pageFilter['contact']['id-order']
+                     'order' => $pageFilter['project_type']['id-order']
                      )
                  ); ?>" title="ID">
                 ID
@@ -37,7 +37,7 @@
         <a href="<?php echo $this->url('admin/projecttype', 
                             array(
                                 'module' => 'admin' , 
-                                'controller' => 'contact',
+                                'controller' => 'project-type',
                                 'action' => 'index',  
                                 'page' => $page, 
                                 'order_by' => 'last_name', 
