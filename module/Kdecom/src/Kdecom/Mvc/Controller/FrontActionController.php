@@ -3,7 +3,8 @@
 namespace Kdecom\Mvc\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Authentication\Storage\Session;
+use Zend\Authentication\Storage\Session,
+    Zend\View\Model\ViewModel;
 
 /**
  * Basic action controller

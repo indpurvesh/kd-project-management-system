@@ -17,6 +17,19 @@ class StepForm extends Form
                 'type'  => 'hidden',
             ),
         ));
+        $this->add(array(
+            'name' => 'project_type_id',
+            'attributes' => array(
+                'type'  => 'hidden',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'parent_step_id',
+            'attributes' => array(
+                'type'  => 'hidden',
+                'id' => 'parent_step_id'
+            ),
+        ));
 
         $this->add(array(
             'name' => 'name',
@@ -30,11 +43,11 @@ class StepForm extends Form
             ),
         ));
         $this->add(array(
-            'name' => 'parent_step_id',
+            'name' => 'parent_step_select',
             'type'  => 'select',
             'attributes' => array(
                 'required' => 'required',
-                'id' =>'parent_step_id',
+                'id' =>'parent_step_select',
             ),
             'options' => array(
                 'label' => 'Parent Step',

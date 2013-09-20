@@ -14,9 +14,10 @@ use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
-     Admin\Form\ProjectTypeForm,
-     Admin\Form\StepForm,
-     Admin\Model\Entity\ProjectType,
+    Admin\Form\ProjectTypeForm,
+    Admin\Form\StepForm,
+    Admin\Model\Entity\ProjectType,
+    Admin\Model\Entity\Step,
     Zend\Db\Sql\Select;
 
 class ProjectTypeController extends FrontActionController {
@@ -30,19 +31,19 @@ class ProjectTypeController extends FrontActionController {
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
-        
-        if($this->params('order_by',null) !== null) {
-            $gridKeys = array($this->params('order_by',null));
+
+        if ($this->params('order_by', null) !== null) {
+            $gridKeys = array($this->params('order_by', null));
         } else {
-            $gridKeys = array('id','name','description');
+            $gridKeys = array('id', 'name', 'description');
         }
         $this->setUpPaginationFilter($paginationKey = 'project_type', $gridKeys);
-       
+
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
         $select = new Select();
-        
+
         $order_by = $this->params()->fromRoute('order_by') ? $this->params()->fromRoute('order_by') : 'id';
         $order = $this->params()->fromRoute('order') ? $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
@@ -67,7 +68,7 @@ class ProjectTypeController extends FrontActionController {
                     'userSessionData' => $this->_userSessionData
                 ));
     }
-    
+
     /*
      * 
      * @todo If user has login Yes then create login as well with model....
@@ -79,11 +80,11 @@ class ProjectTypeController extends FrontActionController {
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
-        
+
         $stepModel = $this->getStepTable();
         $step = array();
-        
-        
+
+
         $title = "Project Type Add";
         $roleAccessObj = null;
 
@@ -93,26 +94,26 @@ class ProjectTypeController extends FrontActionController {
         $id = $this->params('id', null);
         $model = $this->getProjectTypeTable();
         $form = new ProjectTypeForm();
-        
-        
-        $stepForm = new StepForm();
-        
-        
-        $options = $stepModel->getStepOptionByProjectTypeId($id);
-        $stepForm->get('parent_step_id')->setAttribute('options', $options);
 
-        
+
+        $stepForm = new StepForm();
+
+
+        $options = $stepModel->getStepOptionByProjectTypeId($id);
+        $stepForm->get('parent_step_select')->setAttribute('options', $options);
+
+        $stepForm->get('project_type_id')->setValue($id);
+
         $step = $stepModel->getStepsTreeByProjectTypeId($id);
-        
-       
-      
-        
-        if($id !== null) {
+
+
+
+
+        if ($id !== null) {
             $obj = $model->getProjectType($id);
             $formData = $obj->toArray();
-            
         }
-       
+
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -121,7 +122,7 @@ class ProjectTypeController extends FrontActionController {
             if ($form->isValid()) {
 
                 $obj = new ProjectType();
-                if($request->getPost('id', null) !== null ) {
+                if ($request->getPost('id', null) !== null) {
                     $obj->setId($request->getPost('id'));
                 }
                 $obj->setName($request->getPost('name'));
@@ -166,6 +167,7 @@ class ProjectTypeController extends FrontActionController {
         return $this->_projectTypeTable
         ;
     }
+
     public function getStepTable() {
         if (!$this->_stepTable) {
             $sm = $this->getServiceLocator();
@@ -174,7 +176,18 @@ class ProjectTypeController extends FrontActionController {
         return $this->_stepTable
         ;
     }
-  
-  
+
+    public function addStepAction() {
+        $viewModel = $this->nolayout();
+
+        $data = $this->params()->fromPost();
+
+        $mptt = new \Kdecom\Mptt();
+
+        $mptt->Mptt($data['project_type_id']);
+        
+        $mptt->add($data['project_type_id'],$data['parent_step_id'], $data['name']);
+        return $viewModel;
+    }
 
 }

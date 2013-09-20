@@ -80,13 +80,13 @@ class Mptt
             // initialize properties
             $this->properties = array(
 
-                'project_type_id'    =>  $projectTypeId,
-                'table_name'    =>  $table_name,
-                'id_column'     =>  $id_column,
-                'title_column'  =>  $title_column,
-                'left_column'   =>  $left_column,
-                'right_column'  =>  $right_column,
-                'parent_column' =>  $parent_column,
+                'project_type_id'   =>  $projectTypeId,
+                'table_name'        =>  $table_name,
+                'id_column'         =>  $id_column,
+                'title_column'      =>  $title_column,
+                'left_column'       =>  $left_column,
+                'right_column'      =>  $right_column,
+                'parent_column'     =>  $parent_column,
 
             );
 
@@ -145,7 +145,7 @@ class Mptt
      *
      *  @return mixed                   Returns the ID of the newly inserted node or FALSE upon error.
      */
-    function add($parent, $title, $position = false) {
+    function add($projectTypeId , $parent, $title, $position = false) {
     
         // lazy connection: touch the database only when the data is required for the first time and not at object instantiation
         $this->_init();
@@ -256,6 +256,7 @@ class Mptt
                     ' . $this->properties['table_name'] . '
                     (
                         ' . $this->properties['title_column'] . ',
+                        ' . $this->properties['project_type_id'] . ',
                         ' . $this->properties['left_column'] . ',
                         ' . $this->properties['right_column'] . ',
                         ' . $this->properties['parent_column'] . '
@@ -263,6 +264,7 @@ class Mptt
                 VALUES
                     (
                         "' . mysql_real_escape_string($title) . '",
+                        "' . intval($projectTypeId) . '",
                         ' . ($boundary + 1) . ',
                         ' . ($boundary + 2) . ',
                         ' . $parent . '
@@ -278,6 +280,7 @@ class Mptt
             // add the node to the lookup array
             $this->lookup[$node_id] = array(
                 $this->properties['id_column']      => $node_id,
+                $this->properties['project_type_id']      => $projectTypeId,
                 $this->properties['title_column']   => $title,
                 $this->properties['left_column']    => $boundary + 1,
                 $this->properties['right_column']   => $boundary + 2,

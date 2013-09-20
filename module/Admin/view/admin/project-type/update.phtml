@@ -47,11 +47,13 @@ $stepForm->prepare();
 echo $this->form()->openTag($stepForm);
 ?>
 <?php echo $this->formRow($stepForm->get('id')); ?>
+<?php echo $this->formRow($stepForm->get('project_type_id')); ?>
+<?php echo $this->formRow($stepForm->get('parent_step_id')); ?>
 <div class="control-input">
     <?php echo $this->formRow($stepForm->get('name')); ?>
 </div>
 <div class="control-input">
-    <?php echo $this->formRow($stepForm->get('parent_step_id')); ?>
+    <?php echo $this->formRow($stepForm->get('parent_step_select')); ?>
 </div>
 
 <div class="control-input ">
