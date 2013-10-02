@@ -17,10 +17,14 @@ namespace Admin\Model\Entity;
 class Project {
 
     protected $_id;
-    protected $_first_name;
-    protected $_last_name;
-    protected $_address;
-    protected $_contact_type_id;
+    protected $_project_type_id;
+    protected $_name;
+    protected $_description;
+    protected $_created_date;
+    protected $_priority;
+    protected $_created_by_user_id;
+    protected $_due_date;
+    protected $_start_date;
 
     public function __construct(array $options = null) {
         if (is_array($options)) {
@@ -64,47 +68,79 @@ class Project {
         return $this;
     }
 
-    public function getFirstName() {
-        return $this->_first_name;
+    public function getName() {
+        return $this->_name;
     }
     
-    public function setFirstName($value) {
-          $this->_first_name = $value;
+    public function setName($value) {
+          $this->_name = $value;
         return $this;
     }
     
-    public function getLastName() {
-        return $this->_last_name;
+    public function getProjectTypeId() {
+        return $this->_project_type_id;
     }
     
-    public function setLastName($value) {
-          $this->_last_name = $value;
+    public function setProjectTypeId($value) {
+          $this->_project_type_id = $value;
         return $this;
     }
     
-    public function getAddress() {
-        return $this->_address;
+    public function getDescription() {
+        return $this->_description;
     }
     
-    public function setAddress($value) {
-          $this->_address = $value;
+    public function setDescription ($value) {
+          $this->_description = $value;
         return $this;
     }
 
-    public function setContactTypeId($value) {
-        $this->_contact_type_id = $value;
+    public function setCreatedDate($value) {
+        $this->_created_date = $value;
         return $this;
     }
-    public function getContactTypeId() {
-        return $this->_contact_type_id;
+    public function getCreatedDate() {
+        return $this->_created_date;
+    }
+    public function setPriority($value) {
+        $this->_priority = $value;
+        return $this;
+    }
+    public function getPriority() {
+        return $this->_priority;
+    }
+    public function setCreatedByUserId($value) {
+        $this->_created_by_user_id = $value;
+        return $this;
+    }
+    public function getCreatedByUserId() {
+        return $this->_created_by_user_id;
+    }
+    public function setDueDate($value) {
+        $this->_due_date = $value;
+        return $this;
+    }
+    public function getDueDate() {
+        return $this->_due_date;
+    }
+    public function setStartDate($value) {
+        $this->_start_date = $value;
+        return $this;
+    }
+    public function getStartDate() {
+        return $this->_start_date;
     }
     public function toArray() {
         $data = array(
             'id' => $this->getId(),
-            'first_name' => $this->getFirstName(),
-            'last_name' => $this->getLastName(),
-            'address' => $this->getAddress(),
-            'contact_type_id' => $this->getContactTypeId(),
+            'project_type_id' => $this->getProjectTypeId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'created_date' => $this->getCreatedDate(),
+            'priority' => $this->getPriority(),
+            'created_by_user_id' => $this->getCreatedByUserId(),
+            'due_date' => $this->getDueDate(),
+            'start_date' => $this->getStartDate()
         );
         return $data;
     }

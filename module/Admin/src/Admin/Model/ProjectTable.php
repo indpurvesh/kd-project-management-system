@@ -5,7 +5,7 @@
  *
  * @author Purvesh <ind.purvesh@gmail.com>, <@kdecom>
  */
-// module/Admin/src/Admin/Model/StickyNotesTable.php
+
 
 namespace Admin\Model;
 
@@ -37,21 +37,22 @@ class ProjectTable extends AbstractTableGateway {
 
         $rowObj = new Entity\Project();
         $rowObj->setId($row->id);
-        $rowObj->setFirstName($row->first_name);
-        $rowObj->setLastName($row->last_name);
-        $rowObj->setAddress($row->address);
-        $rowObj->setContactTypeId($row->contact_type_id);
+        $rowObj->setProjectTypeId($row->project_type_id);
+        $rowObj->setName($row->name);
+        $rowObj->setDescription($row->description);
         
         return $rowObj;
     }
   
 
-    public function save(Entity\Contact $entity) {
+    /*
+     * 
+     * @todo finished properly
+     */
+    public function save(Entity\Project $entity) {
         $data = array(
-            'first_name' => $entity->getFirstName(),
-            'last_name' => $entity->getLastName(),
-            'address' => $entity->getAddress(),
-            'contact_type_id' => $entity->getContactTypeId()
+            'name' => $entity->getName(),
+            'description' => $entity->getDescription(),
         );
 
         $id = (int) $entity->getId();
@@ -61,7 +62,7 @@ class ProjectTable extends AbstractTableGateway {
                 return false;
             return $this->getLastInsertValue();
         }
-        elseif ($this->getContact($id)) {
+        elseif ($this->getProject($id)) {
             
             if (!$this->update($data, array('id' => $id)))
                 return false;

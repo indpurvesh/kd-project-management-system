@@ -15,6 +15,7 @@ use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel,
     Admin\Form\ContactForm,
+    Admin\Form\ProjectForm,
     Zend\Db\Sql\Select;
 
 class ProjectController extends FrontActionController {
@@ -78,18 +79,18 @@ class ProjectController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
         
-        $title = "Contact Add";
+        $title = "Project Add";
         $roleAccessObj = null;
 
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
         $id = $this->params('id', null);
-        $model = $this->getContactTable();
-        $form = new ContactForm();
+        $model = $this->getProjectTable();
+        $form = new ProjectForm();
 
         if($id !== null) {
-            $obj = $model->getContact($id);
+            $obj = $model->getProject($id);
             $formData = $obj->toArray();
         }
        
@@ -100,7 +101,7 @@ class ProjectController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $obj = new \Admin\Model\Entity\Contact;
+                $obj = new \Admin\Model\Entity\Project;
                 $obj->setFirstName($request->getPost('first_name'));
                 $obj->setLastName($request->getPost('last_name'));
                 $obj->setAddress($request->getPost('address'));
@@ -112,16 +113,16 @@ class ProjectController extends FrontActionController {
         if ($id !== null) {
 
            
-            $title = "Contact Type Update";
+            $title = "Project Update";
             $form->populateValues($formData);
-            $form->get('submit')->setValue('Update Contact');
+            $form->get('submit')->setValue('Update Project');
         }
 
         return new ViewModel(array(
                     'form' => $form,
                     'title' => $title,
                     'id' => $id,
-                    'contact' => true,
+                    'project' => true,
                     'userSessionData' => $this->_userSessionData
                 ));
     }
