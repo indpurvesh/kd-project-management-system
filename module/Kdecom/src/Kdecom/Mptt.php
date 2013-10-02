@@ -1378,9 +1378,6 @@ class Mptt
 
         // the updated lookup array
         $this->lookup = $tmp;
-
     }
-
 }
-
 ?>

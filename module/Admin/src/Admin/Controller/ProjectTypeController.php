@@ -104,7 +104,7 @@ class ProjectTypeController extends FrontActionController {
 
         $stepForm->get('project_type_id')->setValue($id);
 
-        $step = $stepModel->getStepsTreeByProjectTypeId($id);
+        $step = $stepModel->getRootByProjectTypeId($id);
 
 
 
@@ -142,6 +142,7 @@ class ProjectTypeController extends FrontActionController {
                     'title' => $title,
                     'id' => $id,
                     'projecttype' => true,
+                    'stepTable' => $stepModel,
                     'step' => $step,
                     'stepForm' => $stepForm,
                     'userSessionData' => $this->_userSessionData

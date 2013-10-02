@@ -7,12 +7,13 @@
 jQuery(document).ready(function(){
 
     
+    jQuery('.step_name:last').append('<p><a href="" title="add child" >add child</a></p>');
     jQuery('.steps .step_name a').click(function(e) {
         e.preventDefault();
         
         
-        jQuery('#step_form #parent_step_id').val(jQuery(e.target).attr('data-step-id'));
-        jQuery('#step_form #parent_step_select').val(jQuery(e.target).attr('data-step-id'));
+        jQuery('#step_form #parent_step_id').val(jQuery(e.target).parents('.step_name').attr('data-step-id'));
+        jQuery('#step_form #parent_step_select').val(jQuery(e.target).parents('step_name').attr('data-step-id'));
         jQuery('#step_form #parent_step_select').attr('disabled',true);
         
         

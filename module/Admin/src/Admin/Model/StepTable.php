@@ -46,11 +46,11 @@ class StepTable extends AbstractTableGateway {
         return $rowObj;
     }
 
-    public function getStepsTreeByProjectTypeId($id = null) {
+    public function getRootByProjectTypeId($projectTypeId = null) {
 
 
         $mptt = new Mptt();
-        $mptt->Mptt($id);
+        $mptt->Mptt($projectTypeId);
 
         $step = $mptt->get_tree();
         return $step;
@@ -108,11 +108,11 @@ class StepTable extends AbstractTableGateway {
         return false;
     }
 
-    public function getChild($id) {
+    public function getChild($projectTypeId , $id) {
 
         $select = new Select();
         $select->from($this->table);
-        $select->where(array('parent_step_id' => (int) $id));
+        $select->where(array('parent_step_id' => $id));
         $resultSet = $this->selectWith($select);
         $resultSet->buffer();
 
