@@ -35,4 +35,9 @@
             Project Type 
         </li>
     </a>
+    <a href="<?php echo $this->url('admin/project', array('action' => 'index', 'controller' => 'project')); ?>">
+        <li id="project" class="<?php echo ($this->child->project === true) ? "select" : ""; ?>">
+            Project 
+        </li>
+    </a>
 </ul>

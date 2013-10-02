@@ -14,6 +14,7 @@ use Admin\Model\RoleTable;
 use Admin\Model\AssignRoleActionTable;
 use Admin\Model\ContactTypeTable;
 use Admin\Model\ContactTable;
+use Admin\Model\ProjectTable;
 use Admin\Model\ProjectTypeTable,
     Admin\Model\StepTable
         ;
@@ -69,6 +70,11 @@ class Module {
                 'Admin\Model\ContactTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new ContactTable($dbAdapter);
+                    return $table;
+                },
+                'Admin\Model\ProjectTable' => function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new ProjectTable($dbAdapter);
                     return $table;
                 },
                 'Admin\Model\ProjectTypeTable' => function($sm) {

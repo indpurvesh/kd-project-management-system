@@ -10,6 +10,7 @@ return array(
             'Admin\Controller\UserAccess'   => 'Admin\Controller\UserAccessController',
             'Admin\Controller\ContactType'  => 'Admin\Controller\ContactTypeController',
             'Admin\Controller\Contact'      => 'Admin\Controller\ContactController',
+            'Admin\Controller\Project'      => 'Admin\Controller\ProjectController',
             'Admin\Controller\ProjectType'      => 'Admin\Controller\ProjectTypeController',
         ),
     ),
@@ -128,6 +129,23 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'contact',
+                                'page' => 1,
+                            ),
+                        ),
+                    ),
+                    'project' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/project[/:action[/id/:id][/page/:page][/order/:order][/order_by/:order_by]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                                'page' => '[0-9]*',
+                                'order' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'project',
                                 'page' => 1,
                             ),
                         ),

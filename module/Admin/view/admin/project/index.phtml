@@ -1,0 +1,88 @@
+<?php if (count($this->paginator)): ?>
+    <div class="demo-row row-fluid">
+        <div class="span1"> 
+            <?php 
+            
+            $pageFilter = $pagination_filter->read();
+            
+            ?>
+         <a href="<?php echo $this->url('admin/project', 
+                 array(
+                     'module' => 'admin' , 
+                     'controller' => 'project',
+                     'action' => 'index',  
+                     'page' => $page, 
+                     'order_by' => 'id', 
+                     'order' => $pageFilter['project']['id-order']
+                     )
+                 ); ?>" title="ID">
+                ID
+            </a>
+        </div>
+        <div class="span2">
+        <a href="<?php echo $this->url('admin/project', 
+                            array(
+                                'module' => 'admin' , 
+                                'controller' => 'project',
+                                'action' => 'index',  
+                                'page' => $page, 
+                                'order_by' => 'name', 
+                                'order' => $pageFilter['project']['name-order']
+                                )
+                            ); ?>" title="Name">    
+            Name
+        </a>
+        </div>
+        <div class="span2">
+        <a href="<?php echo $this->url('admin/project', 
+                            array(
+                                'module' => 'admin' , 
+                                'controller' => 'project',
+                                'action' => 'index',  
+                                'page' => $page, 
+                                'order_by' => 'due_date', 
+                                'order' => $pageFilter['project']['due_date-order']
+                                )
+                            ); ?>" title="Due Date">    
+            Due Date
+        </a>
+        </div>
+        <div class="span2">
+        <a href="<?php echo $this->url('admin/project', 
+                            array(
+                                'module' => 'admin' , 
+                                'controller' => 'project',
+                                'action' => 'index',  
+                                'page' => $page, 
+                                'order_by' => 'priority', 
+                                'order' => $pageFilter['project']['priority-order']
+                                )
+                            ); ?>" title="Priority">    
+            Proirity
+        </a>
+        </div>
+        <div class="span1">Edit</div>
+        <div class="span1">Delete</div>
+    </div>
+    <?php foreach ($this->paginator as $idx => $item): ?>
+        <div class="demo-row row-fluid">
+            <div class="span1"><?php echo $item['id'] ?></div>
+            <div class="span2"><?php echo $item['name']; ?></div>
+            <div class="span2"><?php echo date('d-m-Y',strtotime($item['due_date'])); ?></div>
+            <div class="span2"><?php echo $item['priority']; ?></div>
+            <div class="span1">
+                <a href="<?php echo $this->url('admin/project', array('module' => 'admin', 'controller' => 'project', 'action' => 'update', 'id' => $item['id'])); ?>" title="" >
+                    Edit
+                </a>
+            </div>
+            <div class="span1">
+                <a class="delete" href="<?php echo $this->url('admin/project', array('module' => 'admin', 'controller' => 'project', 'action' => 'delete', 'id' => $item['id'])); ?>" title="" >
+                    Delete
+                </a>
+            </div>
+        </div>
+    <?php endforeach ?>
+<?php endif; ?>
+
+<!-- call pagination control view script  -->
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order,'route' => 'admin/project','controller' => 'project')); ?>
