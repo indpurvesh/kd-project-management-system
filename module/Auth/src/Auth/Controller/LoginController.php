@@ -53,7 +53,8 @@ class LoginController extends AbstractActionController {
                 // set id as identifier in session
                 $userId = $authAdapter->getResultRowObject('id')->id;
                 $userName = $authAdapter->getResultRowObject('user_name')->user_name;
-                $authService->getStorage()->write(array('id' => $userId,'user_name' => $userName));
+                $firstName = $authAdapter->getResultRowObject('first_name')->first_name;
+                $authService->getStorage()->write(array('id' => $userId,'user_name' => $userName,'first_name' => $firstName));
                 
               
                 return $this->redirect()->toRoute('home');

@@ -113,9 +113,13 @@
                             Developed by <a href="http://www.kdecom.com" title="Kdecom" blank="_blank" >Kdecom</a>
                         </div>
 
+                        <?php
+                           
+                                            
+                        ?>
                         <div id="f_right">
                             <ul>
-                                <li><a href="http://kdecom.com"><span id="user"><font>Purvesh</font></span></a></li>
+                                <li><a href="http://kdecom.com"><span id="user"><font><?php echo $child->userSessionData['first_name'] ?></font></span></a></li>
                                 <li><a href="#"><span id="setting"></span></a></li>
                                 <li><a href="<?php echo $this->url('logout'); ?>"><span id="exit"></span></a></li>
                             </ul>

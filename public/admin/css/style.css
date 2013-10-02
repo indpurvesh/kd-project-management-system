@@ -357,7 +357,7 @@ a {
 
 #footer {
     border-top:1px solid #ebebeb;
-    position:fixed;
+    position:inherit;
     bottom:0;
     height:50px;
     width:85%;
@@ -397,7 +397,7 @@ a {
 
 #user {
     background:url(../images/anibor.png) no-repeat 10px;
-    width:50px;
+    width:100px;
     padding-right:70px;
     padding-top:2px;
 }

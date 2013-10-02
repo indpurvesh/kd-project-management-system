@@ -24,4 +24,4 @@
 <?php endif; ?>
 
 <!-- call pagination control view script  -->
-<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order)); ?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'pagination', array('page' => $page, 'order_by' => $order_by, 'order' => $order,'route' => 'admin/role','controller' => 'role')); ?>
