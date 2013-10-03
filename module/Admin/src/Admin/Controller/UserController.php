@@ -70,14 +70,14 @@ class UserController extends FrontActionController {
         $authService = $this->serviceLocator->get('auth_service');
         $this->_userSessionData = $authService->getIdentity();
 
-        $id = $this->params('id',null);
+        $id = $this->params('id', null);
         $model = $this->getUserTable();
         $form = new UserForm();
 
         $roleOptions = $this->getRoleTable()->getRoleOptions();
         $form->get('role_id')->setAttribute('options', $roleOptions);
-        $form->get('cancel')->setAttribute('onclick', 'location="'. $this->url()->fromRoute('admin/user'). '"');
-        
+        $form->get('cancel')->setAttribute('onclick', 'location="' . $this->url()->fromRoute('admin/user') . '"');
+
         if ($id === null) {
             $obj = new User();
             $form->get('submit')->setValue('Add Login');
@@ -94,14 +94,14 @@ class UserController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
-                $file    = $this->params()->fromFiles('image');
-                
-                $this->upload($file,"/profile");
-                var_dump($file);
-                
-                die;
-                $adapter = new \Zend\File\Transfer\Adapter\Http(); 
-                
+                $file = $this->params()->fromFiles('image');
+
+                if (is_array($file)) {
+                    $image = $this->upload($file, "/profile");
+                    $obj->setImage($image);
+                }
+
+
                 $obj->setEmail($request->getPost('email'));
                 $obj->setFirstName($request->getPost('first_name'));
                 $obj->setLastName($request->getPost('last_name'));
@@ -113,7 +113,7 @@ class UserController extends FrontActionController {
 
         if ($id !== null) {
             $form->populateValues($userData);
-        } 
+        }
 
         return new ViewModel(array(
                     'form' => $form,
@@ -142,6 +142,7 @@ class UserController extends FrontActionController {
         return $this->_usersTable
         ;
     }
+
     public function getRoleTable() {
         if (!$this->_roleTable) {
             $sm = $this->getServiceLocator();

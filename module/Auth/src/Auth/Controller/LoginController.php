@@ -5,19 +5,59 @@
 
 namespace Auth\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController,
+use Kdecom\Mvc\Controller\FrontActionController,
     Zend\Authentication\Adapter\DbTable,
     Zend\Session\Container as SessionContainer,
     Zend\View\Model\ViewModel,
     Auth\Model\Entity\User,
     Auth\Form\Login,
+    Auth\Form\ChangePassword,
     Auth\Form\Register;
 
-class LoginController extends AbstractActionController {
-
+class LoginController extends FrontActionController {
     
-    public function loginAction() {
+    public $_userSessionData;
+    public $userTable;
+    
+    public function changePasswordAction() {
+     
+        if ($this->isUserLoggedIn() === false) {
+            $this->redirect()->toRoute('login');
+        }
+        $error = "";
+
+        $authService = $this->serviceLocator->get('auth_service');
+        $this->_userSessionData = $authService->getIdentity();
         
+        
+        $form = new ChangePassword;
+        if ($this->getRequest()->isPost()) {
+            
+            $model = $this->getUserTable();
+            $userModel = $model->getUser($this->_userSessionData['id']);
+            
+            if($userModel->getUserPassword() == md5($this->params()->fromPost('old_password'))) {
+                if($this->params()->fromPost('new_password') == $this->params()->fromPost('c_new_password')) {
+                    $userModel->setUserPassword(md5($this->params()->fromPost('new_password')));
+                    $model->saveUser($userModel);
+                    $this->redirect()->toRoute('home');
+                } else {
+                    $error = "New Password and Confirm password didn't match";
+                }
+                
+            } else {
+                $error = "Old Password didn't match";
+            }
+            
+        }
+        return new ViewModel(array(
+                            'error' => $error,
+                            'title' => 'Change Password',
+                            'form' => $form
+                        ));
+    }
+
+    public function loginAction() {
         
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
@@ -55,21 +95,20 @@ class LoginController extends AbstractActionController {
                 $userName = $authAdapter->getResultRowObject('user_name')->user_name;
                 $firstName = $authAdapter->getResultRowObject('first_name')->first_name;
                 $lastName = $authAdapter->getResultRowObject('last_name')->last_name;
+                $image = $authAdapter->getResultRowObject('image')->image;
                 $authService->getStorage()->write(array(
                                     'id' => $userId,
                                     'user_name' => $userName,
                                     'first_name' => $firstName,
                                     'last_name' => $lastName,
+                                    'image' => $image
                     ));
-                
               
                 return $this->redirect()->toRoute('home');
             } else {
-                
                 $loginMsg = $result->getMessages();
             }
         }
-        
 
         return new ViewModel(array('title' => 'Log In',
                     'form' => $form,

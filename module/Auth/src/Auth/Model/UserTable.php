@@ -35,16 +35,21 @@ class UserTable extends AbstractTableGateway {
         $user->setFirstName($row->first_name);
         $user->setLastName($row->last_name);
         $user->setEmail($row->email);
+        $user->setImage($row->image);
+        $user->setUserPassword($row->user_password);
 
         return $user;
     }
 
     public function saveUser(Entity\User $user) {
         $data = array(
-            'email' => $user->getEmail(),
-            'first_name' => $user->getFirstName(),
+            'user_name' => $user->getUserName(),
             'role_id' => $user->getRoleId(),
-            'last_name' => $user->getLastName()
+            'first_name' => $user->getFirstName(),
+            'last_name' => $user->getLastName(),
+            'email' => $user->getEmail(),
+            'image' => $user->getImage(),
+            'user_password' => $user->getUserPassword()
         );
 
         $id = (int) $user->getId();

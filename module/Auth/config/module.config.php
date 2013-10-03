@@ -87,6 +87,29 @@ return array(
                     )
                 )
             ),
+            'changepass' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/change-password',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Auth\Controller',
+                        'controller' => 'Login',
+                        'action' => 'change-password',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            )
+                        )
+                    )
+                )
+            ),
         ),
     ),
     'service_manager' => array(

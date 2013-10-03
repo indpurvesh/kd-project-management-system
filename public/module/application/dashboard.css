@@ -9,3 +9,7 @@
 .profile {
     border-right: 1px solid #ccc;
 }
+.profile_image {
+    max-width: 90%;
+    max-height: 200px;
+}

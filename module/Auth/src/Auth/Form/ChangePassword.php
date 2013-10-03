@@ -6,7 +6,7 @@ use Zend\Form\Form,
     Zend\InputFilter\Factory as InputFactory,
 	Zend\InputFilter\InputFilter;
 
-class Login extends Form
+class ChangePassword extends Form
 {
     public function __construct($name = null)
     {
@@ -15,27 +15,36 @@ class Login extends Form
         //$this->setAttribute('action', $this->getView()->baseUrl() . "/");
         
         $this->add(array(
-            'name' => 'username',
-            'attributes' => array(
-                'type'  => 'text',
-                'required' => 'required',
-                'id' =>'user_name',
-                'value' => 'admin'
-            ),
-            'options' => array(
-                'label' => 'User Name',
-            ),
-        ));
-        $this->add(array(
-            'name' => 'password',
+            'name' => 'old_password',
             'attributes' => array(
                 'type'  => 'password',
                 'required' => 'required',
-                'id' =>'user_password',
-                'value' =>'admin'
+                'id' =>'old_password',
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Old Password',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'new_password',
+            'attributes' => array(
+                'type'  => 'password',
+                'required' => 'required',
+                'id' =>'new_password',
+            ),
+            'options' => array(
+                'label' => 'New Password',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'c_new_password',
+            'attributes' => array(
+                'type'  => 'password',
+                'required' => 'required',
+                'id' =>'c_new_password',
+            ),
+            'options' => array(
+                'label' => 'Confirm New Password',
             ),
         ));
 

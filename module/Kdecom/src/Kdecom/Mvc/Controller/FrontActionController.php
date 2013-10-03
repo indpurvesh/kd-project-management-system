@@ -41,13 +41,12 @@ class FrontActionController extends AbstractActionController {
         
         $adapter = new \Zend\File\Transfer\Adapter\Http(); 
         $adapter->setDestination('media' . $path);
-        $adapter->receive();
+        $adapter->receive($file['name']);
+        $tmpfilePath = str_replace("media/", "", $adapter->getFileName());
         
-        var_dump(str_replace("media/", "", $adapter->getFileName()));
         
-        die;
-        var_dump($adapter->getFileInfo());die;
         
+        return str_replace("\\", "/", $tmpfilePath);
     }
 
     /*

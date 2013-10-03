@@ -15,7 +15,21 @@
         </div>
         
         <div class="profile_image">
-            <img src="" alt="Name" />
+            <img src="<?php echo APPLICATION_URL . "media/" .$userSessionData['image']; ?> " alt="Name" />
+        </div>
+        <div class="user_nav">
+            <ul>
+                <li> 
+                    <a href="<?php echo $this->url('changepass'); ?>" title="Chnage Password" >
+                        Change Password
+                    </a>
+                </li>
+                <li> 
+                    <a href="<?php echo $this->url('logout'); ?>" title="Chnage Password" >
+                        Logout
+                    </a>
+                </li>
+            </ul>
         </div>
         
     </div>
