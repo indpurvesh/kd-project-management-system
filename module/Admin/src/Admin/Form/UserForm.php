@@ -53,6 +53,16 @@ class UserForm extends Form
             ),
         ));
         $this->add(array(
+            'name' => 'image',
+            'type'  => 'file',
+            'attributes' => array(
+                'id' =>'image'
+            ),
+            'options' => array(
+                'label' => 'Image',
+            ),
+        ));
+        $this->add(array(
             'name' => 'role_id',
             'type'  => 'select',
             'attributes' => array(

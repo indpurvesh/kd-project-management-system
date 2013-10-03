@@ -32,6 +32,23 @@ class FrontActionController extends AbstractActionController {
         $viewModel->setTerminal(true);
         return $viewModel;
     }
+    
+    /*
+     * Upload File 
+     * 
+     */
+    public function upload($file,$path = "/") {
+        
+        $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+        $adapter->setDestination('media' . $path);
+        $adapter->receive();
+        
+        var_dump(str_replace("media/", "", $adapter->getFileName()));
+        
+        die;
+        var_dump($adapter->getFileInfo());die;
+        
+    }
 
     /*
      * 

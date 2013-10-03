@@ -94,6 +94,14 @@ class UserController extends FrontActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) {
 
+                $file    = $this->params()->fromFiles('image');
+                
+                $this->upload($file,"/profile");
+                var_dump($file);
+                
+                die;
+                $adapter = new \Zend\File\Transfer\Adapter\Http(); 
+                
                 $obj->setEmail($request->getPost('email'));
                 $obj->setFirstName($request->getPost('first_name'));
                 $obj->setLastName($request->getPost('last_name'));
