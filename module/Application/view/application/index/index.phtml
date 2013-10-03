@@ -1,29 +1,28 @@
+
+<?php $this->headLink()->prependStylesheet($this->basePath() . '/public/module/application/dashboard.css'); ?>
+
 <div class="hero-unit">
     <h1>KD Project Managemeny System</h1>
-    <p>This is just the demo page intially build as a starting of the project</p>
-    <p><a class="btn btn-success btn-large" href="https://github.com/indpurvesh/kd-project-management-system" target="_blank"><?php echo $this->translate('Fork KD Project Management System on GitHub') ?> &raquo;</a></p>
 </div>
 
 <div class="row">
 
-    <div class="span4">
-        <h2><?php echo $this->translate('Follow Development') ?></h2>
-        <p><?php echo sprintf($this->translate('KD PMS is under active development. If you are interested in following the development of KD PMS. Please Contact us')); ?></p>
-        <p><a class="btn btn-success" href="http://kdecom.com" target="_blank"><?php echo $this->translate('KD PMS') ?> &raquo;</a></p>
+    <div class="span2 profile">
+        
+        <div class="row-fluid">
+            <h3>User Info</h3>
+            <p><?php echo $userSessionData['first_name']; ?> <?php echo $userSessionData['last_name']; ?></p>
+        </div>
+        
+        <div class="profile_image">
+            <img src="" alt="Name" />
+        </div>
+        
     </div>
 
-    <div class="span4">
-        <h2><?php echo $this->translate('Donate and Help us') ?></h2>
-        <p><a target="_blank" href='http://www.pledgie.com/campaigns/21649'>
-                <img alt='Click here to lend your support to: KD Project Management System and make a donation at www.pledgie.com !' 
-                     src='http://www.pledgie.com/campaigns/21649.png?skin_name=chrome' border='0' />
-            </a>
-            <p><a class="btn btn-success" href="http://pledgie.com/campaigns/21649" target="_blank"><?php echo $this->translate('Donate and help') ?> &raquo;</a></p>
+    <div class="span10">
+        <h2>What's On now</h2>
    </div>
 
-   <div class="span4">
-       <h2><?php echo $this->translate('Help &amp; Support') ?></h2>
-       <p><?php echo sprintf($this->translate('If you need any help or support while developing with KD PMS, you may reach us via our contact us page')); ?></p>
-       <p><a class="btn btn-success" href="http://www.kdecom.com/contacts" target="_blank"><?php echo $this->translate('Contact Us') ?> &raquo;</a></p>
-   </div>
+  
 </div>

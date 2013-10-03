@@ -16,12 +16,19 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends FrontActionController {
 
+     public $_userSessionData;
+     
+     
     public function indexAction() {
 
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
-        return new ViewModel();
+        $authService = $this->serviceLocator->get('auth_service');
+        $this->_userSessionData = $authService->getIdentity();
+        return new ViewModel(array(
+                'userSessionData' => $this->_userSessionData
+                ));
     }
 
 }

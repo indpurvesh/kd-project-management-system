@@ -54,7 +54,13 @@ class LoginController extends AbstractActionController {
                 $userId = $authAdapter->getResultRowObject('id')->id;
                 $userName = $authAdapter->getResultRowObject('user_name')->user_name;
                 $firstName = $authAdapter->getResultRowObject('first_name')->first_name;
-                $authService->getStorage()->write(array('id' => $userId,'user_name' => $userName,'first_name' => $firstName));
+                $lastName = $authAdapter->getResultRowObject('last_name')->last_name;
+                $authService->getStorage()->write(array(
+                                    'id' => $userId,
+                                    'user_name' => $userName,
+                                    'first_name' => $firstName,
+                                    'last_name' => $lastName,
+                    ));
                 
               
                 return $this->redirect()->toRoute('home');
