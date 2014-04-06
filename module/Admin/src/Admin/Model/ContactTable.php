@@ -29,6 +29,20 @@ class ContactTable extends AbstractTableGateway {
         $resultSet->buffer();
         return $resultSet;
     }
+    
+    public function getContactOptions() {
+    	 
+    	$contactOptions = array('' => 'Please Select Any');
+    	$contacts = $this->fetchAll();
+    	
+    	
+    	foreach ($contacts as $contact) {
+    		
+    		$contactOptions [$contact->id] = $contact->first_name . " " . $contact->last_name;
+    	}
+    	return $contactOptions;
+    }
+    
 
     public function getContact($id) {
         $row = $this->select(array('id' => (int) $id))->current();

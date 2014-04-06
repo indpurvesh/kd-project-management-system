@@ -105,7 +105,7 @@ class ContactTypeController extends FrontActionController {
            
             $title = "Contact Type Update";
             $form->populateValues($formData);
-            $form->get('submit')->setValue('Update Role');
+            $form->get('submit')->setValue('Update Contact Type');
         }
 
         return new ViewModel(array(

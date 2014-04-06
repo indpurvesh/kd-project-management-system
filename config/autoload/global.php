@@ -12,13 +12,13 @@
  * file.
  */
 // config/autoload/global.php
-if ($_SERVER['HTTP_HOST'] == "www.localhost.com") {
+if ($_SERVER['HTTP_HOST'] == "www.kdstep.com") {
     return array(
         'db' => array(
             'driver' => 'Pdo',
             'dsn' => 'mysql:dbname=kdstep;host=localhost',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'driver_options' => array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
             ),

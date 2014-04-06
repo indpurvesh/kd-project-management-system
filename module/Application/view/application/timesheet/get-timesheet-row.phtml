@@ -1,7 +1,7 @@
 <?php $random = str_shuffle('abcdefghijklmnopqrstuvwxyz');  ?>
 <div class="timesheet_row control-input">
-    <input name="timesheet[userid][<?php echo $random; ?>][id]" type="hidden" required="required" class="start_time" value="">    
-    <input name="timesheet[userid][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
-    <input name="timesheet[userid][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
-    <input name="timesheet[userid][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
+    <input name="timesheet[<?php echo$userId; ?>][<?php echo $random; ?>][id]" type="hidden" required="required" class="start_time" value="">    
+    <input name="timesheet[<?php echo$userId; ?>][<?php echo $random; ?>][start_time]" type="text" required="required" class="timepicker start_time" value="">    
+    <input name="timesheet[<?php echo$userId; ?>][<?php echo $random; ?>][end_time]" type="text" required="required" class="timepicker end_time" value="">    
+    <input name="timesheet[<?php echo$userId; ?>][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
 </div>

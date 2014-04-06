@@ -9,7 +9,7 @@
 .control-input.timesheet_row .start_time, 
 .control-input.timesheet_row .end_time
 {
-    width: 20%;
+    width: 10%;
     margin: 0 1% 0px 0px;
 }
 .control-input.timesheet_row .notes {
@@ -28,6 +28,17 @@
     font-weight: bold;
     display: inline-block;
 }
+.timesheet_label .start_time_label,
+.timesheet_label .end_time_label {
+	width: 11.5%;
+}
 .timesheet_date {
     margin-bottom: 10px;
+}
+.timesheet_date .timesheet_date {
+	display:block;
+	height: 0px;
+	width: 0px;
+	padding:0px;
+	border:0px;
 }

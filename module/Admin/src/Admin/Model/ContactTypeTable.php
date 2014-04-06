@@ -29,7 +29,8 @@ class ContactTypeTable extends AbstractTableGateway {
         $resultSet->buffer();
         return $resultSet;
     }
-
+    
+   
     public function getContactType($id) {
         $row = $this->select(array('id' => (int) $id))->current();
         if (!$row)

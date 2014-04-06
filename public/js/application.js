@@ -74,7 +74,7 @@ var Application = {
         
     },
     initApp: function() {
-        application_url = "http://www.localhost.com/kdstep/"
+        application_url = "http://www.kdstep.com/"
     }
 }
 jQuery(document).ready(Application.init);

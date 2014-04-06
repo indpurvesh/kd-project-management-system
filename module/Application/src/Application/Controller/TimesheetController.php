@@ -18,33 +18,48 @@ class TimesheetController extends FrontActionController {
 
     public $timesheetTable;
     public $_userSessionData;
+    
+    
+    public function  __construct__ () {
+    	
+    	if ($this->isUserLoggedIn() === false) {
+    		$this->redirect()->toRoute('login');
+    	}
+    	$authService = $this->serviceLocator->get('auth_service');
+    	
+    	$this->_userSessionData = $authService->getIdentity();
+    }
+    
     public function indexAction() {
-
-        if ($this->isUserLoggedIn() === false) {
-            $this->redirect()->toRoute('login');
-        }
-
-        $authService = $this->serviceLocator->get('auth_service');
-        $this->_userSessionData = $authService->getIdentity();
         
+    	$this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
         $userId = $this->_userSessionData['id'];
         $form = new \Application\Form\TimesheetForm;
         $model = $this->getTimesheetTable();
         
         if ($this->getRequest()->isPost() === true) {
             $postData = $this->params()->fromPost();
+            
             foreach ($postData['timesheet'] as $userId => $timesheetRows) {
+            	
+            	
                 foreach ($timesheetRows as $id => $timesheetRow) {
                     $entity = new Timesheet();
                     if(is_int($id) === true) {
                         $entity->setId($id);
                     } 
+                   
                     $taskDate = date('Y-m-d', strtotime($postData['task_date']));
                     $entity->setUserId($userId);
-                    $entity->setNotes($timesheetRow['notes']);
+                    $entity->setNotes(trim($timesheetRow['notes']));
                     $entity->setTaskDate($taskDate);
-                    $entity->setStartTime($taskDate ." " . $timesheetRow['start_time'] . ":00");
-                    $entity->setEndTime($taskDate ." " . $timesheetRow['end_time'] . ":00");
+                    
+                    
+                    $startTime = ($taskDate . " " .$timesheetRow['start_time']. ":00");
+                    $endTime = ($taskDate . " " .$timesheetRow['end_time']. ":00");
+                   
+                    $entity->setStartTime(date('Y-m-d H:i:s', strtotime($startTime)));
+                    $entity->setEndTime(date('Y-m-d H:i:s', strtotime($endTime)));
 
                     $model->save($entity);
                 }
@@ -56,11 +71,19 @@ class TimesheetController extends FrontActionController {
             }
         }
 
-        $date = date('d-m-Y');
+        
+        if($this->params('date') !== null) {
+        	echo $date = $this->params('date');
+        	die;
+        } else {
+        	$date = date('Y-m-d');
+        }
+        
         
         $timesheetRows = $model->getTimesheetByDateAndByUserId(date('Y-m-d',strtotime($date)) , $userId);
         
         $random = str_shuffle('abcdefghijklmnopqrstuvwxyz');
+        
         
         
         return new ViewModel(array(
@@ -84,12 +107,14 @@ class TimesheetController extends FrontActionController {
 
     public function getTimesheetRowAction() {
 
+    	$this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
+    	$userId = $this->_userSessionData['id'];
         if ($this->isUserLoggedIn() === false) {
             $this->redirect()->toRoute('login');
         }
 
         $viewModel = $this->nolayout();
-
+        $viewModel->userId = $userId;
         return $viewModel;
     }
 

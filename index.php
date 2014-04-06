@@ -5,7 +5,7 @@
  */
 chdir(__DIR__);
 
-define('APPLICATION_URL', "http://www.localhost.com/kdstep/");
+define('APPLICATION_URL', "http://www.kdstep.com/");
 // Setup autoloading
 require 'init_autoloader.php';
 

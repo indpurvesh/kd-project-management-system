@@ -10,8 +10,8 @@ echo $this->form()->openTag($form);
 <?php $form->prepare(); ?>
 
 <div class="timesheet_date">
-    <a href="" ><?php echo $date; ?></a>
-    <input name="task_date" type="hidden"  class="start_time" value="<?php echo $date; ?>">    
+    <?php echo $date; ?><a href="" class="change_date" >change date</a>
+    <input name="task_date" type="text"  class="timesheet_date" value="<?php echo $date; ?>">    
 </div>
 <div class="row timesheet_label">
     <span class="start_time_label">Start Time</span>
@@ -24,18 +24,29 @@ echo $this->form()->openTag($form);
     if (count($timesheetRows) > 0) {
         
         foreach ($timesheetRows as $timesheetRow) {
-            
+            $startTime = date('G:i',strtotime($timesheetRow->start_time));
+            $endTime = date('G:i',strtotime($timesheetRow->end_time));
             ?> 
 
             <div class="timesheet_row control-input">
 
-                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][id]" type="hidden"  class="start_time" value="<?php echo $userSessionData['id']; ?>">    
-                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][start_time]" type="time" required="required" class="start_time" 
-                       value="<?php echo substr($timesheetRow->start_time, 11);  ?>">    
-                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][end_time]" type="time" required="required" class="end_time" 
-                       value="<?php echo substr($timesheetRow->end_time, 11);  ?>">    
-                <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][notes]" type="text" required="required" class="notes" 
-                       value="<?php echo $timesheetRow->notes;  ?>">
+                <input  	name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][id]" 
+                		type="hidden"   value="<?php echo $userSessionData['id']; ?>" />    
+                
+              
+                <input data-defaultTime='<?php echo $startTime;  ?>'
+                	name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][start_time]" 
+                	type="text" required="required" class="timepicker start_time" 
+                      value="<?php echo $startTime; ?>" />    
+                      
+                <input 	data-defaultTime='<?php echo $endTime;  ?>'
+                		name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][end_time]" 
+                		type="time" required="required" class="timepicker end_time" 
+                       value="<?php echo $endTime; ?>" />    
+                       
+                <input 	name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $timesheetRow->id; ?>][notes]" 
+                		type="text" required="required" class="notes" 
+                       	value="<?php echo $timesheetRow->notes;  ?>" />
             </div>
 
             <?php
@@ -45,9 +56,12 @@ echo $this->form()->openTag($form);
 
         <div class="timesheet_row control-input">
 
-            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][id]" type="hidden"  class="start_time" value="<?php echo $userSessionData['id']; ?>">    
-            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][start_time]" type="time" required="required" class="start_time" value="">    
-            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][end_time]" type="time" required="required" class="end_time" value="">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][id]" type="hidden"  
+            	 value="<?php echo $userSessionData['id']; ?>">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][start_time]" 
+            	type="text" required="required" class="timepicker start_time" value="">    
+            <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][end_time]" 
+            	type="text" required="required" class="timepicker end_time" value="">    
             <input name="timesheet[<?php echo $userSessionData['id']; ?>][<?php echo $random; ?>][notes]" type="text" required="required" class="notes" value="">
         </div>
     <?php } ?>

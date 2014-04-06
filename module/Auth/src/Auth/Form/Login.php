@@ -32,7 +32,7 @@ class Login extends Form
                 'type'  => 'password',
                 'required' => 'required',
                 'id' =>'user_password',
-                'value' =>'admin'
+                'value' =>'admin123'
             ),
             'options' => array(
                 'label' => 'Password',

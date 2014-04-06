@@ -5,6 +5,7 @@ return array(
         'Application',
         'Admin',
         'Contact',
+    	'Report',
         'Auth'
     ),
     'module_listener_options' => array(
