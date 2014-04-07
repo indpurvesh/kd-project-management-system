@@ -23,6 +23,7 @@ class TimesheetTable extends AbstractTableGateway {
         return $resultSet;
     }
 
+    
     public function getTimesheet($id) {
         $row = $this->select(array('id' => (int) $id))->current();
         if (!$row)
@@ -38,10 +39,25 @@ class TimesheetTable extends AbstractTableGateway {
 
         return $entityModel;
     }
-     public function getTimesheetByDateAndByUserId($date,$userId) {
+    
+    public function getHoursByEmployeeReport($userId , $startDate , $endDate) {
+    	$select = new Select();
+    	$select->from($this->table);
+    	$select->where("user_id = ". intval($userId));
+    	$select->where("start_time > '" . $startDate . "'");
+    	$select->where("end_time < '" . $endDate . "'");
+    	$select->order('start_time');
+    	
+    	$resultSet = $this->selectWith($select);
+    	$resultSet->buffer();
+    	return $resultSet;
+    }
+    
+    public function getTimesheetByDateAndByUserId($date,$userId) {
         $select = new Select();
         $select->from($this->table);
         $select->where(array('task_date' => $date,'user_id' => $userId));
+        $select->order('start_time');
         $resultSet = $this->selectWith($select);
         $resultSet->buffer();
         return $resultSet;

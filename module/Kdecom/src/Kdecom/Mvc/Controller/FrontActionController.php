@@ -13,6 +13,7 @@ class FrontActionController extends AbstractActionController {
 
     public $_paginationFilter;
     public $itemsPerPage;
+    public $timesheetTable;
 
     public function isUserLoggedIn() {
         
@@ -26,6 +27,14 @@ class FrontActionController extends AbstractActionController {
         $this->redirect()->toRoute('login');
     }
 
+    public function getTimesheetTable() {
+    	if (!$this->timesheetTable) {
+    		$sm = $this->getServiceLocator();
+    		$this->timesheetTable = $sm->get('Application\Model\TimesheetTable');
+    	}
+    
+    	return $this->timesheetTable;
+    }
     public function nolayout() {
         // Turn off the layout, i.e. only render the view script.
         $viewModel = new ViewModel();

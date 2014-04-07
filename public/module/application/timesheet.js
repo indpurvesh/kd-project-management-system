@@ -10,7 +10,7 @@ var timesheet =  {
         jQuery('.timesheet_date .timesheet_date').datepicker({
         			altFormat:'dd-mm-YY', 
         			onSelect: function(dateText) {
-        				location = location.href + "?date=" + dateText;
+        				location = location.origin+ location.pathname + "?date=" + dateText;
 						  
 				 }});
         

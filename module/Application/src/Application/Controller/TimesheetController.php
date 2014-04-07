@@ -10,8 +10,8 @@
 
 namespace Application\Controller;
 
-use Kdecom\Mvc\Controller\FrontActionController,
-    Application\Model\Entity\Timesheet;
+use Kdecom\Mvc\Controller\FrontActionController;
+   
 use Zend\View\Model\ViewModel;
 
 class TimesheetController extends FrontActionController {
@@ -72,13 +72,12 @@ class TimesheetController extends FrontActionController {
         }
 
         
-        if($this->params('date') !== null) {
-        	echo $date = $this->params('date');
-        	die;
+        
+        if($this->params()->fromQuery('date',null) !== null) {
+        	$date = date('Y-m-d',strtotime($this->params()->fromQuery('date')));
         } else {
         	$date = date('Y-m-d');
         }
-        
         
         $timesheetRows = $model->getTimesheetByDateAndByUserId(date('Y-m-d',strtotime($date)) , $userId);
         
@@ -96,14 +95,7 @@ class TimesheetController extends FrontActionController {
                 ));
     }
     
-    public function getTimesheetTable() {
-        if (!$this->timesheetTable) {
-            $sm = $this->getServiceLocator();
-            $this->timesheetTable = $sm->get('Application\Model\TimesheetTable');
-        }
-
-        return $this->timesheetTable;
-    }
+  
 
     public function getTimesheetRowAction() {
 
