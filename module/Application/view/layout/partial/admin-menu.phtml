@@ -40,4 +40,9 @@
             Project 
         </li>
     </a>
+     <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'index')); ?>">
+        <li id="system_settings" class="<?php echo ($this->child->system_update === true) ? "select" : ""; ?>">
+            System Settings Edit 
+        </li>
+    </a>
 </ul>

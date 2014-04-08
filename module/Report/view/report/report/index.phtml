@@ -1,0 +1,17 @@
+<div class="hero-unit">
+    <h1>Reports</h1>
+    <p>This is just the demo page intially build as a starting of the project</p>
+</div>
+
+<div class="report_list row">
+	<ul>
+		<li>
+			<a href='<?php echo $this->url('report/default',
+	                                      array(	'action' => 'hours-by-employee', 
+													'controller' => 'timesheet',
+													'module' => 'report')); ?>'>
+				Hours worked by Employee
+			</a>
+		</li>
+	</ul>
+</div>

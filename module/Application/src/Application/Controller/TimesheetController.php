@@ -11,8 +11,9 @@
 namespace Application\Controller;
 
 use Kdecom\Mvc\Controller\FrontActionController;
-   
+
 use Zend\View\Model\ViewModel;
+use Application\Model\Entity\Timesheet;
 
 class TimesheetController extends FrontActionController {
 
@@ -31,8 +32,7 @@ class TimesheetController extends FrontActionController {
     }
     
     public function indexAction() {
-        
-    	$this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
+        $this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
         $userId = $this->_userSessionData['id'];
         $form = new \Application\Form\TimesheetForm;
         $model = $this->getTimesheetTable();
@@ -44,6 +44,7 @@ class TimesheetController extends FrontActionController {
             	
             	
                 foreach ($timesheetRows as $id => $timesheetRow) {
+                	
                     $entity = new Timesheet();
                     if(is_int($id) === true) {
                         $entity->setId($id);
@@ -67,7 +68,8 @@ class TimesheetController extends FrontActionController {
             if(isset($postData['save_close']) === true) {
                 $this->redirect()->toRoute('home');
             } else {
-                $this->redirect()->refresh();
+            	$url = $this->getRequest()->getRequestUri();
+            	$this->_redirect($url, array('prependBase' => false));
             }
         }
 

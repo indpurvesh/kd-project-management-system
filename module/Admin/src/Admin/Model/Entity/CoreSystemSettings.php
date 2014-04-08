@@ -18,6 +18,7 @@ class CoreSystemSettings {
 
     protected $_id;
     protected $_application_name;
+    protected $_default_timezone;
 
     public function __construct(array $options = null) {
         if (is_array($options)) {
@@ -69,12 +70,21 @@ class CoreSystemSettings {
         $this->_application_name = $applicationName;
         return $this;
     }
+
+    public function getDefaultTimeZone() {
+    	return $this->_default_timezone;
+    }
     
+    public function setDefaultTimeZone($value) {
+    	$this->_default_timezone = $value;
+    	return $this;
+    }
     public function toArray() {
         $data = array(
             'id' => $this->getId(),
-            'application_name' => $this->getApplicationName()
-        );
+            'application_name' => $this->getApplicationName(),
+        	'default_timezone' => $this->getDefaultTimeZone()
+             );
         return $data;
     }
 

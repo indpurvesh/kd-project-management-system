@@ -29,6 +29,27 @@ class CoreSystemSettingsForm extends Form
                 'label' => 'Application Name',
             ),
         ));
+        //$dateZone = new \DateTimeZone();
+        $dateZone = new \DateTimeZone(date_default_timezone_get());
+        $tzlist = $dateZone->listIdentifiers($dateZone::ALL);
+        
+        foreach($tzlist as $timezone) {
+        	$options [$timezone] = $timezone;
+        }
+        
+        
+        $this->add(array(
+        		'name' => 'default_timezone',
+        		'type' => 'select',
+        		'attributes' => array(
+        				'required' => 'required',
+        				'id' =>'timezone'
+        		),
+        		'options' => array(
+        				'label' => 'Default Timezone',
+        				'value_options' => $options
+        		),
+        ));
 
       
        
@@ -37,6 +58,7 @@ class CoreSystemSettingsForm extends Form
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
+            	'class' => 'btn btn-info',
                 'value' => 'Go',
                 'id' => 'submitbutton',
             ),

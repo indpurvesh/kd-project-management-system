@@ -11,6 +11,7 @@ namespace Admin\Controller;
 
 use Kdecom\Mvc\Controller\FrontActionController;
 use Zend\View\Model\ViewModel;
+use Admin\Form\CoreSystemSettingsForm;
 
 class IndexController extends FrontActionController {
 
@@ -36,12 +37,13 @@ class IndexController extends FrontActionController {
             $this->redirect()->toRoute('login');
         }
 
-        $id = $this->params('id');
+        //$id = $this->params('id');
+        $id = 1; // 
         $model = $this->getCoreSystemSettingsTable();
         $obj = $model->getCoreSystemSettings($id);
+        
         $data = $obj->toArray();
-
-        $form = new \Admin\Form\CoreSystemSettingsForm();
+        $form = new CoreSystemSettingsForm();
         $form->get('submit')->setAttribute('value', 'Update');
         $request = $this->getRequest();
 
@@ -51,6 +53,9 @@ class IndexController extends FrontActionController {
             if ($form->isValid()) {
 
                 $obj->setApplicationName($request->getPost('application_name'));
+                $obj->setDefaultTimezone($request->getPost('default_timezone'));
+                
+               
                 $model->saveCoreSystemSettings($obj);
                 return $this->redirect()->toRoute('system-settings');
             }
@@ -59,17 +64,9 @@ class IndexController extends FrontActionController {
         $form->populateValues($data);
         return new ViewModel(array(
                     'form' => $form,
-                    'id' => $id
+                    'id' => $id,
+        			'system_update' => true,
                 ));
-    }
-
-    public function getCoreSystemSettingsTable() {
-        if (!$this->_coreSystemSettingsTable) {
-            $sm = $this->getServiceLocator();
-            $this->_coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
-        }
-        return $this->_coreSystemSettingsTable
-        ;
     }
 
 }

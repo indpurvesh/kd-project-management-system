@@ -43,13 +43,15 @@ class CoreSystemSettings extends AbstractTableGateway {
         $coreSystemSettings = new Entity\CoreSystemSettings();
         $coreSystemSettings->setId($row->id);
         $coreSystemSettings->setApplicationName($row->application_name);
+        $coreSystemSettings->setDefaultTimezone($row->default_timezone);
         
         return $coreSystemSettings;
     }
 
     public function saveCoreSystemSettings(Entity\CoreSystemSettings $coreSystemSettings) {
         $data = array(
-            'application_name' => $coreSystemSettings->getApplicationName()
+            'application_name' => $coreSystemSettings->getApplicationName(),
+        	'default_timezone' => $coreSystemSettings->getDefaultTimeZone()
         );
 
         $id = (int) $coreSystemSettings->getId();

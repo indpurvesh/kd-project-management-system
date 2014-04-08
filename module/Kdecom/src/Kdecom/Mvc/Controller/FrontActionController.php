@@ -27,14 +27,7 @@ class FrontActionController extends AbstractActionController {
         $this->redirect()->toRoute('login');
     }
 
-    public function getTimesheetTable() {
-    	if (!$this->timesheetTable) {
-    		$sm = $this->getServiceLocator();
-    		$this->timesheetTable = $sm->get('Application\Model\TimesheetTable');
-    	}
     
-    	return $this->timesheetTable;
-    }
     public function nolayout() {
         // Turn off the layout, i.e. only render the view script.
         $viewModel = new ViewModel();
@@ -88,6 +81,23 @@ class FrontActionController extends AbstractActionController {
         }
 
         $this->_paginationFilter->write($filterData);
+    }
+    
+    public function getTimesheetTable() {
+    	if (!$this->timesheetTable) {
+    		$sm = $this->getServiceLocator();
+    		$this->timesheetTable = $sm->get('Application\Model\TimesheetTable');
+    	}
+    
+    	return $this->timesheetTable;
+    }
+    public function getCoreSystemSettingsTable() {
+    	if (!$this->_coreSystemSettingsTable) {
+    		$sm = $this->getServiceLocator();
+    		$this->_coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
+    	}
+    	return $this->_coreSystemSettingsTable
+    	;
     }
 
 }
