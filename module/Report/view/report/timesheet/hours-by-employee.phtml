@@ -1,9 +1,35 @@
-<?php //$this->headLink()->prependStylesheet($this->basePath() . '/public/module/report/timesheet.css'); ?>
+<?php $this->headLink()->prependStylesheet($this->basePath() . '/public/module/report/report.css'); ?>
 <?php $this->headScript()->prependFile($this->basePath() . '/public/module/report/report.js'); ?>
 
 
 <h2 class="user_icon p_title">Hours Worked By Employees</h2>
 
+<?php if(!is_null($timesheetRows)) :?>
+
+<div class='timesheetRows'>
+	<ul>
+		<?php foreach ($timesheetRows as $i => $timesheet): ?>
+			<li>
+				<span class='start_time'>
+				<?php  echo date('d-m-Y H:m',strtotime($timesheet->start_time));?>
+				</span>
+				<span class='end_time'>
+				<?php  echo date('d-m-Y H:m',strtotime($timesheet->end_time));?>
+				</span>
+				<span class='note_text'>
+				<?php  echo $timesheet->notes;?>
+				</span>
+			
+			</li>
+		<?php endforeach; ?>
+	</ul>
+
+</div>
+
+
+
+
+<?php else: ?>
 <?php
 
 $form->prepare();
@@ -35,3 +61,5 @@ echo $this->form()->openTag($form);
     </div>
 </div>
 <?php echo $this->form()->closeTag(); ?>
+
+<?php endif; ?>

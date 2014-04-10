@@ -21,6 +21,9 @@ class TimesheetController extends FrontActionController {
 		if ($this->isUserLoggedIn () === false) {
 			$this->redirect ()->toRoute ( 'login' );
 		}
+		$timesheetRows = null;
+		$startDate = null;
+		$endDate = null;
 		
 		$this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
 		$userId = $this->_userSessionData['id'];
@@ -39,6 +42,7 @@ class TimesheetController extends FrontActionController {
 			$timesheetModal = $model = $this->getTimesheetTable ();
 			$timesheetRows = $timesheetModal->getHoursByEmployeeReport($employee,$startDate,$endDate);
 			
+			
 		}
 		$contactModel = $this->getEmployeeModal ();
 		$contactOptions = $contactModel->getContactOptions ();
@@ -52,7 +56,10 @@ class TimesheetController extends FrontActionController {
 		$form->get ( 'group_by' )->setValueOptions ( $groupByOptions );
 		
 		return new ViewModel ( array (
-				'form' => $form 
+				'form' => $form ,
+				'timesheetRows' => $timesheetRows,
+				'startDate' => $startDate,
+				'endDate' => $endDate
 		) );
 	}
 	private function getEmployeeModal() {

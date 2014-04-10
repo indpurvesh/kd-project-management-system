@@ -1,0 +1,13 @@
+.timesheetRows li {
+	list-style:none;
+	border: 1px solid #ccc;
+}
+.timesheetRows .start_time, .timesheetRows .end_time  {	
+    display: inline-block;
+    padding: 5px;
+    width: auto;
+}
+.timesheetRows .notes {
+	width: 59%;
+	display:inline-block;
+}
