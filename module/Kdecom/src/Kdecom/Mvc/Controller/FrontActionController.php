@@ -22,7 +22,7 @@ class FrontActionController extends AbstractActionController {
         
         date_default_timezone_set('Pacific/Auckland');
       
-        $this->itemsPerPage = 2;
+        $this->itemsPerPage = 10;
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
             return true;

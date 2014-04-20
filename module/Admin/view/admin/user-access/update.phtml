@@ -1,11 +1,11 @@
-<h2 class="user_icon p_title">User Access Action by Role</h2>
+<h2 class="user_icon p_title">User Access Action for Role <span class='role_name'></span></h2>
 
 <?php
 $form->prepare();
 echo $this->form()->openTag($form);
 ?>
 <?php echo $this->formRow($form->get('id')); ?>
-<div class="control-input role_access">
+<div class="control-input role_access hide">
     <?php echo $this->formRow($form->get('role_id')); ?>
 </div>
 
@@ -17,33 +17,44 @@ echo $this->form()->openTag($form);
         
         <h2>Front End</h2>
         <div class="row">
-            <div class="span2"></div>
-            <div class="span1">View</div>
-            <div class="span1">Create/Edit</div>
-            <div class="span1">Delete</div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-2">View</div>
+            <div class="col-xs-2">Create/Edit</div>
+            <div class="col-xs-2">Delete</div>
 
         </div>
         <div class="row access_box">
-            <div class="span2 access_title">Employee</div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->employee->index) && $access_json->employee->index == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[employee][index]" /></div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->employee->update) && $access_json->employee->update == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[employee][update]" /></div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->employee->delete) && $access_json->employee->delete == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[employee][delete]" /></div>
+            <div class="col-xs-2 access_title">Employee</div>
+            <div class="col-xs-2 input-switch">
+            		<input type="checkbox" 
+            			<?php if(isset($access_json->employee->index) && $access_json->employee->index == "on")  { echo "checked"; } ?> 
+            				data-toggle="switch" name="access[employee][index]" />
+           	</div>
+            <div class="col-xs-2 input-switch">
+            	<input  type="checkbox" <?php if(isset($access_json->employee->update) && $access_json->employee->update == "on")  { echo "checked"; } ?> 
+            		data-toggle="switch" name="access[employee][update]" />
+            </div>
+            <div class="col-xs-2 input-switch"><input  type="checkbox" <?php if(isset($access_json->employee->delete) && $access_json->employee->delete == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[employee][delete]" /></div>
         </div>
 
         <h2>Admin</h2>
 
         <div class="row">
-            <div class="span2"></div>
-            <div class="span1">View</div>
-            <div class="span1">Create/Edit</div>
-            <div class="span1">Delete</div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-1">View</div>
+            <div class="col-xs-1">Create/Edit</div>
+            <div class="col-xs-1">Delete</div>
 
         </div>
         <div class="row access_box">
-            <div class="span2 access_title">Login</div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->user->index) && $access_json->user->index == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[user][index]" /></div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->user->update) && $access_json->user->update == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[user][update]" /></div>
-            <div class="span1"><input type="checkbox" <?php if(isset($access_json->user->delete) && $access_json->user->delete == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[user][delete]" /></div>
+            <div class="col-xs-2 access_title">Login</div>
+            <div class="col-xs-2 input-switch">
+            		<input type="checkbox" 
+            				<?php if(isset($access_json->user->index) && $access_json->user->index == "on")  { echo "checked"; } ?> 
+            					data-toggle="switch" name="access[user][index]" />
+           </div>
+            <div class="col-xs-2 input-switch"><input type="checkbox" <?php if(isset($access_json->user->update) && $access_json->user->update == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[user][update]" /></div>
+            <div class="col-xs-2 input-switch"><input type="checkbox" <?php if(isset($access_json->user->delete) && $access_json->user->delete == "on")  { echo "checked"; } ?> data-toggle="switch" name="access[user][delete]" /></div>
         </div>
 
     <?php endif; ?>
@@ -52,8 +63,11 @@ echo $this->form()->openTag($form);
 
 <div class="control-input ">
     <label>&nbsp;</label>
-    <div class="btn btn-large btn-block btn-success">
+    <div class="col-xs-2 submit-button">
         <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+    <div class="col-xs-2 cancel-button">
+    <?php echo $this->formRow($form->get('cancel')); ?>
     </div>
 </div>
 <?php echo $this->form()->closeTag(); ?>

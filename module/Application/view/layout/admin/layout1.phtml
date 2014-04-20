@@ -24,6 +24,7 @@
 								->prependStylesheet ( $this->basePath () . '/public/css/morris-0.4.3.min.css' )
 								->prependStylesheet ( $this->basePath () . '/public/css/social-buttons.css' )
 								->prependStylesheet ( $this->basePath () . '/public/css/timeline.css' )
+								->prependStylesheet ( $this->basePath () . '/public/css/bootstrap-switch.min.css' )
 								->prependStylesheet ( $this->basePath () . '/public/bootstrap/css/bootstrap.css' )?>
 
 
@@ -34,12 +35,13 @@
 																								) )
 								->prependFile ( $this->basePath () . '/public/js/jquery.timepicker.min.js' )
 								->prependFile ( $this->basePath () . '/public/js/charts.js' )
-
+								->prependFile ( $this->basePath () . '/public/js/bootstrap-switch.js' )
+								//
 								->prependFile ( $this->basePath () . '/public/js/jquery.metisMenu.js' )
 								->prependFile ( $this->basePath () . '/public/js/raphael-2.1.0.min.js' )
 								->prependFile ( $this->basePath () . '/public/js/morris.js' )
 								->prependFile ( $this->basePath () . '/public/js/sb-admin.js' )
-								->prependFile ( $this->basePath () . '/public/js/application.js' )
+								->prependFile ( $this->basePath () . '/public/admin/js/application.js' )
 								->prependFile ( $this->basePath () . '/public/js/jquery.stacktable.js' )
 								->prependFile ( $this->basePath () . '/public/js/jquery.placeholder.js' )
 								->prependFile ( $this->basePath () . '/public/js/jquery.tagsinput.js' )
@@ -270,7 +272,10 @@
                         <li>
                         	<a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li>
+                        	<a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'index')); ?>">
+                        		<i class="fa fa-gear fa-fw"></i> Settings
+                        	</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

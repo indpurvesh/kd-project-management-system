@@ -125,8 +125,7 @@ class User {
             'last_name' => $this->getLastName(),
             'role_id' => $this->getRoleId(),
             'email' => $this->getEmail(),
-            'image' => $this->getImage(),
-            'password' => $this->getPassword()
+            'image' => $this->getImage()
         );
         return $data;
     }

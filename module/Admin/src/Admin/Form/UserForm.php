@@ -102,6 +102,7 @@ class UserForm extends Form
             'attributes' => array(
                 'type'  => 'submit',
                 'value' => 'Update Login',
+            	'class' => 'btn btn-large btn-block btn-success',
                 'id' => 'submitbutton',
             ),
         ));

@@ -54,6 +54,7 @@ class UserAccessController extends FrontActionController {
                 ->setItemCountPerPage($itemsPerPage)
                 ->setPageRange(7);
 
+        
         return new ViewModel(array(
                     'order_by' => $order_by,
                     'order' => $order,
@@ -85,15 +86,20 @@ class UserAccessController extends FrontActionController {
 
         $roleOptions = $roleModel->getRoleOptions();
         $form->get('role_id')->setAttribute('options', $roleOptions);
-
+        
+        $form->get('cancel')->setAttribute('data-url', $this->url()->fromRoute('admin/useraccess'));
+        
         $obj = new AssignRoleAction();
 
+        
         if ($id !== null) {
            
             $roleAccessObj = $this->getAssignRoleActionTable()->getRoleAllowedActionByRoleId($id);
-         
+
+        
             $access = json_decode($roleAccessObj->getRoleAllowedAction());
             $formData = $roleAccessObj->toArray();
+            
         }
         
 

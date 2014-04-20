@@ -15,4 +15,16 @@ $(function() {
             $('div.sidebar-collapse').removeClass('collapse')
         }
     })
-})
+});
+
+
+
+
+var kdstep_admin = {
+	
+	init: function() {
+		jQuery(".input-switch input").bootstrapSwitch();
+		
+	}
+}
+jQuery(document).ready(kdstep_admin.init);
