@@ -44,9 +44,9 @@ class TimesheetController extends FrontActionController {
 			
 			
 		}
-		$contactModel = $this->getEmployeeModal ();
-		$contactOptions = $contactModel->getContactOptions ();
-		$form->get ( 'employee' )->setValueOptions ( $contactOptions );
+		$userModel = $this->getUserTable ();
+		$userOptions = $userModel->getUserOptions ();
+		$form->get ( 'employee' )->setValueOptions ( $userOptions );
 		
 		$groupByOptions = array (
 				'1' => 'Daily',

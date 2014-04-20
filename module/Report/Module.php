@@ -13,6 +13,7 @@ namespace Report;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Admin\Model\ContactTable;
+use Auth\Model\UserTable;
 
 class Module {
 
@@ -29,12 +30,17 @@ class Module {
                         $controller->layout($config['module_layouts'][$moduleNamespace]);
                     }
                 }, 100);
+        
+        	$moduleRouteListener = new ModuleRouteListener();
+        	$moduleRouteListener->attach($eventManager);
+        
+        	$eventManager->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'init', function($e) {}, 10);
+        	$moduleRouteListener = new ModuleRouteListener();
+        	$moduleRouteListener->attach($eventManager);
 
 
 
-
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
+        
     }
 
     public function getConfig() {
@@ -56,8 +62,12 @@ class Module {
             'factories' => array(
             		'Admin\Model\ContactTable' => function($sm) {
             			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-            			//$table = new Model\StickyNotesTable($dbAdapter);
             			$table = new ContactTable($dbAdapter);
+            			return $table;
+            		},
+            		'Auth\Model\UserTable' => function($sm) {
+            			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+            			$table = new UserTable($dbAdapter);
             			return $table;
             		},
                 

@@ -3,7 +3,7 @@
 namespace Kdecom\Mvc\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Authentication\Storage\Session,
+use Zend\Authentication\Storage\Session,	
     Zend\View\Model\ViewModel;
 
 /**
@@ -15,6 +15,7 @@ class FrontActionController extends AbstractActionController {
     public $itemsPerPage;
     public $timesheetTable;
     public $coreSystemSettingsTable;
+    public $userTable;
 
     
   
@@ -94,6 +95,15 @@ class FrontActionController extends AbstractActionController {
     	}
     
     	return $this->timesheetTable;
+    }
+    
+    public function getUserTable() {
+    	if (!$this->userTable) {
+    		$sm = $this->getServiceLocator();
+    		$this->userTable = $sm->get('Auth\Model\UserTable');
+    	}
+    
+    	return $this->userTable;
     }
     public function getCoreSystemSettingsTable() {
     	if (!$this->coreSystemSettingsTable) {

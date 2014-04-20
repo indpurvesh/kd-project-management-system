@@ -13,6 +13,18 @@ class UserTable extends AbstractTableGateway {
     public function __construct(Adapter $adapter) {
         $this->adapter = $adapter;
     }
+    
+    public function getUserOptions() {
+    	$userOptions = array('' => 'Please Select Any');
+    	$users = $this->fetchAll();
+    	 
+    	 
+    	foreach ($users as $user) {
+    	
+    		$userOptions [$user->id] = $user->first_name . " " . $user->last_name;
+    	}
+    	return $userOptions;
+    }
 
     public function fetchAll(Select $select = null) {
         if (null === $select)
