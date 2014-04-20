@@ -59,7 +59,7 @@ class ContactController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'Contact',
                     'controller_name' => 'contact',
-                    'pagination_filter' => $this->_paginationFilter,
+                    'pagination_filter' => $this->paginationFilter,
                     'paginator' => $paginator,
                     'contact' => true,
                     'userSessionData' => $this->_userSessionData

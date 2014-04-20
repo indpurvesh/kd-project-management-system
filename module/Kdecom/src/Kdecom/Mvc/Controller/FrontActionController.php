@@ -11,9 +11,10 @@ use Zend\Authentication\Storage\Session,
  */
 class FrontActionController extends AbstractActionController {
 
-    public $_paginationFilter;
+    public $paginationFilter;
     public $itemsPerPage;
     public $timesheetTable;
+    public $coreSystemSettingsTable;
 
     
   
@@ -60,9 +61,9 @@ class FrontActionController extends AbstractActionController {
      */
 
     public function setUpPaginationFilter($paginationKey, $gridKeys) {
-        $this->_paginationFilter = new Session('pagination_storage');
+        $this->paginationFilter = new Session('pagination_storage');
 
-        $filterData = $this->_paginationFilter->read();
+        $filterData = $this->paginationFilter->read();
 
         if (isset($filterData[$paginationKey])) {
 
@@ -83,7 +84,7 @@ class FrontActionController extends AbstractActionController {
             }
         }
 
-        $this->_paginationFilter->write($filterData);
+        $this->paginationFilter->write($filterData);
     }
     
     public function getTimesheetTable() {
@@ -95,12 +96,10 @@ class FrontActionController extends AbstractActionController {
     	return $this->timesheetTable;
     }
     public function getCoreSystemSettingsTable() {
-    	if (!$this->_coreSystemSettingsTable) {
+    	if (!$this->coreSystemSettingsTable) {
     		$sm = $this->getServiceLocator();
-    		$this->_coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
+    		$this->coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
     	}
-    	return $this->_coreSystemSettingsTable
-		;
+    	return $this->coreSystemSettingsTable;
     }
-
 }

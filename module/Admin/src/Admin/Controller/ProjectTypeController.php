@@ -62,7 +62,7 @@ class ProjectTypeController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'Project Type',
                     'controller_name' => 'project-type',
-                    'pagination_filter' => $this->_paginationFilter,
+                    'pagination_filter' => $this->paginationFilter,
                     'paginator' => $paginator,
                     'projecttype' => true,
                     'userSessionData' => $this->_userSessionData

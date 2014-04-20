@@ -1,0 +1,134 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Test Project Management System ' . $this->translate('Sticky Notes'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+
+
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+                ->prependStylesheet($this->basePath() . '/public/css/common.css')
+                ->prependStylesheet($this->basePath() . '/public/admin/css/style.css')
+                ->prependStylesheet($this->basePath() . '/public/admin/css/reset.css')
+                ->prependStylesheet($this->basePath() . '/public/css/flat-ui.css')
+                ->prependStylesheet($this->basePath() . '/public/css/jquery-ui.css')
+                ->prependStylesheet($this->basePath() . '/public/bootstrap/css/bootstrap-responsive.css')
+        ?>
+
+
+        <?php
+        echo $this->headScript()->prependFile($this->basePath() . '/public/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/public/admin/js/application.js')
+                ->prependFile($this->basePath() . '/public/js/application.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.placeholder.js')
+                ->prependFile($this->basePath() . '/public/js/jquery.tagsinput.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-switch.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap-select.js')
+                ->prependFile($this->basePath() . '/public/js/flatui-checkbox.js')
+                ->prependFile($this->basePath() . '/public/js/bootstrap.min.js')
+                ->prependFile($this->basePath() . '/public/js/jquery-ui-1.10.3.custom.min.js')
+                ->prependFile($this->basePath() . '/public/js/jquery-1.8.3.min.js');
+        ?>
+    </head>
+    <body class="row-fluid">
+        <div id="main">
+
+            <div id="left">
+
+                <div id="logo">
+
+                </div>
+
+                <div id="tools">
+                    <?php
+                    $children = $this->viewModel()->getCurrent()->getChildren();
+                    $child = $children[0];
+                    //$authService = $this->serviceLocator->get('auth_service');
+                    
+                    echo $this->partial('admin-menu', array('child' => $child));
+                    ?>
+
+                    
+                </div>
+
+                <div id="keep">
+
+                </div>
+
+            </div>
+
+            <div id="right">
+
+                <div id="header">
+
+                    <?php if(!empty($child->controller_name) && !empty($child->add_title)) :  ?>
+                    <div class="plus">
+
+                        <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'role')); ?>">
+                            <span class="add"></span>
+                        </a>
+
+                        <span class="text">
+                            <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => $child->controller_name)); ?>">
+                                Add <?php echo $child->add_title; ?>
+                            </a>
+                        </span>
+                    </div>
+                    <?php endif; ?>
+
+                    <div id="other">
+
+                        <a href="#"><span id="bulut"></span></a>
+                        <a href="#"><span id="yorum"></span><div id="yorum_sayi">7</div></a>
+                        <a href="#"><span id="zil"></span></a>
+                        <a href="#"><span id="wordpress"></span></a>
+
+                    </div>
+
+                </div>
+
+                <div id="body">
+
+                   
+
+                    
+
+                    
+<?php echo $this->content; ?>
+
+
+                 
+
+                </div>
+
+            </div>
+            
+                    <div id="footer">
+
+                        <div id="f_left">
+                            Developed by <a href="http://www.kdecom.com" title="Kdecom" blank="_blank" >Kdecom</a>
+                        </div>
+
+                        <?php
+                           
+                                            
+                        ?>
+                        <div id="f_right">
+                            <ul>
+                                <li><a href="http://kdecom.com"><span id="user"><font><?php echo $child->userSessionData['first_name'] ?></font></span></a></li>
+                                <li><a href="#"><span id="setting"></span></a></li>
+                                <li><a href="<?php echo $this->url('logout'); ?>"><span id="exit"></span></a></li>
+                            </ul>
+                        </div>
+
+<?php echo $this->inlineScript() ?>
+                    </div>
+
+    </body>
+</html>
+
+

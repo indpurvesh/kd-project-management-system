@@ -46,12 +46,12 @@ class UserAccessController extends FrontActionController {
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
 
         $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
-        $itemsPerPage = 2;
+        
 
         $role->current();
         $paginator = new Paginator(new paginatorIterator($role));
         $paginator->setCurrentPageNumber($page)
-                ->setItemCountPerPage($itemsPerPage)
+                ->setItemCountPerPage($this->itemsPerPage)
                 ->setPageRange(7);
 
         
@@ -61,7 +61,7 @@ class UserAccessController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'User Access',
                     'controller_name' => 'user-access',
-                    'pagination_filter' => $this->_paginationFilter,
+                    'pagination_filter' => $this->paginationFilter,
                     'paginator' => $paginator,
                     'user_access' => true,
                     'userSessionData' => $this->_userSessionData

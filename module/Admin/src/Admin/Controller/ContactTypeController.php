@@ -58,7 +58,7 @@ class ContactTypeController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'Contact Type',
                     'controller_name' => 'contact-type',
-                    'pagination_filter' => $this->_paginationFilter,
+                    'pagination_filter' => $this->paginationFilter,
                     'paginator' => $paginator,
                     'contact_type' => true,
                     'userSessionData' => $this->_userSessionData

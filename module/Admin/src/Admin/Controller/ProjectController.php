@@ -60,7 +60,7 @@ class ProjectController extends FrontActionController {
                     'page' => $page,
                     'add_title' => 'Project',
                     'controller_name' => 'project',
-                    'pagination_filter' => $this->_paginationFilter,
+                    'pagination_filter' => $this->paginationFilter,
                     'paginator' => $paginator,
                     'project' => true,
                     'userSessionData' => $this->_userSessionData
