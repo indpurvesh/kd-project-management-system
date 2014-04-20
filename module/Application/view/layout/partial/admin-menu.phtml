@@ -1,48 +1,97 @@
-<ul>
-    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'index')); ?>">
+<ul id='side-menu' class='nav'>
+    
         <li id="dashboard" class="<?php echo ($this->child->dashboard === true) ? "select" : ""; ?>">
-            Dashboard
+        	<a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'index')); ?>">
+            	Dashboard
+            </a>
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'user')); ?>">
+    
+    
         <li id="users" class="<?php echo ($this->child->user === true) ? "select" : ""; ?>">
-            Logins
+        	<a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'user')); ?>">
+            	Logins
+        	</a>
         </li>
-    </a>
+    
 
-    <a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'role')); ?>">
+    
         <li id="user-roles" class="<?php echo ($this->child->user_roles === true) ? "select" : ""; ?>">
-            User Roles
+        	<a href="<?php echo $this->url('admin/default', array('action' => 'index', 'controller' => 'role')); ?>">
+            	User Roles
+        	</a>
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/useraccess', array('action' => 'index', 'controller' => 'userAccess')); ?>">
+    
+    
         <li id="user-access" class="<?php echo ($this->child->user_access === true) ? "select" : ""; ?>">
-            User Access by Role
+        	<a href="<?php echo $this->url('admin/useraccess', array('action' => 'index', 'controller' => 'userAccess')); ?>">
+            	User Access by Role
+        	</a>
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/contacttype', array('action' => 'index', 'controller' => 'contact-type')); ?>">
+    
+    
         <li id="contact-type" class="<?php echo ($this->child->contact_type === true) ? "select" : ""; ?>">
-            Contact Type
+        	<a href="<?php echo $this->url('admin/contacttype', array('action' => 'index', 'controller' => 'contact-type')); ?>">
+            	Contact Type
+        	</a>
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/contact', array('action' => 'index', 'controller' => 'contact')); ?>">
+   
+    
         <li id="contact" class="<?php echo ($this->child->contact === true) ? "select" : ""; ?>">
-            Contact 
+        	<a href="<?php echo $this->url('admin/contact', array('action' => 'index', 'controller' => 'contact')); ?>">
+            	Contact
+             </a> 
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/projecttype', array('action' => 'index', 'controller' => 'project-type')); ?>">
+   
+    
         <li id="project-type" class="<?php echo ($this->child->projecttype === true) ? "select" : ""; ?>">
-            Project Type 
+        	<a href="<?php echo $this->url('admin/projecttype', array('action' => 'index', 'controller' => 'project-type')); ?>">
+            	Project Type
+            </a> 
         </li>
-    </a>
-    <a href="<?php echo $this->url('admin/project', array('action' => 'index', 'controller' => 'project')); ?>">
+    
+    
         <li id="project" class="<?php echo ($this->child->project === true) ? "select" : ""; ?>">
-            Project 
+        	<a href="<?php echo $this->url('admin/project', array('action' => 'index', 'controller' => 'project')); ?>">
+            	Project
+            </a> 
         </li>
-    </a>
-     <a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'index')); ?>">
+    
+     
         <li id="system_settings" class="<?php echo ($this->child->system_update === true) ? "select" : ""; ?>">
-            System Settings Edit 
+        	<a href="<?php echo $this->url('admin/default', array('action' => 'update', 'controller' => 'index')); ?>">
+            	System Settings Edit
+        	</a> 
         </li>
-    </a>
+        
+         <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+    
 </ul>

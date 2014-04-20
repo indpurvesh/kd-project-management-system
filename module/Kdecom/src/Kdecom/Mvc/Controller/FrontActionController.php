@@ -15,10 +15,13 @@ class FrontActionController extends AbstractActionController {
     public $itemsPerPage;
     public $timesheetTable;
 
+    
+  
     public function isUserLoggedIn() {
         
         
         date_default_timezone_set('Pacific/Auckland');
+      
         $this->itemsPerPage = 2;
         $authService = $this->serviceLocator->get('auth_service');
         if ($authService->hasIdentity()) {
@@ -97,7 +100,7 @@ class FrontActionController extends AbstractActionController {
     		$this->_coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
     	}
     	return $this->_coreSystemSettingsTable
-    	;
+		;
     }
 
 }

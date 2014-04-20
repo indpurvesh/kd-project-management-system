@@ -1,11 +1,79 @@
-<?php $this->headLink()->prependStylesheet($this->basePath() . '/public/module/report/report.css'); ?>
+<?php use Zend\Form\Element\DateTime;
+use Zend\Validator\Explode;
+$this->headLink()->prependStylesheet($this->basePath() . '/public/module/report/report.css'); ?>
 <?php $this->headScript()->prependFile($this->basePath() . '/public/module/report/report.js'); ?>
 
 
 <h2 class="user_icon p_title">Hours Worked By Employees</h2>
 
+
+
+ 
 <?php if(!is_null($timesheetRows)) :?>
 
+
+<?php 
+$data = array();
+foreach ($timesheetRows as $i => $row) {
+	//var_dump($row);
+	if(!array_key_exists($row->task_date,$data)) {
+		
+		
+		$startDateTime = new \DateTime($row->start_time);
+		$endDateTime = new \DateTime($row->end_time);
+		
+		$diff = $endDateTime->diff($startDateTime);
+	
+		$hour = ($diff->y * 8765.81) + ($diff->m * 730.484) + ($diff->d * 24) + $diff->h + ($diff->i * 0.0166667) ;
+		$data[date('d-M-Y',strtotime($row->task_date))] = $hour;
+	} else {
+		$startDateTime = new \DateTime($row->start_time);
+		$endDateTime = new \DateTime($row->end_time);
+		
+		$diff = $endDateTime->diff($startDateTime);
+		
+		$hour = ($diff->y * 8765.81) + ($diff->m * 730.484) + ($diff->d * 24) + $diff->h + ($diff->i * 0.0166667) ;
+		$data[date('d-M-Y',strtotime($row->task_date))] = $hour;
+			
+	}
+	 
+
+}
+
+foreach($data as $label => $value) {
+	$labels[] = "'".$label. "'";
+	$values[] = $value;
+}
+
+?>
+
+
+<canvas id="hoursbyemployee" width="400" height="400"></canvas>
+<script>
+var data = {
+		labels : [<?php echo implode(",",$labels); ?>],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [<?php echo implode(",",$values); ?>]
+			}
+		]
+	}
+
+//Get context with jQuery - using jQuery's .get() method.
+var ctx = jQuery("#hoursbyemployee").get(0).getContext("2d");
+//This will get the first returned node in the jQuery collection.
+var myNewChart = new Chart(ctx).Bar(data);;
+
+
+//new Chart(ctx).Line(data,options);
+</script>
+<?php
+/* 
+<!--
 <div class='timesheetRows'>
 	<ul>
 		<?php foreach ($timesheetRows as $i => $timesheet): ?>
@@ -27,8 +95,9 @@
 </div>
 
 
-
-
+ -->
+ */
+?>
 <?php else: ?>
 <?php
 
@@ -49,10 +118,10 @@ echo $this->form()->openTag($form);
     <?php echo $this->formRow($form->get('to_date')); ?>
 </div>
 
-<div class="control-input">
-	<?php  echo $this->formLabel($form->get('group_by')); ?>
-    <?php echo $this->formElement($form->get('group_by'));?>
-</div>
+<!-- <div class="control-input"> -->
+	<?php  //echo $this->formLabel($form->get('group_by')); ?>
+    <?php //echo $this->formElement($form->get('group_by'));?>
+<!-- </div> -->
 
 <div class="control-input ">
     <label>&nbsp;</label>

@@ -20,18 +20,15 @@ class TimesheetController extends FrontActionController {
     public $timesheetTable;
     public $_userSessionData;
     
-    
-    public function  __construct__ () {
-    	
-    	if ($this->isUserLoggedIn() === false) {
-    		$this->redirect()->toRoute('login');
-    	}
-    	$authService = $this->serviceLocator->get('auth_service');
-    	
-    	$this->_userSessionData = $authService->getIdentity();
-    }
+  
     
     public function indexAction() {
+    	
+    	$this->isUserLoggedIn();
+    	$authService = $this->serviceLocator->get('auth_service');
+    	$this->_userSessionData = $authService->getIdentity();
+    
+    	
         $this->_userSessionData = $this->serviceLocator->get('auth_service')->getIdentity();
         $userId = $this->_userSessionData['id'];
         $form = new \Application\Form\TimesheetForm;

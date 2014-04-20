@@ -58,6 +58,7 @@ class TimesheetController extends FrontActionController {
 		return new ViewModel ( array (
 				'form' => $form ,
 				'timesheetRows' => $timesheetRows,
+				
 				'startDate' => $startDate,
 				'endDate' => $endDate
 		) );
