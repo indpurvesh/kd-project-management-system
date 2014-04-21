@@ -16,6 +16,8 @@ class FrontActionController extends AbstractActionController {
     public $timesheetTable;
     public $coreSystemSettingsTable;
     public $userTable;
+    public $assignRoleActionTable;
+    public $roleTable;
 
     
   
@@ -111,5 +113,21 @@ class FrontActionController extends AbstractActionController {
     		$this->coreSystemSettingsTable = $sm->get('Admin\Model\CoreSystemSettingsTable');
     	}
     	return $this->coreSystemSettingsTable;
+    }
+    public function getAssignRoleActionTable() {
+    	if (!$this->assignRoleActionTable) {
+    		$sm = $this->getServiceLocator();
+    		$this->assignRoleActionTable = $sm->get('Admin\Model\AssignRoleActionTable');
+    	}
+    	return $this->assignRoleActionTable
+    	;
+    }
+    public function getRoleTable() {
+    	if (is_null($this->roleTable)) {
+    		$sm = $this->getServiceLocator();
+    		$this->roleTable = $sm->get('Admin\Model\RoleTable');
+    	}
+    	return $this->roleTable;
+    	;
     }
 }

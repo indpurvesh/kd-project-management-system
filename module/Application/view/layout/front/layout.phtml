@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('Test Project Management System ' . $this->translate('Sticky Notes'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('KD Step Project Management System ' . $this->translate('KD Ecom'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
@@ -17,8 +17,7 @@
                 ->prependStylesheet($this->basePath() . '/public/css/jquery-ui.css')
                 ->prependStylesheet($this->basePath() . '/public/bootstrap/css/bootstrap.css')
         ?>
-
-
+        
         <?php
         echo $this->headScript()->prependFile($this->basePath() . '/public/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
         		->prependFile($this->basePath() . '/public/js/jquery.timepicker.min.js')
@@ -43,8 +42,8 @@
                 <div class="demo-logo demo-row row">
                     <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Test Project Name') ?></a>
                 </div>
-                <div class="demo-row row">
-                    <div class="navbar span12 navbar-inverse">
+                <div class="container-fluid row">
+                    <div class="navbar row navbar-inverse">
                         <div class="navbar-inner">
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav">
@@ -53,11 +52,7 @@
                                     		<?php echo $this->translate('Home') ?>
                                     	</a>
                                     </li>
-                                    <li class="">
-                                    	<a href="<?php echo $this->url('system-settings') ?>">
-                                    		<?php echo $this->translate('System Settings') ?>
-                                    	</a>
-                                    </li>
+                                    
                                     <li class="">
                                         <a href="<?php echo $this->url('application/default',array('action' => 'index', 'controller' => 'timesheet','module' => 'application')); ?>">
                                             Timesheet
@@ -71,6 +66,11 @@
 															'module' => 'report')); ?>">
                                             Reports
                                         </a>
+                                    </li>
+                                    <li class="pull-right">
+                                    	<a href="<?php echo $this->url('system-settings') ?>">
+                                    		<?php echo $this->translate('Admin') ?>
+                                    	</a>
                                     </li>
                                     
                                 </ul>

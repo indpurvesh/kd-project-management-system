@@ -19,8 +19,6 @@ use Zend\View\Model\ViewModel,
 
 class UserAccessController extends FrontActionController {
 
-    protected $_roleTable;
-    protected $_assignRoleActionTable;
     protected $_userSessionData;
 
     public function indexAction() {
@@ -44,9 +42,7 @@ class UserAccessController extends FrontActionController {
         $order_by = $this->params()->fromRoute('order_by') ? $this->params()->fromRoute('order_by') : 'id';
         $order = $this->params()->fromRoute('order') ? $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
         $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
-
         $role = $this->getRoleTable()->fetchAll($select->order($order_by . ' ' . $order));
-        
 
         $role->current();
         $paginator = new Paginator(new paginatorIterator($role));
@@ -94,12 +90,17 @@ class UserAccessController extends FrontActionController {
         
         if ($id !== null) {
            
-            $roleAccessObj = $this->getAssignRoleActionTable()->getRoleAllowedActionByRoleId($id);
+            $roleAccessObj = $model->getRoleAllowedActionByRoleId($id);
 
-        
-            $access = json_decode($roleAccessObj->getRoleAllowedAction());
-            $formData = $roleAccessObj->toArray();
             
+            if($roleAccessObj !== false) {
+            	$access = json_decode($roleAccessObj->getRoleAllowedAction());
+            	$formData = $roleAccessObj->toArray();
+            } else {
+            	$access = json_decode('');
+            	$formData = array();
+            }
+        
         }
         
 
@@ -144,28 +145,8 @@ class UserAccessController extends FrontActionController {
         $this->redirect()->toRoute('admin/user');
     }
 
-    public function getRoleTable() {
-        if (!$this->_roleTable) {
-            $sm = $this->getServiceLocator();
-            $this->_roleTable = $sm->get('Admin\Model\RoleTable');
-        }
-        return $this->_roleTable
-        ;
-    }
-    public function getAssignRoleActionTable() {
-        if (!$this->_assignRoleActionTable) {
-            $sm = $this->getServiceLocator();
-            $this->_assignRoleActionTable = $sm->get('Admin\Model\AssignRoleActionTable');
-        }
-        return $this->_assignRoleActionTable
-        ;
-    }
-
     public function getRoleAccessHtmlAction() {
         $viewModel = $this->nolayout();
-        
-        
-        
         return $viewModel;
     }
 
