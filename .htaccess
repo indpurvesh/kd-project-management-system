@@ -4,3 +4,8 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+# Block access to directories without a default document.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
