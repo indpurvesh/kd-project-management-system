@@ -4,3 +4,15 @@ RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
+
+# Block access to directories without a default document.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Block access to backup and source files.
+<FilesMatch "(^#.*#|\.(bak|config|gitignore|dist|md|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
+    Order Allow,Deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
